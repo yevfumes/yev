@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Luxury off-white background */
+    --background: 40 20% 97%;
+    --foreground: 30 10% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 30 10% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 10% 8%;
+
+    /* Gold accent */
+    --primary: 38 55% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 12% 92%;
+    --secondary-foreground: 30 10% 20%;
+
+    --muted: 30 10% 94%;
+    --muted-foreground: 30 8% 45%;
+
+    --accent: 38 45% 90%;
+    --accent-foreground: 38 55% 25%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 12% 88%;
+    --input: 30 12% 88%;
+    --ring: 38 55% 52%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 30 8% 8%;
+    --foreground: 40 20% 94%;
+
+    --card: 30 8% 11%;
+    --card-foreground: 40 20% 94%;
+
+    --popover: 30 8% 11%;
+    --popover-foreground: 40 20% 94%;
+
+    --primary: 38 55% 52%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 8% 16%;
+    --secondary-foreground: 40 15% 85%;
+
+    --muted: 30 8% 14%;
+    --muted-foreground: 30 8% 55%;
+
+    --accent: 38 25% 18%;
+    --accent-foreground: 38 55% 70%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 8% 18%;
+    --input: 30 8% 18%;
+    --ring: 38 55% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/50;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
+
+@layer components {
+  .formula-row-hover {
+    @apply hover:bg-muted/60 transition-colors;
+  }
+  .ingredient-input {
+    @apply bg-transparent border-0 focus:outline-none focus:ring-1 focus:ring-primary/40 rounded px-1 py-0.5 w-full text-sm font-mono tabular-nums;
+  }
+  .status-dot-green { @apply w-2 h-2 rounded-full bg-emerald-500; }
+  .status-dot-amber { @apply w-2 h-2 rounded-full bg-amber-500; }
+  .status-dot-red   { @apply w-2 h-2 rounded-full bg-red-500; }
+}
