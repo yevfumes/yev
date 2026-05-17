@@ -285,11 +285,33 @@ export const formulaIngredientsRelations = relations(formulaIngredients, ({ one 
   version: one(formulaVersions, { fields: [formulaIngredients.version_id], references: [formulaVersions.id] }),
 }));
 
+export const materialAllergenRelations = relations(materialAllergens, ({ one }) => ({
+  material: one(materials, { fields: [materialAllergens.material_id], references: [materials.id] }),
+}));
+
+export const ifraLimitsRelations = relations(ifraLimits, ({ one }) => ({
+  material: one(materials, { fields: [ifraLimits.material_id], references: [materials.id] }),
+}));
+
 export const suppliersRelations = relations(suppliers, ({ many }) => ({
   supplierMaterials: many(supplierMaterials),
+}));
+
+export const supplierMaterialsRelations = relations(supplierMaterials, ({ one }) => ({
+  supplier: one(suppliers, { fields: [supplierMaterials.supplier_id], references: [suppliers.id] }),
+  material: one(materials, { fields: [supplierMaterials.material_id], references: [materials.id] }),
 }));
 
 export const inventoryLotsRelations = relations(inventoryLots, ({ one, many }) => ({
   material: one(materials, { fields: [inventoryLots.material_id], references: [materials.id] }),
   transactions: many(inventoryTransactions),
+}));
+
+export const inventoryTransactionsRelations = relations(inventoryTransactions, ({ one }) => ({
+  lot: one(inventoryLots, { fields: [inventoryTransactions.lot_id], references: [inventoryLots.id] }),
+}));
+
+export const formulaEvaluationsRelations = relations(formulaEvaluations, ({ one }) => ({
+  formula: one(formulas, { fields: [formulaEvaluations.formula_id], references: [formulas.id] }),
+  version: one(formulaVersions, { fields: [formulaEvaluations.version_id], references: [formulaVersions.id] }),
 }));
