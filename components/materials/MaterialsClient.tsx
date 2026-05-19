@@ -5,6 +5,10 @@ import { Beaker, Plus, Search, AlertTriangle, Shield, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner";
 import { cn, formatWeight, NOTE_COLORS } from "@/lib/utils";
 
 interface Material {
@@ -36,12 +40,94 @@ const TYPE_LABELS: Record<string, string> = {
 
 const FAMILIES = ["floral", "woody", "oriental", "fresh", "fougere", "chypre", "gourmand", "aromatic", "aquatic", "musk"];
 const TYPES = ["synthetic", "essential_oil", "absolute", "isolate"];
+const MATERIAL_TYPES = ["synthetic", "essential_oil", "absolute", "isolate", "natural", "base", "accord"];
+const NOTE_POSITIONS = ["top", "middle", "base", "fixative", "solvent"];
+
+interface AddMaterialForm {
+  name: string;
+  cas_number: string;
+  fema_number: string;
+  material_type: string;
+  note_position: string;
+  olfactory_family: string;
+  odor_descriptors: string;
+  default_dilution: string;
+  cost_per_kg: string;
+  stock_grams: string;
+  reorder_threshold_grams: string;
+  storage_location: string;
+  notes: string;
+}
+
+const defaultForm: AddMaterialForm = {
+  name: "",
+  cas_number: "",
+  fema_number: "",
+  material_type: "synthetic",
+  note_position: "",
+  olfactory_family: "",
+  odor_descriptors: "",
+  default_dilution: "100",
+  cost_per_kg: "",
+  stock_grams: "0",
+  reorder_threshold_grams: "",
+  storage_location: "",
+  notes: "",
+};
 
 export function MaterialsClient({ materials }: { materials: Material[] }) {
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [familyFilter, setFamilyFilter] = useState("");
   const [lowStockOnly, setLowStockOnly] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
+  const [form, setForm] = useState<AddMaterialForm>(defaultForm);
+  const [saving, setSaving] = useState(false);
+
+  function setField(field: keyof AddMaterialForm, value: string) {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  }
+
+  async function handleAddMaterial(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name.trim()) {
+      toast.error("Material name is required");
+      return;
+    }
+    setSaving(true);
+    try {
+      const payload: Record<string, unknown> = {
+        name: form.name.trim(),
+        material_type: form.material_type || "synthetic",
+        default_dilution: parseFloat(form.default_dilution) || 100,
+        stock_grams: parseFloat(form.stock_grams) || 0,
+      };
+      if (form.cas_number) payload.cas_number = form.cas_number;
+      if (form.fema_number) payload.fema_number = form.fema_number;
+      if (form.note_position) payload.note_position = form.note_position;
+      if (form.olfactory_family) payload.olfactory_family = form.olfactory_family;
+      if (form.odor_descriptors) payload.odor_descriptors = form.odor_descriptors;
+      if (form.cost_per_kg) payload.cost_per_kg = parseFloat(form.cost_per_kg);
+      if (form.reorder_threshold_grams) payload.reorder_threshold_grams = parseFloat(form.reorder_threshold_grams);
+      if (form.storage_location) payload.storage_location = form.storage_location;
+      if (form.notes) payload.notes = form.notes;
+
+      const res = await fetch("/api/materials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error("Failed to add material");
+      toast.success("Material added");
+      setAddOpen(false);
+      setForm(defaultForm);
+      window.location.reload();
+    } catch {
+      toast.error("Failed to add material");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   const filtered = useMemo(() => {
     let results = materials;
@@ -75,11 +161,197 @@ export function MaterialsClient({ materials }: { materials: Material[] }) {
           <h1 className="text-2xl font-serif font-semibold">Materials</h1>
           <p className="text-sm text-muted-foreground mt-0.5">{materials.length} in database</p>
         </div>
-        <Button size="sm" className="gap-2">
+        <Button size="sm" className="gap-2" onClick={() => setAddOpen(true)}>
           <Plus className="h-4 w-4" />
           Add Material
         </Button>
       </div>
+
+      {/* Add Material Dialog */}
+      <Dialog open={addOpen} onOpenChange={setAddOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif">Add Material</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleAddMaterial} className="space-y-4 py-2">
+            {/* Name */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Name *</label>
+              <Input
+                value={form.name}
+                onChange={(e) => setField("name", e.target.value)}
+                placeholder="e.g. Iso E Super"
+                required
+              />
+            </div>
+
+            {/* CAS / FEMA */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">CAS Number</label>
+                <Input
+                  value={form.cas_number}
+                  onChange={(e) => setField("cas_number", e.target.value)}
+                  placeholder="e.g. 54464-57-2"
+                  className="font-mono"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">FEMA Number</label>
+                <Input
+                  value={form.fema_number}
+                  onChange={(e) => setField("fema_number", e.target.value)}
+                  placeholder="e.g. 3440"
+                  className="font-mono"
+                />
+              </div>
+            </div>
+
+            {/* Type + Note Position */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Material Type</label>
+                <Select value={form.material_type} onValueChange={(v) => setField("material_type", v)}>
+                  <SelectTrigger>
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {MATERIAL_TYPES.map((t) => (
+                      <SelectItem key={t} value={t} className="capitalize">
+                        {TYPE_LABELS[t] ?? t}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Note Position</label>
+                <Select value={form.note_position || "_none"} onValueChange={(v) => setField("note_position", v === "_none" ? "" : v)}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select…" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="_none">None</SelectItem>
+                    {NOTE_POSITIONS.map((p) => (
+                      <SelectItem key={p} value={p} className="capitalize">{p}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            {/* Olfactory Family */}
+            <div className="space-y-2">
+              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Olfactory Family</label>
+              <div className="flex flex-wrap gap-1.5">
+                {FAMILIES.map((f) => (
+                  <button
+                    type="button"
+                    key={f}
+                    onClick={() => setField("olfactory_family", form.olfactory_family === f ? "" : f)}
+                    className={cn(
+                      "text-xs px-2.5 py-1 rounded-full border transition-all capitalize",
+                      form.olfactory_family === f
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border hover:border-primary/40"
+                    )}
+                  >
+                    {f}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Odor descriptors */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Odor Descriptors</label>
+              <Input
+                value={form.odor_descriptors}
+                onChange={(e) => setField("odor_descriptors", e.target.value)}
+                placeholder="e.g. woody, cedar, smoky (comma-separated)"
+              />
+            </div>
+
+            {/* Numbers row */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Dilution %</label>
+                <Input
+                  type="number"
+                  min="0"
+                  max="100"
+                  value={form.default_dilution}
+                  onChange={(e) => setField("default_dilution", e.target.value)}
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Cost/kg ($)</label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.01"
+                  value={form.cost_per_kg}
+                  onChange={(e) => setField("cost_per_kg", e.target.value)}
+                  placeholder="0.00"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Stock (g)</label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  value={form.stock_grams}
+                  onChange={(e) => setField("stock_grams", e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* Reorder + Location */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Reorder Threshold (g)</label>
+                <Input
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  value={form.reorder_threshold_grams}
+                  onChange={(e) => setField("reorder_threshold_grams", e.target.value)}
+                  placeholder="e.g. 50"
+                />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Storage Location</label>
+                <Input
+                  value={form.storage_location}
+                  onChange={(e) => setField("storage_location", e.target.value)}
+                  placeholder="e.g. Shelf A3"
+                />
+              </div>
+            </div>
+
+            {/* Notes */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Notes</label>
+              <Textarea
+                value={form.notes}
+                onChange={(e) => setField("notes", e.target.value)}
+                placeholder="Any additional notes…"
+                rows={3}
+              />
+            </div>
+
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setAddOpen(false)}>
+                Cancel
+              </Button>
+              <Button type="submit" disabled={saving}>
+                {saving ? "Adding…" : "Add Material"}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       {/* Search + Filters */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
