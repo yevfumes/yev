@@ -5,6 +5,10 @@ import { Beaker, Plus, Search, AlertTriangle, Shield, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner";
 import { cn, formatWeight, NOTE_COLORS } from "@/lib/utils";
 
 interface Material {
@@ -36,12 +40,62 @@ const TYPE_LABELS: Record<string, string> = {
 
 const FAMILIES = ["floral", "woody", "oriental", "fresh", "fougere", "chypre", "gourmand", "aromatic", "aquatic", "musk"];
 const TYPES = ["synthetic", "essential_oil", "absolute", "isolate"];
+const MAT_TYPES = ["synthetic", "essential_oil", "absolute", "isolate", "natural", "base", "accord"];
+const NOTE_POSITIONS = ["top", "middle", "base", "fixative", "solvent"];
+
+const defaultForm = {
+  name: "",
+  cas_number: "",
+  fema_number: "",
+  material_type: "synthetic",
+  note_position: "",
+  olfactory_family: "",
+  odor_descriptors: "",
+  default_dilution: 100,
+  cost_per_kg: "",
+  stock_grams: 0,
+  reorder_threshold_grams: "",
+  storage_location: "",
+  notes: "",
+};
 
 export function MaterialsClient({ materials }: { materials: Material[] }) {
   const [query, setQuery] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [familyFilter, setFamilyFilter] = useState("");
   const [lowStockOnly, setLowStockOnly] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [form, setForm] = useState<typeof defaultForm>({ ...defaultForm });
+  const [saving, setSaving] = useState(false);
+
+  const setField = (k: string, v: unknown) => setForm((f) => ({ ...f, [k]: v }));
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!form.name.trim()) { toast.error("Name is required"); return; }
+    setSaving(true);
+    try {
+      const payload = {
+        ...form,
+        default_dilution: Number(form.default_dilution) || 100,
+        cost_per_kg: form.cost_per_kg !== "" ? Number(form.cost_per_kg) : null,
+        stock_grams: Number(form.stock_grams) || 0,
+        reorder_threshold_grams: form.reorder_threshold_grams !== "" ? Number(form.reorder_threshold_grams) : null,
+        note_position: form.note_position || null,
+        olfactory_family: form.olfactory_family || null,
+      };
+      const res = await fetch("/api/materials", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      if (!res.ok) throw new Error("Failed");
+      toast.success("Material added");
+      setDialogOpen(false);
+      setForm({ ...defaultForm });
+      window.location.reload();
+    } catch {
+      toast.error("Failed to add material");
+    } finally {
+      setSaving(false);
+    }
+  }
 
   const filtered = useMemo(() => {
     let results = materials;
@@ -75,11 +129,122 @@ export function MaterialsClient({ materials }: { materials: Material[] }) {
           <h1 className="text-2xl font-serif font-semibold">Materials</h1>
           <p className="text-sm text-muted-foreground mt-0.5">{materials.length} in database</p>
         </div>
-        <Button size="sm" className="gap-2">
+        <Button size="sm" className="gap-2" onClick={() => setDialogOpen(true)}>
           <Plus className="h-4 w-4" />
           Add Material
         </Button>
       </div>
+
+      {/* Add Material Dialog */}
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="font-serif text-lg">Add Material</DialogTitle>
+          </DialogHeader>
+          <form onSubmit={handleSubmit} className="space-y-4 py-2">
+            {/* Name */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground">Name <span className="text-destructive">*</span></label>
+              <Input value={form.name} onChange={(e) => setField("name", e.target.value)} placeholder="e.g. Linalool" />
+            </div>
+            {/* CAS / FEMA */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">CAS Number</label>
+                <Input value={form.cas_number} onChange={(e) => setField("cas_number", e.target.value)} placeholder="78-70-6" className="font-mono" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">FEMA Number</label>
+                <Input value={form.fema_number} onChange={(e) => setField("fema_number", e.target.value)} placeholder="2635" className="font-mono" />
+              </div>
+            </div>
+            {/* Type + Note */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Material Type</label>
+                <Select value={form.material_type} onValueChange={(v) => setField("material_type", v)}>
+                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectContent>
+                    {MAT_TYPES.map((t) => (
+                      <SelectItem key={t} value={t}>{TYPE_LABELS[t] ?? t}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Note Position</label>
+                <Select value={form.note_position} onValueChange={(v) => setField("note_position", v)}>
+                  <SelectTrigger><SelectValue placeholder="Select…" /></SelectTrigger>
+                  <SelectContent>
+                    {NOTE_POSITIONS.map((n) => (
+                      <SelectItem key={n} value={n} className="capitalize">{n}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+            {/* Olfactory family */}
+            <div className="space-y-1.5">
+              <label className="text-xs font-medium text-muted-foreground">Olfactory Family</label>
+              <div className="flex flex-wrap gap-1.5">
+                {FAMILIES.map((f) => (
+                  <button
+                    key={f}
+                    type="button"
+                    onClick={() => setField("olfactory_family", form.olfactory_family === f ? "" : f)}
+                    className={cn(
+                      "text-xs px-2.5 py-1 rounded-full border transition-all capitalize",
+                      form.olfactory_family === f
+                        ? "bg-primary text-primary-foreground border-primary"
+                        : "border-border hover:border-primary/40"
+                    )}
+                  >{f}</button>
+                ))}
+              </div>
+            </div>
+            {/* Odor descriptors */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground">Odor Descriptors (comma-separated)</label>
+              <Input value={form.odor_descriptors} onChange={(e) => setField("odor_descriptors", e.target.value)} placeholder="floral, fresh, green" />
+            </div>
+            {/* Dilution / Cost / Stock */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Default Dilution (%)</label>
+                <Input type="number" value={form.default_dilution} onChange={(e) => setField("default_dilution", e.target.value)} min={0} max={100} />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Cost per kg ($)</label>
+                <Input type="number" value={form.cost_per_kg} onChange={(e) => setField("cost_per_kg", e.target.value)} min={0} placeholder="0.00" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Stock (grams)</label>
+                <Input type="number" value={form.stock_grams} onChange={(e) => setField("stock_grams", e.target.value)} min={0} />
+              </div>
+            </div>
+            {/* Reorder threshold / Storage */}
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Reorder Threshold (grams)</label>
+                <Input type="number" value={form.reorder_threshold_grams} onChange={(e) => setField("reorder_threshold_grams", e.target.value)} min={0} placeholder="500" />
+              </div>
+              <div className="space-y-1">
+                <label className="text-xs font-medium text-muted-foreground">Storage Location</label>
+                <Input value={form.storage_location} onChange={(e) => setField("storage_location", e.target.value)} placeholder="Fridge A, Shelf 2" />
+              </div>
+            </div>
+            {/* Notes */}
+            <div className="space-y-1">
+              <label className="text-xs font-medium text-muted-foreground">Notes</label>
+              <Textarea value={form.notes} onChange={(e) => setField("notes", e.target.value)} placeholder="Additional notes…" rows={3} />
+            </div>
+            <DialogFooter>
+              <Button type="button" variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
+              <Button type="submit" disabled={saving}>{saving ? "Saving…" : "Add Material"}</Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
 
       {/* Search + Filters */}
       <div className="flex flex-wrap items-center gap-3 mb-6">

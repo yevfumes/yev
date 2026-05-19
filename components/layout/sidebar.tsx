@@ -10,6 +10,8 @@ import {
   Users,
   Settings,
   Beaker,
+  Factory,
+  FileText,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -18,6 +20,7 @@ const nav = [
   { href: "/formulas", icon: FlaskConical, label: "Formulas" },
   { href: "/materials", icon: Beaker, label: "Materials" },
   { href: "/inventory", icon: Boxes, label: "Inventory" },
+  { href: "/batches", icon: Factory, label: "Batches" },
   { href: "/suppliers", icon: Users, label: "Suppliers" },
   { href: "/compliance", icon: ShieldCheck, label: "Compliance" },
 ];
@@ -60,8 +63,25 @@ export function Sidebar() {
       {/* Footer */}
       <div className="px-2 py-3 border-t">
         <Link
+          href="/spec"
+          className={cn(
+            "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
+            pathname === "/spec"
+              ? "bg-primary/10 text-primary font-medium"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          )}
+        >
+          <FileText className="h-4 w-4" />
+          Platform Spec
+        </Link>
+        <Link
           href="/settings"
-          className="flex items-center gap-3 px-3 py-2 rounded-md text-sm text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
+          className={cn(
+            "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
+            pathname === "/settings"
+              ? "bg-primary/10 text-primary font-medium"
+              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+          )}
         >
           <Settings className="h-4 w-4" />
           Settings
