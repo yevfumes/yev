@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Container } from "@/components/marketing/container";
 import { MButton } from "@/components/marketing/button";
 import { SectionHeading, Eyebrow } from "@/components/marketing/section-heading";
-import { VisualBlock } from "@/components/marketing/visual-block";
-import { Reveal } from "@/components/marketing/reveal";
+import { ProcessSteps } from "@/components/marketing/process-steps";
+import { startTimeline } from "@/lib/marketing/content";
 
 export const metadata: Metadata = {
   title: "About — Independent Perfumer",
@@ -16,27 +16,17 @@ export default function AboutPage() {
   return (
     <>
       <section className="border-b border-ink/10">
-        <Container className="grid gap-12 pb-16 pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-20">
-          <div>
-            <Eyebrow className="mb-6">About</Eyebrow>
-            <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
-              An Independent Perfumer, Working Directly with You
-            </h1>
-            <p className="mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-              I&apos;m Yev, the perfumer behind this studio. I develop
-              bespoke fragrances for brands, founders and individuals, and
-              teach hands-on perfumery classes — with no layers between you
-              and the person at the bench.
-            </p>
-          </div>
-          <Reveal>
-            <VisualBlock
-              label="Portrait"
-              alt="Portrait of Yev, independent perfumer"
-              aspect="aspect-[4/5]"
-              variant="a"
-            />
-          </Reveal>
+        <Container size="narrow" className="pb-16 pt-14 text-center lg:pb-24 lg:pt-20">
+          <Eyebrow className="mb-6">About</Eyebrow>
+          <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
+            An Independent Perfumer, Working Directly with You
+          </h1>
+          <p className="mx-auto mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
+            I&apos;m Yev, the perfumer behind this studio. I develop
+            bespoke fragrances for brands, founders and individuals, and
+            teach hands-on perfumery classes — with no layers between you
+            and the person at the bench.
+          </p>
         </Container>
       </section>
 
@@ -70,47 +60,16 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* THE CRAFT — imagery */}
+      {/* HOW WE START WORKING TOGETHER */}
       <section className="border-b border-ink/10 bg-ivory-soft py-20 lg:py-28">
         <Container>
           <SectionHeading
-            eyebrow="The Craft"
-            title="Where the Work Happens"
-            description="Formula development happens at the bench — working through raw materials, structure and balance until a concept becomes a finished fragrance."
+            eyebrow="Getting Started"
+            title="How We Start Working Together"
+            description="From first enquiry to the start of development — what to expect before a project begins."
           />
-          <div className="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
-            <Reveal>
-              <VisualBlock
-                label="Studio"
-                alt="The perfumery studio workspace"
-                aspect="aspect-[3/4]"
-                variant="b"
-              />
-            </Reveal>
-            <Reveal delay={80}>
-              <VisualBlock
-                label="Perfumer's organ"
-                alt="Perfumer's organ with raw materials arranged for formulation"
-                aspect="aspect-[3/4]"
-                variant="a"
-              />
-            </Reveal>
-            <Reveal delay={160}>
-              <VisualBlock
-                label="Raw materials"
-                alt="Close-up of raw perfumery materials"
-                aspect="aspect-[3/4]"
-                variant="c"
-              />
-            </Reveal>
-            <Reveal delay={240}>
-              <VisualBlock
-                label="Formula development"
-                alt="Formula development notes and weighing equipment"
-                aspect="aspect-[3/4]"
-                variant="b"
-              />
-            </Reveal>
+          <div className="mt-12">
+            <ProcessSteps steps={startTimeline} />
           </div>
         </Container>
       </section>

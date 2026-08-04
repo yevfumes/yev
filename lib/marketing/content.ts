@@ -34,6 +34,39 @@ export const processSteps: ProcessStep[] = [
   },
 ];
 
+export const startTimeline: ProcessStep[] = [
+  {
+    number: "01",
+    title: "Get in Touch",
+    description:
+      "Submit a project enquiry with your idea, brand or brief — as much or as little detail as you have at this stage.",
+  },
+  {
+    number: "02",
+    title: "Introductory Conversation",
+    description:
+      "If it looks like a good fit, we'll arrange a conversation to talk through the brief, direction and scope in more depth.",
+  },
+  {
+    number: "03",
+    title: "Scope & Timeline Agreed",
+    description:
+      "Once we're aligned on the project, we'll agree the scope, approach and timeline before development begins.",
+  },
+  {
+    number: "04",
+    title: "Development Begins",
+    description:
+      "Formula development starts at the bench, moving into discovery and structured experimentation.",
+  },
+  {
+    number: "05",
+    title: "Ongoing Collaboration",
+    description:
+      "You'll stay closely involved through evaluation and refinement, reviewing samples and sharing feedback until the fragrance is complete.",
+  },
+];
+
 export const whoWeWorkWith = [
   {
     title: "Fragrance & Beauty Brands",
