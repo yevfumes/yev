@@ -53,7 +53,7 @@ export default function NewFormulaPage() {
       });
       const data = await res.json();
       toast.success(`Formula created: ${data.name}`);
-      router.push(`/formulas/${data.id}`);
+      router.push(`/studio/formulas/${data.id}`);
     } catch {
       toast.error("Failed to create formula");
     } finally {
@@ -63,7 +63,7 @@ export default function NewFormulaPage() {
 
   return (
     <div className="p-8 max-w-2xl">
-      <Link href="/formulas" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
+      <Link href="/studio/formulas" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors">
         <ArrowLeft className="h-3.5 w-3.5" />
         Formulas
       </Link>
@@ -176,7 +176,7 @@ export default function NewFormulaPage() {
           <Button onClick={handleCreate} disabled={loading} className="min-w-32">
             {loading ? "Creating..." : "Create Formula"}
           </Button>
-          <Link href="/formulas">
+          <Link href="/studio/formulas">
             <Button variant="ghost">Cancel</Button>
           </Link>
         </div>

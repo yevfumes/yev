@@ -38,7 +38,7 @@ export default async function FormulasPage() {
           <h1 className="text-2xl font-serif font-semibold">Formulas</h1>
           <p className="text-sm text-muted-foreground mt-0.5">{formulas.length} formula{formulas.length !== 1 ? "s" : ""}</p>
         </div>
-        <Link href="/formulas/new">
+        <Link href="/studio/formulas/new">
           <Button size="sm" className="gap-2">
             <Plus className="h-4 w-4" />
             New Formula
@@ -51,7 +51,7 @@ export default async function FormulasPage() {
           <FlaskConical className="h-12 w-12 text-muted-foreground/20 mx-auto mb-3" />
           <h3 className="font-medium text-sm mb-1">No formulas yet</h3>
           <p className="text-xs text-muted-foreground mb-4">Create your first formula to get started.</p>
-          <Link href="/formulas/new">
+          <Link href="/studio/formulas/new">
             <Button size="sm">Create Formula</Button>
           </Link>
         </div>

@@ -170,7 +170,7 @@ export function FormulaEditor({ formula, allMaterials }: { formula: Formula; all
         <div className="flex items-center justify-between px-6 h-14 gap-4">
           {/* Left: breadcrumb + name */}
           <div className="flex items-center gap-3 min-w-0">
-            <Link href="/formulas" className="text-muted-foreground hover:text-foreground transition-colors">
+            <Link href="/studio/formulas" className="text-muted-foreground hover:text-foreground transition-colors">
               <ArrowLeft className="h-4 w-4" />
             </Link>
             <div className="h-4 w-px bg-border" />

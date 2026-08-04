@@ -45,7 +45,7 @@ export default async function DashboardPage() {
           <h1 className="text-2xl font-serif font-semibold text-foreground">Studio</h1>
           <p className="text-sm text-muted-foreground mt-0.5">Your perfumery workspace</p>
         </div>
-        <Link href="/formulas/new">
+        <Link href="/studio/formulas/new">
           <Button size="sm" className="gap-2">
             <Plus className="h-4 w-4" />
             New Formula
@@ -77,7 +77,7 @@ export default async function DashboardPage() {
         <div className="col-span-2">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-sm font-semibold text-foreground">Recent Formulas</h2>
-            <Link href="/formulas" className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1">
+            <Link href="/studio/formulas" className="text-xs text-muted-foreground hover:text-primary flex items-center gap-1">
               All formulas <ArrowRight className="h-3 w-3" />
             </Link>
           </div>
@@ -87,7 +87,7 @@ export default async function DashboardPage() {
                 <CardContent className="p-8 text-center">
                   <FlaskConical className="h-8 w-8 text-muted-foreground/30 mx-auto mb-2" />
                   <p className="text-sm text-muted-foreground">No formulas yet.</p>
-                  <Link href="/formulas/new">
+                  <Link href="/studio/formulas/new">
                     <Button variant="link" size="sm" className="mt-1">Create your first formula</Button>
                   </Link>
                 </CardContent>

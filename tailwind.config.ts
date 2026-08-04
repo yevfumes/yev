@@ -60,6 +60,20 @@ const config: Config = {
           800: "#713f12",
           900: "#422006",
         },
+        // ─── Perfumery studio marketing site palette ──────────────────
+        ivory: {
+          DEFAULT: "#FAF6EF",
+          soft: "#F4EEE3",
+        },
+        ink: {
+          DEFAULT: "#1C1815",
+          soft: "#3A342E",
+        },
+        clay: {
+          DEFAULT: "#A9714D",
+          light: "#D9C0A8",
+          dark: "#7C5236",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -68,8 +82,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        serif: ["var(--font-dm-serif)", "Georgia", "serif"],
+        serif: ["var(--font-fraunces)", "Georgia", "serif"],
         mono: ["var(--font-jetbrains)", "Menlo", "monospace"],
+      },
+      letterSpacing: {
+        wide2: "0.08em",
       },
       keyframes: {
         "accordion-down": {

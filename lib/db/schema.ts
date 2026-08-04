@@ -260,6 +260,51 @@ export const batches = sqliteTable("batches", {
   created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });
 
+// ─── Marketing site: fragrance development enquiries ─────────────────────────
+
+export const projectEnquiries = sqliteTable("project_enquiries", {
+  id: text("id").primaryKey().$defaultFn(() => nanoid()),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  company: text("company"),
+  website: text("website"),
+  country: text("country"),
+  // existing_brand | new_brand | individual
+  brand_status: text("brand_status"),
+  // personal_fragrance | brand_range | single_product | gift_or_bespoke | other
+  project_type: text("project_type"),
+  number_of_fragrances: text("number_of_fragrances"),
+  fragrance_direction: text("fragrance_direction"),
+  creative_brief: text("creative_brief").notNull(),
+  reference_fragrances: text("reference_fragrances"),
+  target_customer: text("target_customer"),
+  launch_date: text("launch_date"),
+  budget: text("budget"),
+  production_quantity: text("production_quantity"),
+  // development_only | development_and_support
+  support_needed: text("support_needed"),
+  additional_info: text("additional_info"),
+  // new | reviewed | replied | archived
+  status: text("status").notNull().default("new"),
+  created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+});
+
+// ─── Marketing site: perfumery class waiting list ─────────────────────────────
+
+export const classInterest = sqliteTable("class_interest", {
+  id: text("id").primaryKey().$defaultFn(() => nanoid()),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  location: text("location"),
+  // beginner | some_experience | experienced
+  experience_level: text("experience_level"),
+  learning_goals: text("learning_goals"),
+  // in_person | online | either
+  preferred_format: text("preferred_format"),
+  status: text("status").notNull().default("new"),
+  created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+});
+
 // ─── Relations ────────────────────────────────────────────────────────────────
 
 export const materialsRelations = relations(materials, ({ many, one }) => ({

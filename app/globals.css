@@ -93,7 +93,35 @@
   }
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  ::selection {
+    background-color: #A9714D;
+    color: #FAF6EF;
+  }
+}
+
+
 @layer components {
+  /* Marketing site: scroll-reveal. Visible by default — animation is only
+     armed by JS for elements starting off-screen, so a slow/failed
+     IntersectionObserver (or no JS at all) can never hide real content. */
+  .reveal {
+    opacity: 1;
+  }
+  .reveal.reveal-armed {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.reveal-armed[data-revealed="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .formula-row-hover {
     @apply hover:bg-muted/60 transition-colors;
   }
