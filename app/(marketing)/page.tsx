@@ -145,49 +145,14 @@ export default function HomePage() {
             title="Fragrance Is Built from Materials"
             description="Naturals, isolates and aroma chemicals, evaluated on blotter and skin, formulated gram by gram into a finished structure."
           />
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <Reveal className="col-span-2 row-span-2">
+          <div className="mt-12">
+            <Reveal>
               <VisualBlock
                 src="/images/studio/raw-materials.jpg"
                 label="Raw materials"
                 alt="Shelves of raw perfumery materials in amber and clear glass bottles at the Yevfumes studio"
-                aspect="aspect-square"
+                aspect="aspect-[4/3]"
                 variant="a"
-              />
-            </Reveal>
-            <Reveal delay={80}>
-              <VisualBlock
-                src="/images/studio/blotter-strips.jpg"
-                label="Blotter strips"
-                alt="Fragrance evaluation blotter strips in a glass beaker on the studio bench"
-                aspect="aspect-square"
-                variant="b"
-              />
-            </Reveal>
-            <Reveal delay={160}>
-              <VisualBlock
-                src="/images/studio/fragrance-samples.jpg"
-                label="Fragrance samples"
-                alt="Labelled fragrance sample vials lined up on the studio bench"
-                aspect="aspect-square"
-                variant="c"
-              />
-            </Reveal>
-            <Reveal delay={240}>
-              <VisualBlock
-                src="/images/studio/formula-notes.jpg"
-                label="Formula notes"
-                alt="Handwritten formula development notes in the studio notebook"
-                aspect="aspect-square"
-                variant="b"
-              />
-            </Reveal>
-            <Reveal delay={320}>
-              <VisualBlock
-                label="Natural materials"
-                alt="Natural raw perfumery materials and botanicals"
-                aspect="aspect-square"
-                variant="c"
               />
             </Reveal>
           </div>
