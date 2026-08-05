@@ -100,8 +100,9 @@ export default function HomePage() {
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal className="order-2 lg:order-1">
             <VisualBlock
-              label="Portrait — at the bench"
-              alt="Portrait of the perfumer working at the bench"
+              src="/images/studio/at-bench.jpg"
+              label="At the bench"
+              alt="The Yevfumes studio bench, with test tubes, sample vials and formula notes laid out beside a laptop"
               aspect="aspect-[4/5]"
               variant="b"
             />
