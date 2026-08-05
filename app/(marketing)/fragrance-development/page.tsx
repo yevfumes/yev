@@ -37,8 +37,9 @@ export default function FragranceDevelopmentPage() {
           </div>
           <Reveal>
             <VisualBlock
+              src="/images/studio/hero-organ.jpg"
               label="Formula development in progress"
-              alt="Perfumer weighing raw materials during formula development"
+              alt="The Yevfumes studio bench and material shelving during formula development"
               aspect="aspect-[4/5]"
               variant="b"
             />
@@ -92,20 +93,23 @@ export default function FragranceDevelopmentPage() {
         <Container>
           <div className="grid grid-cols-3 gap-4">
             <VisualBlock
+              src="/images/studio/raw-materials.jpg"
               label="Perfumer's organ"
-              alt="Perfumer's organ used for formula development"
+              alt="Shelving of raw materials used for formula development at the Yevfumes studio"
               aspect="aspect-square"
               variant="a"
             />
             <VisualBlock
+              src="/images/studio/blotter-strips.jpg"
               label="Evaluation on blotter"
-              alt="Fragrance evaluation on a blotter strip"
+              alt="Fragrance evaluation blotter strips on the studio bench"
               aspect="aspect-square"
               variant="b"
             />
             <VisualBlock
-              label="Formula weighing"
-              alt="Precise weighing during formula development"
+              src="/images/studio/fragrance-samples.jpg"
+              label="Formula samples"
+              alt="Labelled fragrance sample vials from formula development at the Yevfumes studio"
               aspect="aspect-square"
               variant="c"
             />

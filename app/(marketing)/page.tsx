@@ -45,8 +45,9 @@ export default function HomePage() {
 
           <Reveal>
             <VisualBlock
+              src="/images/studio/hero-organ.jpg"
               label="Perfumer's organ — studio photography"
-              alt="A perfumer's organ arranged with amber glass bottles of raw materials"
+              alt="The Yevfumes studio shelving, arranged with amber and clear glass bottles of raw materials, beside the formulation bench"
               aspect="aspect-[4/5] lg:aspect-[5/6]"
               variant="a"
             />
@@ -146,32 +147,36 @@ export default function HomePage() {
           <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
             <Reveal className="col-span-2 row-span-2">
               <VisualBlock
+                src="/images/studio/raw-materials.jpg"
                 label="Raw materials"
-                alt="Close-up of raw perfumery materials in amber glass bottles"
+                alt="Shelves of raw perfumery materials in amber and clear glass bottles at the Yevfumes studio"
                 aspect="aspect-square"
                 variant="a"
               />
             </Reveal>
             <Reveal delay={80}>
               <VisualBlock
+                src="/images/studio/blotter-strips.jpg"
                 label="Blotter strips"
-                alt="Fragrance evaluation blotter strips"
+                alt="Fragrance evaluation blotter strips in a glass beaker on the studio bench"
                 aspect="aspect-square"
                 variant="b"
               />
             </Reveal>
             <Reveal delay={160}>
               <VisualBlock
-                label="Pipettes & measuring"
-                alt="Pipettes used for precise formula measuring"
+                src="/images/studio/fragrance-samples.jpg"
+                label="Fragrance samples"
+                alt="Labelled fragrance sample vials lined up on the studio bench"
                 aspect="aspect-square"
                 variant="c"
               />
             </Reveal>
             <Reveal delay={240}>
               <VisualBlock
+                src="/images/studio/formula-notes.jpg"
                 label="Formula notes"
-                alt="Handwritten formula development notes"
+                alt="Handwritten formula development notes in the studio notebook"
                 aspect="aspect-square"
                 variant="b"
               />
@@ -220,8 +225,9 @@ export default function HomePage() {
           </Reveal>
           <Reveal>
             <VisualBlock
+              src="/images/studio/materials-wide.jpg"
               label="Materials laid out for a class session"
-              alt="Fragrance materials and blotters laid out for a perfumery class"
+              alt="The Yevfumes studio bench with fragrance materials and blotters laid out"
               aspect="aspect-[4/3]"
               variant="c"
             />

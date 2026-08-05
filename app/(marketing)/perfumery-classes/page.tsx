@@ -39,9 +39,10 @@ export default function PerfumeryClassesPage() {
           </div>
           <Reveal>
             <VisualBlock
+              src="/images/studio/materials-wide.jpg"
               label="Materials laid out for class"
-              alt="Fragrance raw materials and blotters arranged for a perfumery class"
-              aspect="aspect-[4/5]"
+              alt="Fragrance raw materials and blotters arranged on the studio bench for a perfumery class"
+              aspect="aspect-[4/3]"
               variant="c"
             />
           </Reveal>
