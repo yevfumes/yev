@@ -17,6 +17,7 @@ import {
   TSelect,
   RadioCardGroup,
 } from "@/components/marketing/form-fields";
+import { PhoneInput } from "@/components/marketing/phone-input";
 import { MButton } from "@/components/marketing/button";
 
 export function EnquiryForm() {
@@ -28,6 +29,7 @@ export function EnquiryForm() {
     register,
     handleSubmit,
     watch,
+    control,
     formState: { errors },
   } = useForm<EnquiryInput>({
     resolver: zodResolver(enquirySchema),
@@ -95,7 +97,7 @@ export function EnquiryForm() {
             <TInput id="email" type="email" register={register("email")} error={errors.email} autoComplete="email" />
           </FieldWrap>
           <FieldWrap label="Phone number" htmlFor="phone" required error={errors.phone}>
-            <TInput id="phone" type="tel" register={register("phone")} error={errors.phone} autoComplete="tel" />
+            <PhoneInput<EnquiryInput> id="phone" name="phone" control={control} error={errors.phone} />
           </FieldWrap>
           <FieldWrap label="Company / Brand" htmlFor="company">
             <TInput id="company" register={register("company")} />

@@ -148,7 +148,7 @@ export default function HomePage() {
           <div className="mt-12">
             <Reveal>
               <VisualBlock
-                src="/images/studio/raw-materials.jpg"
+                src="/images/studio/materials-wide.jpg"
                 label="Raw materials"
                 alt="Shelves of raw perfumery materials in amber and clear glass bottles at the Yevfumes studio"
                 aspect="aspect-[4/3]"
@@ -191,7 +191,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal>
             <VisualBlock
-              src="/images/studio/materials-wide.jpg"
+              src="/images/studio/raw-materials.jpg"
               label="Materials laid out for a class session"
               alt="The Yevfumes studio bench with fragrance materials and blotters laid out"
               aspect="aspect-[4/3]"

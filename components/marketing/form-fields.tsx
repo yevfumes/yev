@@ -41,7 +41,7 @@ export function FieldWrap({
   );
 }
 
-const inputBase =
+export const inputBase =
   "w-full rounded-md border border-ink/20 bg-ivory px-4 py-3.5 font-sans text-base text-ink placeholder:text-ink/35 transition-colors focus:border-clay focus:outline-none focus:ring-1 focus:ring-clay";
 
 export function TInput({

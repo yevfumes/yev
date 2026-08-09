@@ -17,6 +17,7 @@ import {
   TTextarea,
   RadioCardGroup,
 } from "@/components/marketing/form-fields";
+import { PhoneInput } from "@/components/marketing/phone-input";
 import { MButton } from "@/components/marketing/button";
 
 export function ClassInterestForm() {
@@ -27,6 +28,7 @@ export function ClassInterestForm() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<ClassInterestInput>({
     resolver: zodResolver(classInterestSchema),
@@ -80,7 +82,7 @@ export function ClassInterestForm() {
           <TInput id="ci-email" type="email" register={register("email")} error={errors.email} autoComplete="email" />
         </FieldWrap>
         <FieldWrap label="Phone number" htmlFor="ci-phone" required error={errors.phone}>
-          <TInput id="ci-phone" type="tel" register={register("phone")} error={errors.phone} autoComplete="tel" />
+          <PhoneInput<ClassInterestInput> id="ci-phone" name="phone" control={control} error={errors.phone} />
         </FieldWrap>
         <FieldWrap label="Location" htmlFor="ci-location">
           <TInput id="ci-location" register={register("location")} placeholder="City, country" />
