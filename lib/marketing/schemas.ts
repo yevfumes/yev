@@ -3,6 +3,7 @@ import { z } from "zod";
 export const enquirySchema = z.object({
   name: z.string().trim().min(1, "Please enter your name"),
   email: z.string().trim().email("Please enter a valid email address"),
+  phone: z.string().trim().min(1, "Please enter your phone number"),
   company: z.string().trim().optional(),
   website: z.string().trim().optional(),
   country: z.string().trim().optional(),
@@ -39,6 +40,7 @@ export type EnquiryInput = z.infer<typeof enquirySchema>;
 export const classInterestSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name"),
   email: z.string().trim().email("Please enter a valid email address"),
+  phone: z.string().trim().min(1, "Please enter your phone number"),
   location: z.string().trim().optional(),
   experience_level: z.enum(["beginner", "some_experience", "experienced"], {
     errorMap: () => ({ message: "Please select your experience level" }),

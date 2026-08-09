@@ -94,6 +94,9 @@ export function EnquiryForm() {
           <FieldWrap label="Email" htmlFor="email" required error={errors.email}>
             <TInput id="email" type="email" register={register("email")} error={errors.email} autoComplete="email" />
           </FieldWrap>
+          <FieldWrap label="Phone number" htmlFor="phone" required error={errors.phone}>
+            <TInput id="phone" type="tel" register={register("phone")} error={errors.phone} autoComplete="tel" />
+          </FieldWrap>
           <FieldWrap label="Company / Brand" htmlFor="company">
             <TInput id="company" register={register("company")} />
           </FieldWrap>

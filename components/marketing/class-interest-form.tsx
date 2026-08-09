@@ -79,7 +79,10 @@ export function ClassInterestForm() {
         <FieldWrap label="Email" htmlFor="ci-email" required error={errors.email}>
           <TInput id="ci-email" type="email" register={register("email")} error={errors.email} autoComplete="email" />
         </FieldWrap>
-        <FieldWrap label="Location" htmlFor="ci-location" className="sm:col-span-2">
+        <FieldWrap label="Phone number" htmlFor="ci-phone" required error={errors.phone}>
+          <TInput id="ci-phone" type="tel" register={register("phone")} error={errors.phone} autoComplete="tel" />
+        </FieldWrap>
+        <FieldWrap label="Location" htmlFor="ci-location">
           <TInput id="ci-location" register={register("location")} placeholder="City, country" />
         </FieldWrap>
       </div>
