@@ -6,13 +6,18 @@ import { VisualBlock } from "@/components/marketing/visual-block";
 import { ProcessSteps } from "@/components/marketing/process-steps";
 import { Faq } from "@/components/marketing/faq";
 import { Reveal } from "@/components/marketing/reveal";
-import { processSteps, whoWeWorkWith, homeFaqs } from "@/lib/marketing/content";
+import {
+  consultationSteps,
+  consultationCheckoutUrl,
+  whoWeWorkWith,
+  homeFaqs,
+} from "@/lib/marketing/content";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Independent Perfumer & Bespoke Fragrance Development Studio",
+  title: "Independent Perfumer & Formulation Consultation Studio",
   description:
-    "Yevfumes is an independent perfumery studio offering bespoke fragrance development for brands, founders and individuals, plus hands-on perfumery classes in the UK.",
+    "Yevfumes is an independent perfumery studio offering paid, one-to-one formulation consultations for perfumers, brands and founders, plus hands-on perfumery classes in the UK.",
   alternates: { canonical: "/" },
 };
 
@@ -25,20 +30,20 @@ export default function HomePage() {
           <div className="max-w-xl">
             <Eyebrow className="mb-6">Independent Perfumer, UK</Eyebrow>
             <h1 className="font-serif text-[2.75rem] leading-[1.08] text-ink sm:text-6xl lg:text-[3.75rem]">
-              Bespoke Fragrance Development
+              One-to-One Formulation Consultations
             </h1>
             <p className="mt-6 font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-              I work directly with brands, founders and individuals to
-              translate an idea, a brief or a feeling into a finished
-              fragrance formula — through hands-on, considered development
-              at the bench.
+              I work directly with perfumers, brands and founders —
+              reviewing formulas, solving problems at the bench, and helping
+              translate a brief or idea into a workable structure, through
+              paid, focused consultation sessions.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <MButton href="/enquire" size="lg">
-                Start a Project
+              <MButton href={consultationCheckoutUrl} size="lg">
+                Book a Consultation
               </MButton>
-              <MButton href="/fragrance-development" variant="secondary" size="lg">
-                Explore the Process
+              <MButton href="/formulation-consultation" variant="secondary" size="lg">
+                See What's Covered
               </MButton>
             </div>
           </div>
@@ -59,19 +64,20 @@ export default function HomePage() {
       <section className="border-b border-ink/10">
         <Container className="grid divide-y divide-ink/10 lg:grid-cols-2 lg:divide-x lg:divide-y-0">
           <Reveal className="py-16 lg:py-24 lg:pr-14">
-            <Eyebrow className="mb-4">01 — For Brands &amp; Individuals</Eyebrow>
+            <Eyebrow className="mb-4">01 — For Perfumers &amp; Brands</Eyebrow>
             <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-              Fragrance Development
+              Formulation Consultation
             </h2>
             <p className="mt-5 max-w-md font-sans text-ink/65">
-              Bespoke scent development for brands and individuals — from a
-              single personal fragrance to a full olfactory range.
+              Paid, one-to-one sessions reviewing formulas, troubleshooting
+              structure, and working through a brief or technical question
+              at the bench.
             </p>
             <Link
-              href="/fragrance-development"
+              href="/formulation-consultation"
               className="mt-7 inline-flex items-center gap-2 font-sans text-sm font-medium uppercase tracking-wide2 text-ink underline decoration-clay decoration-2 underline-offset-8 transition-colors hover:text-clay-dark"
             >
-              Learn about the process
+              See what's covered
             </Link>
           </Reveal>
 
@@ -110,8 +116,8 @@ export default function HomePage() {
           <Reveal className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="About the Perfumer"
-              title="A direct relationship with the person developing your fragrance"
-              description="Yevfumes is an independent studio — not a large fragrance house. Every project is developed personally, from the first conversation through to the final formula, with no account handlers or hidden layers in between."
+              title="A direct relationship with the person you work with"
+              description="Yevfumes is an independent studio — not a large fragrance house. Every consultation and class is run personally, with no account handlers or hidden layers in between."
             />
             <MButton href="/about" variant="ghost" className="mt-6">
               Read the full story
@@ -124,15 +130,15 @@ export default function HomePage() {
       <section className="border-b border-ink/10 bg-ivory-soft py-20 lg:py-28">
         <Container>
           <SectionHeading
-            eyebrow="How a Project Unfolds"
-            title="The Development Process"
-            description="A structured, five-stage process — from brief to final formula — built around evaluation and feedback at every stage."
+            eyebrow="How It Works"
+            title="Booking to Session"
+            description="A straightforward, four-step process — from booking to a focused working session, with clear next steps to take away."
           />
           <div className="mt-12">
-            <ProcessSteps steps={processSteps} compact />
+            <ProcessSteps steps={consultationSteps} compact />
           </div>
-          <MButton href="/fragrance-development" variant="secondary" className="mt-10">
-            See the Full Process
+          <MButton href="/formulation-consultation" variant="secondary" className="mt-10">
+            See What's Covered
           </MButton>
         </Container>
       </section>
@@ -215,15 +221,16 @@ export default function HomePage() {
       <section className="bg-ink py-20 text-ivory lg:py-28">
         <Container size="narrow" className="text-center">
           <h2 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
-            Have an idea for a fragrance?
+            Working on a formula?
           </h2>
           <p className="mx-auto mt-5 max-w-lg font-sans text-ivory/70">
-            Whether it&apos;s a fully formed brief or a single reference and
-            a feeling, start by telling me about it.
+            Whether it&apos;s a formula that isn&apos;t quite working or a
+            brief you can&apos;t translate into a structure yet, book a
+            session and work through it together.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-            <MButton href="/enquire" size="lg" className="bg-clay hover:bg-clay-light hover:text-ink">
-              Start a Project
+            <MButton href={consultationCheckoutUrl} size="lg" className="bg-clay hover:bg-clay-light hover:text-ink">
+              Book a Consultation
             </MButton>
             <MButton
               href="/perfumery-classes"

@@ -11,8 +11,8 @@ export function SiteFooter() {
               Yevfumes
             </Link>
             <p className="mt-4 max-w-xs font-sans text-sm leading-relaxed text-ink/60">
-              Independent perfumer studio offering bespoke fragrance
-              development and hands-on perfumery classes.
+              Independent perfumer studio offering paid formulation
+              consultations and hands-on perfumery classes.
             </p>
           </div>
 
@@ -22,8 +22,8 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-3 font-sans text-sm text-ink/70">
               <li>
-                <Link href="/fragrance-development" className="hover:text-ink">
-                  Fragrance Development
+                <Link href="/formulation-consultation" className="hover:text-ink">
+                  Formulation Consultation
                 </Link>
               </li>
               <li>
@@ -74,7 +74,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col-reverse gap-4 border-t border-ink/10 pt-8 font-sans text-xs text-ink/40 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Yevfumes. All rights reserved.</p>
-          <p>Independent Perfumer &amp; Fragrance Development Studio, UK</p>
+          <p>Independent Perfumer &amp; Formulation Consultation Studio, UK</p>
         </div>
       </Container>
     </footer>

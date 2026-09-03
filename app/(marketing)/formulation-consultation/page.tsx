@@ -5,41 +5,46 @@ import { SectionHeading, Eyebrow } from "@/components/marketing/section-heading"
 import { VisualBlock } from "@/components/marketing/visual-block";
 import { ProcessSteps } from "@/components/marketing/process-steps";
 import { Reveal } from "@/components/marketing/reveal";
-import { processSteps, whoWeWorkWith } from "@/lib/marketing/content";
+import {
+  consultationSteps,
+  consultationCheckoutUrl,
+  whoWeWorkWith,
+} from "@/lib/marketing/content";
 
 export const metadata: Metadata = {
-  title: "Fragrance Development — Bespoke Perfume Formulation",
+  title: "Formulation Consultation — Paid One-to-One Sessions",
   description:
-    "Custom fragrance development and perfume formulation for brands, founders and individuals. Bring a detailed brief or simply an idea — the studio develops it into a finished fragrance formula.",
-  alternates: { canonical: "/fragrance-development" },
+    "Book a paid, one-to-one formulation consultation. Bring a formula you're troubleshooting, a brief, or a technical question, and work through it directly with an independent perfumer.",
+  alternates: { canonical: "/formulation-consultation" },
 };
 
-export default function FragranceDevelopmentPage() {
+export default function FormulationConsultationPage() {
   return (
     <>
       <section className="border-b border-ink/10">
         <Container className="grid gap-12 pb-16 pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-20">
           <div>
-            <Eyebrow className="mb-6">Fragrance Development</Eyebrow>
+            <Eyebrow className="mb-6">Formulation Consultation</Eyebrow>
             <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
-              Custom Fragrance Development, from Idea to Finished Formula
+              One-to-One Formulation Consultations
             </h1>
             <p className="mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-              I develop bespoke fragrances for brands, founders and
-              individuals — working directly with you, from the very first
-              conversation through to the final formula.
+              A paid, focused working session — bring a formula you&apos;re
+              troubleshooting, a brief you&apos;re trying to shape, or a
+              technical question, and work through it directly with an
+              independent perfumer.
             </p>
             <div className="mt-9">
-              <MButton href="/enquire" size="lg">
-                Start a Project
+              <MButton href={consultationCheckoutUrl} size="lg">
+                Book a Consultation
               </MButton>
             </div>
           </div>
           <Reveal>
             <VisualBlock
               src="/images/studio/hero-organ.jpg"
-              label="Formula development in progress"
-              alt="The Yevfumes studio bench and material shelving during formula development"
+              label="Consultation session in progress"
+              alt="The Yevfumes studio bench and material shelving used during formulation consultations"
               aspect="aspect-[4/5]"
               variant="b"
             />
@@ -52,21 +57,18 @@ export default function FragranceDevelopmentPage() {
         <Container size="narrow">
           <SectionHeading
             eyebrow="Where to Start"
-            title="Bring Anything, from a Full Brief to a Single Idea"
-            description="Some clients arrive with a detailed creative brief: brand positioning, references, target customer, regulatory market. Others arrive with far less — a feeling, a memory, a single reference fragrance, or a general direction. Both are a valid starting point. Part of the discovery stage is working with whatever you bring and shaping it into a clear olfactory direction to develop against."
+            title="Bring Whatever Stage You're At"
+            description="Some clients arrive with a formula that isn't quite working and need a second opinion. Others have a brief or a direction they can't quite translate into a structure yet. Both are a valid reason to book a session — consultations are shaped around whatever you bring."
           />
         </Container>
       </section>
 
-      {/* PROCESS */}
+      {/* HOW IT WORKS */}
       <section className="border-b border-ink/10 bg-ivory-soft py-20 lg:py-28">
         <Container>
-          <SectionHeading
-            eyebrow="The Process"
-            title="Five Stages, from Brief to Final Formula"
-          />
+          <SectionHeading eyebrow="How It Works" title="Booking to Session" />
           <div className="mt-12">
-            <ProcessSteps steps={processSteps} />
+            <ProcessSteps steps={consultationSteps} />
           </div>
         </Container>
       </section>
@@ -95,7 +97,7 @@ export default function FragranceDevelopmentPage() {
             <VisualBlock
               src="/images/studio/raw-materials.jpg"
               label="Perfumer's organ"
-              alt="Shelving of raw materials used for formula development at the Yevfumes studio"
+              alt="Shelving of raw materials used at the Yevfumes studio"
               aspect="aspect-square"
               variant="a"
             />
@@ -109,7 +111,7 @@ export default function FragranceDevelopmentPage() {
             <VisualBlock
               src="/images/studio/fragrance-samples.jpg"
               label="Formula samples"
-              alt="Labelled fragrance sample vials from formula development at the Yevfumes studio"
+              alt="Labelled fragrance sample vials at the Yevfumes studio"
               aspect="aspect-square"
               variant="c"
             />
@@ -121,15 +123,19 @@ export default function FragranceDevelopmentPage() {
       <section className="bg-ink py-20 text-ivory lg:py-28">
         <Container size="narrow" className="text-center">
           <h2 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
-            Ready to start your project?
+            Ready to book your session?
           </h2>
           <p className="mx-auto mt-5 max-w-lg font-sans text-ivory/70">
-            Share a brief, a reference, or a rough idea — every enquiry is
-            reviewed personally.
+            Formulation consultations are booked and paid for directly —
+            you&apos;ll be asked to share some context ahead of your session.
           </p>
           <div className="mt-9">
-            <MButton href="/enquire" size="lg" className="bg-clay hover:bg-clay-light hover:text-ink">
-              Start a Project
+            <MButton
+              href={consultationCheckoutUrl}
+              size="lg"
+              className="bg-clay hover:bg-clay-light hover:text-ink"
+            >
+              Book a Consultation
             </MButton>
           </div>
         </Container>

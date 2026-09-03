@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const BASE_URL = "https://www.yevfumes.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/fragrance-development", "/perfumery-classes", "/about", "/enquire"];
+  const routes = ["", "/formulation-consultation", "/perfumery-classes", "/about", "/enquire"];
 
   return routes.map((route) => ({
     url: `${BASE_URL}${route}`,

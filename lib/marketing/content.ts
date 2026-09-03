@@ -1,38 +1,36 @@
 import type { ProcessStep } from "@/components/marketing/process-steps";
 import type { FaqItem } from "@/components/marketing/faq";
 
-export const processSteps: ProcessStep[] = [
+export const consultationSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Discovery",
+    title: "Book Your Session",
     description:
-      "We start by understanding the brief — the brand or idea, the references and influences, the intended customer, and the general olfactory direction. This can be a fully written brief or simply a feeling, a memory or a mood.",
+      "Choose and pay for a formulation consultation. You'll get a confirmation with everything you need to prepare.",
   },
   {
     number: "02",
-    title: "Development",
+    title: "Share Some Context",
     description:
-      "The fragrance is formulated and developed through structured experimentation at the bench, working through material choices, structure and balance to translate the brief into scent.",
+      "Ahead of the session, send over what you're working on — a formula, a brief, a technical question, or a direction you're stuck on.",
   },
   {
     number: "03",
-    title: "Evaluation",
+    title: "Your Consultation",
     description:
-      "Samples are supplied for evaluation. You experience the fragrance on blotters and skin, and share feedback on direction, character and how closely it matches the brief.",
+      "A focused, one-to-one working session, reviewing your formula or brief and working through it together in real time.",
   },
   {
     number: "04",
-    title: "Refinement",
+    title: "Follow-Up Notes",
     description:
-      "The formula is adjusted based on feedback — rebalancing materials, adjusting longevity and projection, and sharpening the concept until the intended direction is achieved.",
-  },
-  {
-    number: "05",
-    title: "Final Formula",
-    description:
-      "Once the direction is approved, the final fragrance formula and the agreed project deliverables are supplied.",
+      "You'll come away with clear, practical next steps you can act on — material and structure guidance, adjustments to try, and direction on where to take it from here.",
   },
 ];
+
+// Product handle for the paid Formulation Consultation, sold via Shopify.
+export const consultationCheckoutUrl =
+  "https://www.yevfumes.com/products/formulation-consultation";
 
 export const startTimeline: ProcessStep[] = [
   {
@@ -165,8 +163,13 @@ export const homeFaqs: FaqItem[] = [
       "Classes are practical, small-group sessions covering fragrance materials, structure and formulation. Dates aren't scheduled yet — register your interest to be notified as soon as they're announced.",
   },
   {
-    question: "How do I start a fragrance development enquiry?",
+    question: "How do I book a formulation consultation?",
     answer:
-      "Use the project enquiry form to share a few details about you or your brand and your fragrance idea. Every enquiry is reviewed personally before a response is sent.",
+      "Formulation consultations are booked and paid for directly — head to the Formulation Consultation page and follow the booking link. After payment, you'll be asked to share some context ahead of your session.",
+  },
+  {
+    question: "What can I bring to a consultation?",
+    answer:
+      "A formula you're troubleshooting, a brief you're trying to turn into a workable structure, or a specific technical question — consultations are flexible to whatever stage you're at.",
   },
 ];

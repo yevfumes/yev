@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/fragrance-development", label: "Fragrance Development" },
+  { href: "/formulation-consultation", label: "Formulation Consultation" },
   { href: "/perfumery-classes", label: "Perfumery Classes" },
   { href: "/about", label: "About" },
 ];

@@ -40,8 +40,13 @@ export function MButton(props: ButtonAsLink | ButtonAsButton) {
   const classes = cn(base, variants[variant], sizes[size], className);
 
   if ("href" in props && props.href) {
+    const isExternal = /^https?:\/\//.test(props.href);
     return (
-      <Link href={props.href} className={classes}>
+      <Link
+        href={props.href}
+        className={classes}
+        {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+      >
         {children}
       </Link>
     );
