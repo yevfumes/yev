@@ -1,132 +1,247 @@
 import type { ProcessStep } from "@/components/marketing/process-steps";
 import type { FaqItem } from "@/components/marketing/faq";
 
+// ─── Consultations ───────────────────────────────────────────────────────────
+
 export const consultationSteps: ProcessStep[] = [
   {
     number: "01",
     title: "Book Your Session",
     description:
-      "Choose and pay for a formulation consultation. You'll get a confirmation with everything you need to prepare.",
+      "Choose and pay for a consultation. You'll get a confirmation with everything you need to prepare.",
   },
   {
     number: "02",
     title: "Share Some Context",
     description:
-      "Ahead of the session, send over what you're working on — a formula, a brief, a technical question, or a direction you're stuck on.",
+      "Ahead of the session, send over your formula, a question, or the direction you're stuck on.",
   },
   {
     number: "03",
     title: "Your Consultation",
     description:
-      "A focused, one-to-one working session, reviewing your formula or brief and working through it together in real time.",
+      "A focused, one-to-one session working through your formula or question together in real time.",
   },
   {
     number: "04",
     title: "Follow-Up Notes",
     description:
-      "You'll come away with clear, practical next steps you can act on — material and structure guidance, adjustments to try, and direction on where to take it from here.",
+      "You'll come away with clear, practical next steps to try at the bench yourself.",
   },
 ];
 
-// Product handle for the paid Formulation Consultation, sold via Shopify.
+export const consultationTopics = [
+  "Review my formula with me",
+  "Explain why my perfume feels flat",
+  "Help me understand a material",
+  "Help me choose raw materials",
+  "Help me build an accord",
+  "Explain why something is overpowering",
+  "Help me improve diffusion",
+  "Discuss substitutions",
+  "Help me understand perfume structure",
+  "Help me organise my perfume organ",
+  "Help me start learning perfumery",
+];
+
+// Product handle for the paid consultation, sold via Shopify.
 export const consultationCheckoutUrl =
   "https://www.yevfumes.com/products/formulation-consultation";
 
-export const startTimeline: ProcessStep[] = [
+// ─── Learn ───────────────────────────────────────────────────────────────────
+
+export const learnTopics: { category: string; items: string[] }[] = [
+  {
+    category: "Foundations",
+    items: [
+      "Perfumery fundamentals",
+      "Top, heart & base concepts",
+      "Perfume architecture",
+    ],
+  },
+  {
+    category: "Materials",
+    items: [
+      "Naturals",
+      "Aroma chemicals",
+      "Raw material families",
+      "Beginner raw material lists",
+      "Sourcing materials",
+    ],
+  },
+  {
+    category: "At the Bench",
+    items: [
+      "Equipment",
+      "Dilution",
+      "Weighing",
+      "Solvents",
+      "Scent strips",
+      "Evaluation",
+    ],
+  },
+  {
+    category: "Building Formulas",
+    items: [
+      "Building accords",
+      "Bases",
+      "Formula construction",
+      "Formula modification",
+    ],
+  },
+  {
+    category: "Performance",
+    items: [
+      "Diffusion",
+      "Longevity",
+      "Molecular weight",
+      "Material interactions",
+    ],
+  },
+  {
+    category: "Practical & Troubleshooting",
+    items: [
+      "Evaluating trials",
+      "Fixing common formulation problems",
+      "Regulations & documentation basics",
+    ],
+  },
+];
+
+export const formulaLabSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Get in Touch",
-    description:
-      "Submit a project enquiry with your idea, brand or brief — as much or as little detail as you have at this stage.",
+    title: "Start",
+    description: "Blend the original formula exactly as written.",
   },
   {
     number: "02",
-    title: "Introductory Conversation",
-    description:
-      "If it looks like a good fit, we'll arrange a conversation to talk through the brief, direction and scope in more depth.",
+    title: "Smell",
+    description: "Evaluate it on a scent strip, and on skin.",
   },
   {
     number: "03",
-    title: "Scope & Timeline Agreed",
-    description:
-      "Once we're aligned on the project, we'll agree the scope, approach and timeline before development begins.",
+    title: "Change",
+    description: "Alter one material — increase it, reduce it, or swap it out.",
   },
   {
     number: "04",
-    title: "Development Begins",
-    description:
-      "Formula development starts at the bench, moving into discovery and structured experimentation.",
+    title: "Compare",
+    description: "Evaluate the difference against the original.",
   },
   {
     number: "05",
-    title: "Ongoing Collaboration",
-    description:
-      "You'll stay closely involved through evaluation and refinement, reviewing samples and sharing feedback until the fragrance is complete.",
+    title: "Build",
+    description: "Turn the structure into something completely your own.",
   },
 ];
 
-export const whoWeWorkWith = [
+export const liveClassIdeas = [
+  "Build a perfume formula live",
+  "Build an accord live",
+  "Modify a formula live",
+  "Material comparison sessions",
+  "Formula troubleshooting",
+  "Student formula reviews",
+  "Raw material demonstrations",
+  "Building around a new base",
+  "Turning a simple accord into a perfume",
+];
+
+export const communityAreas = [
+  "Formula sharing",
+  "Formula feedback",
+  "Accord experiments",
+  "Raw material discussions",
+  "Supplier recommendations",
+  "Student experiments",
+  "Material substitutions",
+  "Beginner questions",
+  "Advanced formulation discussion",
+  "New material discoveries",
+];
+
+export const communityExamplePost =
+  "I made this formula and increased Hedione from 15% to 25%. Here's what changed.";
+
+// ─── Formula Library ─────────────────────────────────────────────────────────
+
+export const formulaCategories = [
+  "Complete Structures",
+  "Accords",
+  "Bases",
+  "Floral",
+  "Woody",
+  "Musk",
+  "Amber",
+  "Gourmand",
+  "Citrus",
+  "Fresh",
+  "Green",
+  "Fruity",
+  "Experimental",
+];
+
+export const formulaIncludes = [
+  "Full percentages",
+  "Formula purpose",
+  "Material explanations",
+  "What each material contributes",
+  "Possible substitutions",
+  "Modification ideas",
+  "Materials to increase or reduce",
+  "Suggested experiments",
+  "Variations",
+];
+
+// ─── Materials / Bases ───────────────────────────────────────────────────────
+
+export const baseUses = [
+  "Add 5% to a formula",
+  "Build a fragrance around one",
+  "Combine two together",
+  "Modify them with naturals",
+  "Push them toward a completely different olfactory direction",
+  "Use them as teaching materials",
+];
+
+// ─── Who this is for ─────────────────────────────────────────────────────────
+
+export const audience = [
   {
-    title: "Fragrance & Beauty Brands",
+    title: "Beginner Perfumers",
     description:
-      "Established brands developing a new fragrance, extending a range, or bringing formulation in-house alongside a dedicated perfumer.",
+      "Just starting out and want a structured, practical way in — not just theory.",
   },
   {
-    title: "Founders Launching a Brand",
+    title: "Independent & Hobbyist Perfumers",
     description:
-      "Founders building a fragrance brand from the ground up, from a first hero scent to a wider signature collection.",
+      "Formulating on your own and looking for structure, feedback and a community of people doing the same.",
   },
   {
-    title: "Individuals",
+    title: "Small Brand Founders",
     description:
-      "People who want a personal fragrance developed around them — a scent that belongs to them alone, or as a considered gift.",
+      "Founders who formulate themselves and want to sharpen their skills, not outsource them.",
   },
   {
-    title: "Other Creative Projects",
+    title: "Material & Structure Explorers",
     description:
-      "Studios, hospitality and retail spaces, and creative projects where scent is part of a wider concept or identity.",
+      "Learning aroma chemicals and naturals, and experimenting with accords and perfume structures.",
   },
 ];
 
-export const classTopics = [
-  "Understanding fragrance raw materials",
-  "Naturals vs. aroma chemicals",
-  "Top, heart and base structures",
-  "Building accords",
-  "Formula construction",
-  "Evaluating fragrance on blotters",
-  "Creating a fragrance from scratch",
-  "Understanding how professional perfumers work",
-];
+// ─── Waitlist ────────────────────────────────────────────────────────────────
 
-export const brandStatusOptions = [
-  { value: "existing_brand", label: "Existing brand" },
-  { value: "new_brand", label: "Launching a new brand" },
-  { value: "individual", label: "Individual" },
-];
-
-export const projectTypeOptions = [
-  { value: "personal_fragrance", label: "Personal fragrance" },
-  { value: "brand_range", label: "Brand fragrance / range" },
-  { value: "single_product", label: "Single hero product" },
-  { value: "gift_or_bespoke", label: "Gift / bespoke one-off" },
-  { value: "other", label: "Other" },
-];
-
-export const numberOfFragrancesOptions = [
-  { value: "1", label: "1" },
-  { value: "2-3", label: "2–3" },
-  { value: "4-6", label: "4–6" },
-  { value: "7+", label: "7+" },
-  { value: "not_sure", label: "Not sure yet" },
-];
-
-export const supportNeededOptions = [
-  { value: "development_only", label: "Fragrance development only" },
-  {
-    value: "development_and_support",
-    label: "Development plus additional support",
-  },
+export const waitlistFeatures = [
+  "10+ hours of practical education",
+  "Growing formula library",
+  "Accord library",
+  "Live classes",
+  "Independent perfumer community",
+  "Material guides",
+  "Supplier guides",
+  "Formula experiments",
+  "Four upcoming perfumery bases",
 ];
 
 export const experienceLevelOptions = [
@@ -143,33 +258,28 @@ export const preferredFormatOptions = [
 
 export const homeFaqs: FaqItem[] = [
   {
-    question: "Do I need a finished brief to start a project?",
+    question: "Do I need any experience to start?",
     answer:
-      "No. Some clients arrive with a detailed creative brief, others with a single reference, a feeling or a rough idea. Part of the discovery stage is shaping that starting point into a clear olfactory direction.",
+      "No. The education is built to take you from the fundamentals through to confidently modifying and building your own formulas, whatever level you're starting from.",
   },
   {
-    question: "Do you work with individuals as well as brands?",
+    question: "Are the formulas finished perfumes I can sell?",
     answer:
-      "Yes. The studio works with fragrance and beauty brands, founders launching something new, and individuals who want a personal fragrance developed for them.",
+      "No — they're starting points, designed to be blended, evaluated, modified and rebalanced. The goal is to understand how materials interact, not to hand you a finished product.",
   },
   {
-    question: "Where are you based, and do you work internationally?",
+    question: "What are the four new bases?",
     answer:
-      "The studio is based in the UK and works with clients internationally. Discovery, evaluation and refinement are handled remotely where needed, with samples sent for evaluation at each stage.",
+      "Four original perfumery bases currently in development, designed as raw materials you can drop directly into your own formulas — not finished fragrances or fragrance oils. More details soon.",
   },
   {
-    question: "How do the perfumery classes work?",
+    question: "How do consultations work?",
     answer:
-      "Classes are practical, small-group sessions covering fragrance materials, structure and formulation. Dates aren't scheduled yet — register your interest to be notified as soon as they're announced.",
+      "One-to-one sessions for people already experimenting or formulating — bring a formula, a question, or something you're stuck on. You remain the perfumer; we guide, you create.",
   },
   {
-    question: "How do I book a formulation consultation?",
+    question: "When does the platform launch?",
     answer:
-      "Formulation consultations are booked and paid for directly — head to the Formulation Consultation page and follow the booking link. After payment, you'll be asked to share some context ahead of your session.",
-  },
-  {
-    question: "What can I bring to a consultation?",
-    answer:
-      "A formula you're troubleshooting, a brief you're trying to turn into a workable structure, or a specific technical question — consultations are flexible to whatever stage you're at.",
+      "Join the waitlist to be notified as soon as it opens, and to get early access ahead of the general public.",
   },
 ];

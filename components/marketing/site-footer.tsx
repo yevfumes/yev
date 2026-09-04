@@ -11,24 +11,30 @@ export function SiteFooter() {
               Yevfumes
             </Link>
             <p className="mt-4 max-w-xs font-sans text-sm leading-relaxed text-ink/60">
-              Independent perfumer studio offering paid formulation
-              consultations and hands-on perfumery classes.
+              A practical perfumery education platform — formulas, live
+              classes, consultations, community and new raw materials for
+              independent perfumers.
             </p>
           </div>
 
           <div>
             <p className="font-sans text-xs uppercase tracking-wide2 text-ink/40">
-              Studio
+              Platform
             </p>
             <ul className="mt-4 space-y-3 font-sans text-sm text-ink/70">
               <li>
-                <Link href="/formulation-consultation" className="hover:text-ink">
-                  Formulation Consultation
+                <Link href="/learn" className="hover:text-ink">
+                  Learn
                 </Link>
               </li>
               <li>
-                <Link href="/perfumery-classes" className="hover:text-ink">
-                  Perfumery Classes
+                <Link href="/formula-library" className="hover:text-ink">
+                  Formula Library
+                </Link>
+              </li>
+              <li>
+                <Link href="/materials" className="hover:text-ink">
+                  Materials
                 </Link>
               </li>
               <li>
@@ -41,17 +47,17 @@ export function SiteFooter() {
 
           <div>
             <p className="font-sans text-xs uppercase tracking-wide2 text-ink/40">
-              Start a Project
+              Get Started
             </p>
             <ul className="mt-4 space-y-3 font-sans text-sm text-ink/70">
               <li>
-                <Link href="/enquire" className="hover:text-ink">
-                  Project Enquiry
+                <Link href="/waitlist" className="hover:text-ink">
+                  Join Early Access
                 </Link>
               </li>
               <li>
-                <Link href="/perfumery-classes#waiting-list" className="hover:text-ink">
-                  Class Waiting List
+                <Link href="/consultations" className="hover:text-ink">
+                  Book a Consultation
                 </Link>
               </li>
             </ul>
@@ -74,7 +80,7 @@ export function SiteFooter() {
 
         <div className="mt-14 flex flex-col-reverse gap-4 border-t border-ink/10 pt-8 font-sans text-xs text-ink/40 sm:flex-row sm:items-center sm:justify-between">
           <p>&copy; {new Date().getFullYear()} Yevfumes. All rights reserved.</p>
-          <p>Independent Perfumer &amp; Formulation Consultation Studio, UK</p>
+          <p>Perfumery Education for Independent Perfumers, UK</p>
         </div>
       </Container>
     </footer>

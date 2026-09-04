@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { Container } from "@/components/marketing/container";
 import { MButton } from "@/components/marketing/button";
 import { SectionHeading, Eyebrow } from "@/components/marketing/section-heading";
-import { ProcessSteps } from "@/components/marketing/process-steps";
-import { startTimeline } from "@/lib/marketing/content";
+import { audience } from "@/lib/marketing/content";
+import { Reveal } from "@/components/marketing/reveal";
 
 export const metadata: Metadata = {
-  title: "About — Independent Perfumer",
+  title: "About — Perfumer, Independent Formulator & Perfumery Educator",
   description:
-    "Meet Yev, an independent perfumer working directly with brands, founders and individuals on bespoke fragrance development, and teaching hands-on perfumery classes.",
+    "Yev is a perfumer, independent formulator and perfumery educator, building a practical platform for independent perfumers to learn, test and build.",
   alternates: { canonical: "/about" },
 };
+
+const loop = ["Watch", "Blend", "Smell", "Modify", "Compare", "Repeat"];
 
 export default function AboutPage() {
   return (
@@ -19,57 +21,74 @@ export default function AboutPage() {
         <Container size="narrow" className="pb-16 pt-14 text-center lg:pb-24 lg:pt-20">
           <Eyebrow className="mb-6">About</Eyebrow>
           <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
-            An Independent Perfumer, Working Directly with You
+            Perfumer. Independent Formulator. Perfumery Educator.
           </h1>
           <p className="mx-auto mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-            I&apos;m Yev, the perfumer behind this studio. I develop
-            bespoke fragrances for brands, founders and individuals, and
-            teach hands-on perfumery classes — with no layers between you
-            and the person at the bench.
+            I&apos;m Yev. Perfumery is often taught as something mysterious.
+            I want to make it practical — a skill you build yourself, at
+            the bench, not something you outsource.
           </p>
         </Container>
       </section>
 
-      {/* PHILOSOPHY */}
+      {/* MISSION */}
       <section className="border-b border-ink/10 py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
-          <SectionHeading
-            eyebrow="How I Work"
-            title="A Studio, Not a Fragrance House"
-          />
+          <SectionHeading eyebrow="The Mission" title="Learning by Doing" />
           <div className="space-y-5 font-sans text-base leading-relaxed text-ink/70">
             <p>
-              Yevfumes is a small, independent studio. There is no
-              account manager, no junior perfumer handling the actual
-              formulation, and no committee shaping the final scent — every
-              project is developed by me, personally, from the first
-              conversation through to the finished formula.
+              This platform isn&apos;t built to develop your fragrance for
+              you. It&apos;s built to give independent perfumers —
+              beginners, hobbyists, small brand founders and everyone in
+              between — the knowledge, formulas, materials, feedback and
+              community to become better perfumers themselves.
             </p>
             <p>
-              That means slower, more considered work than a large
-              fragrance house might offer, but a direct line to the person
-              actually mixing, evaluating and refining your fragrance at
-              every stage.
+              Students shouldn&apos;t just watch videos. Real progress
+              comes from actually blending, smelling and changing things —
+              and seeing what happens when you do.
             </p>
             <p>
-              It also means projects stay genuinely bespoke — shaped around
-              your brief, your feedback and your olfactory direction,
-              rather than adapted from an existing formula library.
+              The platform gives enough structure to progress without
+              removing the creativity and experimentation that makes
+              perfumery interesting in the first place.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* HOW WE START WORKING TOGETHER */}
+      {/* THE LOOP */}
       <section className="border-b border-ink/10 bg-ivory-soft py-20 lg:py-28">
         <Container>
-          <SectionHeading
-            eyebrow="Getting Started"
-            title="How We Start Working Together"
-            description="From first enquiry to the start of development — what to expect before a project begins."
-          />
-          <div className="mt-12">
-            <ProcessSteps steps={startTimeline} />
+          <SectionHeading eyebrow="How It Works" title="The Learning Loop" />
+          <div className="mt-12 flex flex-wrap gap-4">
+            {loop.map((step, i) => (
+              <Reveal key={step} delay={i * 60} className="flex items-center gap-4">
+                <span className="border border-ink/15 bg-ivory px-6 py-4 font-serif text-lg text-ink">
+                  {step}
+                </span>
+                {i < loop.length - 1 && (
+                  <span className="font-serif text-xl text-ink/30">&rarr;</span>
+                )}
+              </Reveal>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* AUDIENCE */}
+      <section className="border-b border-ink/10 py-20 lg:py-28">
+        <Container>
+          <SectionHeading eyebrow="Who This Is For" title="Built for Independent Perfumers" />
+          <div className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2">
+            {audience.map((item) => (
+              <Reveal key={item.title}>
+                <h3 className="font-serif text-xl text-ink">{item.title}</h3>
+                <p className="mt-2 font-sans text-sm leading-relaxed text-ink/65 sm:text-base">
+                  {item.description}
+                </p>
+              </Reveal>
+            ))}
           </div>
         </Container>
       </section>
@@ -78,18 +97,18 @@ export default function AboutPage() {
       <section className="py-20 lg:py-28">
         <Container size="narrow" className="text-center">
           <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl">
-            Work directly with the studio
+            Ready to start learning?
           </h2>
           <p className="mx-auto mt-5 max-w-lg font-sans text-ink/65">
-            Whether it&apos;s a fragrance development project or a place in
-            an upcoming class, every enquiry reaches me personally.
+            Join early access to be the first in as the platform, formulas
+            and new bases go live.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-            <MButton href="/enquire" size="lg">
-              Start a Project
+            <MButton href="/waitlist" size="lg">
+              Join Early Access
             </MButton>
-            <MButton href="/perfumery-classes" variant="secondary" size="lg">
-              Explore Classes
+            <MButton href="/consultations" variant="secondary" size="lg">
+              Book a Consultation
             </MButton>
           </div>
         </Container>
