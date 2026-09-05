@@ -3,56 +3,40 @@ import { Container } from "@/components/marketing/container";
 import { MButton } from "@/components/marketing/button";
 import { SectionHeading, Eyebrow } from "@/components/marketing/section-heading";
 import { VisualBlock } from "@/components/marketing/visual-block";
-import { ProcessSteps } from "@/components/marketing/process-steps";
-import { Faq } from "@/components/marketing/faq";
 import { Reveal } from "@/components/marketing/reveal";
-import { FormulaSnippet } from "@/components/marketing/formula-snippet";
-import {
-  formulaLabSteps,
-  consultationCheckoutUrl,
-  consultationTopics,
-  homeFaqs,
-} from "@/lib/marketing/content";
-import Link from "next/link";
+import { BaseCard } from "@/components/marketing/base-card";
 
 export const metadata: Metadata = {
-  title: "Learn Perfumery By Actually Making Perfume",
+  title: "Learn Perfumery. Build Your Own Formulas.",
   description:
-    "A practical perfumery education platform for independent perfumers — formulas to test and modify, live classes, consultations, a community, and new perfumery bases to experiment with.",
+    "Education, formulas, consultations and creative tools for independent perfumers. A practical perfumery learning platform — you create, we help you get there.",
   alternates: { canonical: "/" },
 };
 
-const ecosystem = [
+const pillars = [
   {
-    number: "01",
-    title: "Learn",
-    description: "10+ hours of structured perfumery education.",
-    href: "/learn",
+    eyebrow: "Learn",
+    title: "Perfumery Learning",
+    description: "Structured education, live classes, formulas and community.",
+    cta: "Register Interest",
+    href: "/perfumery-learning",
   },
   {
-    number: "02",
-    title: "Make",
+    eyebrow: "Ask",
+    title: "Formula Consultations",
     description:
-      "Access formulas and accords designed to be physically blended and tested.",
-    href: "/formula-library",
+      "One-to-one guidance for independent perfumers working on their own formulas.",
+    cta: "Submit an Inquiry",
+    href: "/formula-consultations",
   },
   {
-    number: "03",
-    title: "Experiment",
-    description:
-      "Modify formulas, explore raw materials and develop your own style.",
-    href: "/formula-library",
-  },
-  {
-    number: "04",
-    title: "Connect",
-    description:
-      "Learn alongside other independent perfumers through community discussions and live classes.",
-    href: "/learn",
+    eyebrow: "Experiment",
+    title: "Formulas",
+    description: "Structures and accords designed to be built, tested and modified.",
+    cta: "Explore Formulas",
+    href: "/formulas",
   },
 ];
-
-const baseCards = ["Base 01", "Base 02", "Base 03", "Base 04"];
 
 export default function HomePage() {
   return (
@@ -63,18 +47,18 @@ export default function HomePage() {
           <div className="max-w-xl">
             <Eyebrow className="mb-6">For Independent Perfumers</Eyebrow>
             <h1 className="font-serif text-[2.75rem] leading-[1.08] text-ink sm:text-6xl lg:text-[3.75rem]">
-              Learn Perfumery By Actually Making Perfume.
+              Learn Perfumery. Build Your Own Formulas.
             </h1>
             <p className="mt-6 font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-              Practical perfumery education, formulas, live classes, raw
-              materials and a community built for independent perfumers.
+              Education, formulas, consultations and creative tools for
+              independent perfumers.
             </p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
-              <MButton href="/waitlist" size="lg">
-                Join the Waitlist
+              <MButton href="/perfumery-learning" size="lg">
+                Explore Perfumery Learning
               </MButton>
-              <MButton href="/learn" variant="secondary" size="lg">
-                Explore Perfumery
+              <MButton href="/formula-consultations" variant="secondary" size="lg">
+                Formula Consultations
               </MButton>
             </div>
           </div>
@@ -91,52 +75,25 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ECOSYSTEM */}
+      {/* THREE PILLARS */}
       <section className="border-b border-ink/10">
-        <Container className="grid divide-y divide-ink/10 sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
-          {ecosystem.map((item, i) => (
-            <Reveal
-              key={item.title}
-              delay={i * 60}
-              className={`py-14 px-2 sm:px-8 ${i > 0 ? "sm:border-l sm:border-ink/10" : ""}`}
-            >
-              <Eyebrow className="mb-4">{item.number}</Eyebrow>
-              <h2 className="font-serif text-2xl text-ink">{item.title}</h2>
-              <p className="mt-3 font-sans text-sm leading-relaxed text-ink/65">
-                {item.description}
+        <Container className="grid divide-y divide-ink/10 lg:grid-cols-3 lg:divide-x lg:divide-y-0">
+          {pillars.map((pillar, i) => (
+            <Reveal key={pillar.title} delay={i * 60} className="py-16 lg:py-24 lg:px-12">
+              <Eyebrow className="mb-4">{pillar.eyebrow}</Eyebrow>
+              <h2 className="font-serif text-2xl text-ink sm:text-3xl">{pillar.title}</h2>
+              <p className="mt-4 max-w-xs font-sans text-sm text-ink/65 sm:text-base">
+                {pillar.description}
               </p>
-              <Link
-                href={item.href}
-                className="mt-5 inline-flex items-center gap-2 font-sans text-xs font-medium uppercase tracking-wide2 text-ink underline decoration-clay decoration-2 underline-offset-8 transition-colors hover:text-clay-dark"
-              >
-                Learn more
-              </Link>
+              <MButton href={pillar.href} variant="ghost" className="mt-6">
+                {pillar.cta}
+              </MButton>
             </Reveal>
           ))}
         </Container>
       </section>
 
-      {/* FORMULA LAB */}
-      <section className="border-b border-ink/10 bg-ivory-soft py-20 lg:py-28">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
-            <SectionHeading
-              eyebrow="Formula Lab"
-              title="Start. Smell. Change. Compare. Build."
-              description="Perfumery becomes much easier to understand when you stop only reading about materials and start smelling what happens when you change them."
-            />
-            <FormulaSnippet className="lg:mt-1" />
-          </div>
-          <div className="mt-12">
-            <ProcessSteps steps={formulaLabSteps} compact />
-          </div>
-          <MButton href="/formula-library" variant="secondary" className="mt-10">
-            Explore the Formula Library
-          </MButton>
-        </Container>
-      </section>
-
-      {/* MATERIALS IMAGERY */}
+      {/* PHILOSOPHY */}
       <section className="border-b border-ink/10 py-20 lg:py-28">
         <Container className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
           <Reveal className="order-2 lg:order-1">
@@ -151,8 +108,8 @@ export default function HomePage() {
           <Reveal className="order-1 lg:order-2">
             <SectionHeading
               eyebrow="The Philosophy"
-              title="We give you the tools, structures and knowledge. You create the perfume."
-              description="This isn't a service where you send an idea and receive a finished fragrance. It's a place to build real perfumery skill — through education, formulas, materials, feedback and a community of people doing the same thing."
+              title="We Don't Create the Perfume for You."
+              description="This is a platform for people who want to become better perfumers themselves. We provide the knowledge, formulas, materials, feedback and live education — you provide the experimentation and creativity."
             />
             <MButton href="/about" variant="ghost" className="mt-6">
               Read the full story
@@ -162,87 +119,40 @@ export default function HomePage() {
       </section>
 
       {/* BASES TEASER */}
-      <section className="border-b border-ink/10 bg-ink py-20 text-ivory lg:py-28">
+      <section className="border-b border-ink/10 bg-ink py-24 text-ivory lg:py-32">
         <Container>
-          <Eyebrow className="mb-4 text-clay-light">Coming Soon</Eyebrow>
-          <h2 className="max-w-xl font-serif text-3xl leading-tight sm:text-4xl">
-            Four New Building Blocks for Your Perfume Organ.
-          </h2>
-          <p className="mt-5 max-w-lg font-sans text-ivory/70">
-            We&apos;re developing four original perfumery bases, built for
-            experimentation — creative tools you&apos;ll be able to drop
-            directly into your own formulas, not finished fragrances.
-          </p>
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {baseCards.map((base) => (
-              <div
-                key={base}
-                className="border border-ivory/15 px-4 py-10 text-center"
-              >
-                <p className="font-serif text-lg text-ivory">{base}</p>
-                <p className="mt-2 font-sans text-[11px] uppercase tracking-wide2 text-ivory/45">
-                  Coming Soon
-                </p>
-              </div>
-            ))}
+          <div className="mx-auto max-w-xl text-center">
+            <Eyebrow className="mb-4 justify-center text-clay-light">
+              Something New Is Entering the Organ
+            </Eyebrow>
+            <h2 className="font-serif text-3xl leading-tight sm:text-4xl">
+              Four New Building Blocks.
+            </h2>
+            <p className="mx-auto mt-5 max-w-md font-sans text-ivory/60">
+              We&apos;re developing four original perfumery bases designed
+              for independent perfumers to experiment with inside their own
+              formulas. Build around them. Modify them. Push them somewhere
+              new.
+            </p>
           </div>
-          <MButton href="/materials" className="mt-10 bg-clay hover:bg-clay-light hover:text-ink">
-            Get Early Access
-          </MButton>
-        </Container>
-      </section>
 
-      {/* CONSULTATIONS TEASER */}
-      <section className="border-b border-ink/10 py-20 lg:py-28">
-        <Container className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
-          <Reveal>
-            <SectionHeading
-              eyebrow="Consultations"
-              title="Get Unstuck With Your Formula."
-              description="One-to-one perfumery consultations for people who are already experimenting, learning or formulating. You remain the perfumer — we guide, you create."
-            />
-            <MButton href={consultationCheckoutUrl} className="mt-8">
-              Book a Consultation
-            </MButton>
-          </Reveal>
-          <Reveal>
-            <ul className="grid gap-3 font-sans text-sm text-ink/70">
-              {consultationTopics.slice(0, 6).map((topic) => (
-                <li
-                  key={topic}
-                  className="border-b border-ink/10 pb-3 last:border-none"
-                >
-                  {topic}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* FAQ */}
-      <section className="border-b border-ink/10 py-20 lg:py-28">
-        <Container size="narrow">
-          <SectionHeading eyebrow="Questions" title="Frequently Asked" />
-          <div className="mt-10">
-            <Faq items={homeFaqs} />
+          <div className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-4">
+            <BaseCard variant="mineral" label="Base 01" />
+            <BaseCard variant="botanical" label="Base 02" />
+            <BaseCard variant="resin" label="Base 03" />
+            <BaseCard variant="smoke" label="Base 04" />
           </div>
-        </Container>
-      </section>
 
-      {/* FINAL CTA */}
-      <section className="bg-ink py-20 text-ivory lg:py-28">
-        <Container size="narrow" className="text-center">
-          <h2 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
-            Your Perfumery Lab Is Coming.
-          </h2>
-          <p className="mx-auto mt-5 max-w-lg font-sans text-ivory/70">
-            Education, formulas, community, live teaching and new materials
-            to experiment with — join early access to be the first in.
-          </p>
-          <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-            <MButton href="/waitlist" size="lg" className="bg-clay hover:bg-clay-light hover:text-ink">
-              Join Early Access
+          <div className="mt-14 text-center">
+            <p className="font-sans text-xs uppercase tracking-wide2 text-ivory/40">
+              More will be revealed soon
+            </p>
+            <MButton
+              href="/perfumery-learning"
+              size="lg"
+              className="mt-6 bg-clay hover:bg-clay-light hover:text-ink"
+            >
+              Register Interest
             </MButton>
           </div>
         </Container>

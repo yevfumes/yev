@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { db, schema } from "@/lib/db";
-import { classInterestSchema } from "@/lib/marketing/schemas";
+import { consultationInquirySchema } from "@/lib/marketing/schemas";
 
 export async function POST(req: Request) {
   const body = await req.json().catch(() => null);
@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
   }
 
-  const parsed = classInterestSchema.safeParse(body);
+  const parsed = consultationInquirySchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: "Invalid submission", issues: parsed.error.flatten() },
@@ -20,9 +20,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   }
 
-  const { website_url_confirm, ...rest } = parsed.data;
+  const { website_url_confirm, improve_goals, ...rest } = parsed.data;
 
-  await db.insert(schema.classInterest).values(rest);
+  await db.insert(schema.consultationInquiries).values({
+    ...rest,
+    improve_goals: improve_goals.join(","),
+  });
 
   return NextResponse.json({ ok: true });
 }

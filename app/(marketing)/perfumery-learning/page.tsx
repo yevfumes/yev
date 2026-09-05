@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/marketing/container";
-import { MButton } from "@/components/marketing/button";
 import { SectionHeading, Eyebrow } from "@/components/marketing/section-heading";
 import { VisualBlock } from "@/components/marketing/visual-block";
 import { ProcessSteps } from "@/components/marketing/process-steps";
 import { Reveal } from "@/components/marketing/reveal";
+import { PerfumeryLearningInquiryForm } from "@/components/marketing/perfumery-learning-inquiry-form";
 import {
   learnTopics,
   formulaLabSteps,
@@ -14,32 +14,27 @@ import {
 } from "@/lib/marketing/content";
 
 export const metadata: Metadata = {
-  title: "Learn Perfumery — Practical Education for Independent Perfumers",
+  title: "Perfumery Learning — Learn Perfumery By Actually Making Perfume",
   description:
-    "10+ hours of practical perfumery education covering materials, formula construction, evaluation and troubleshooting — built for people who want to actually make perfume.",
-  alternates: { canonical: "/learn" },
+    "A practical learning platform for independent perfumers — combining structured education, formulas, live classes, community and hands-on experimentation. Register your interest.",
+  alternates: { canonical: "/perfumery-learning" },
 };
 
-export default function LearnPage() {
+export default function PerfumeryLearningPage() {
   return (
     <>
       <section className="border-b border-ink/10">
         <Container className="grid gap-12 pb-16 pt-14 lg:grid-cols-2 lg:items-center lg:gap-16 lg:pb-24 lg:pt-20">
           <div>
-            <Eyebrow className="mb-6">The Learning Platform</Eyebrow>
+            <Eyebrow className="mb-6">Perfumery Learning</Eyebrow>
             <h1 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl lg:text-6xl">
-              A Learning Platform for Independent Perfumers
+              Learn Perfumery By Actually Making Perfume.
             </h1>
             <p className="mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/65 sm:text-lg">
-              10+ hours of practical perfumery education — covering
-              everything from raw materials to formula construction, built
-              for people who want to actually make perfume.
+              A practical learning platform for independent perfumers —
+              combining structured education, formulas, live classes,
+              community and hands-on experimentation.
             </p>
-            <div className="mt-9">
-              <MButton href="/waitlist" size="lg">
-                Join Early Access
-              </MButton>
-            </div>
           </div>
           <Reveal>
             <VisualBlock
@@ -53,13 +48,13 @@ export default function LearnPage() {
         </Container>
       </section>
 
-      {/* 10+ HOURS OF CONTENT */}
+      {/* WHAT'S INCLUDED */}
       <section className="border-b border-ink/10 py-20 lg:py-28">
         <Container>
           <SectionHeading
             eyebrow="10+ Hours of Content"
             title="Everything Connects Back to Making Perfume"
-            description="Not academic theory for its own sake — every topic is taught in a way that ties directly back to what you're building at the bench."
+            description="Not academic theory for its own sake — every topic ties directly back to what you're building at the bench."
           />
           <div className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {learnTopics.map((group, i) => (
@@ -89,9 +84,6 @@ export default function LearnPage() {
           <div className="mt-12">
             <ProcessSteps steps={formulaLabSteps} />
           </div>
-          <MButton href="/formula-library" variant="secondary" className="mt-10">
-            Explore the Formula Library
-          </MButton>
         </Container>
       </section>
 
@@ -101,7 +93,7 @@ export default function LearnPage() {
           <SectionHeading
             eyebrow="Live Classes"
             title="Practical Sessions, Taught Live"
-            description="Live, practical sessions that reinforce experimentation over theory. No classes are scheduled yet — join the waitlist to hear first."
+            description="Live, practical sessions that reinforce experimentation over theory."
           />
           <ul className="grid gap-3 font-sans text-sm text-ink/70">
             {liveClassIdeas.map((idea) => (
@@ -123,8 +115,7 @@ export default function LearnPage() {
           <p className="mt-5 max-w-lg font-sans text-ivory/70">
             A space to share formulas, ask beginner questions, discuss
             substitutions, and post what happened when you changed
-            something — built for people actually formulating, not just
-            talking about it.
+            something.
           </p>
           <div className="mt-12 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
             {communityAreas.map((area) => (
@@ -139,20 +130,16 @@ export default function LearnPage() {
         </Container>
       </section>
 
-      {/* CTA */}
+      {/* INQUIRY FORM */}
       <section className="py-20 lg:py-28">
-        <Container size="narrow" className="text-center">
-          <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl">
-            Your Perfumery Lab Is Coming.
-          </h2>
-          <p className="mx-auto mt-5 max-w-lg font-sans text-ink/65">
-            Join early access to be the first in as education, formulas,
-            live classes and community go live.
-          </p>
-          <div className="mt-9">
-            <MButton href="/waitlist" size="lg">
-              Join Early Access
-            </MButton>
+        <Container size="narrow">
+          <SectionHeading
+            eyebrow="Early Access"
+            title="Interested in Joining?"
+            description="The platform is currently being prepared. Submit your details below to register your interest and receive updates before launch."
+          />
+          <div className="mt-14">
+            <PerfumeryLearningInquiryForm />
           </div>
         </Container>
       </section>

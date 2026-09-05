@@ -5,12 +5,10 @@ const BASE_URL = "https://www.yevfumes.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
-    "/learn",
-    "/formula-library",
-    "/consultations",
-    "/materials",
+    "/perfumery-learning",
+    "/formula-consultations",
+    "/formulas",
     "/about",
-    "/waitlist",
   ];
 
   return routes.map((route) => ({

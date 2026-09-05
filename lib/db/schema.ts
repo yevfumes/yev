@@ -260,49 +260,40 @@ export const batches = sqliteTable("batches", {
   created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });
 
-// ─── Marketing site: fragrance development enquiries ─────────────────────────
+// ─── Marketing site: Perfumery Learning inquiries ─────────────────────────────
 
-export const projectEnquiries = sqliteTable("project_enquiries", {
+export const perfumeryLearningInquiries = sqliteTable("perfumery_learning_inquiries", {
   id: text("id").primaryKey().$defaultFn(() => nanoid()),
-  name: text("name").notNull(),
+  first_name: text("first_name").notNull(),
+  last_name: text("last_name").notNull(),
   email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  company: text("company"),
-  website: text("website"),
   country: text("country"),
-  // existing_brand | new_brand | individual
-  brand_status: text("brand_status"),
-  // personal_fragrance | brand_range | single_product | gift_or_bespoke | other
-  project_type: text("project_type"),
-  number_of_fragrances: text("number_of_fragrances"),
-  fragrance_direction: text("fragrance_direction"),
-  creative_brief: text("creative_brief").notNull(),
-  reference_fragrances: text("reference_fragrances"),
-  target_customer: text("target_customer"),
-  launch_date: text("launch_date"),
-  budget: text("budget"),
-  production_quantity: text("production_quantity"),
-  // development_only | development_and_support
-  support_needed: text("support_needed"),
-  additional_info: text("additional_info"),
-  // new | reviewed | replied | archived
+  // completely_new | beginner | intermediate | experienced_hobbyist | independent_perfumer | brand_owner
+  experience_level: text("experience_level"),
+  what_to_learn: text("what_to_learn"),
+  struggling_with: text("struggling_with"),
+  // new | reviewed | contacted
   status: text("status").notNull().default("new"),
   created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });
 
-// ─── Marketing site: perfumery class waiting list ─────────────────────────────
+// ─── Marketing site: Formula Consultation inquiries ───────────────────────────
 
-export const classInterest = sqliteTable("class_interest", {
+export const consultationInquiries = sqliteTable("consultation_inquiries", {
   id: text("id").primaryKey().$defaultFn(() => nanoid()),
   name: text("name").notNull(),
   email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  location: text("location"),
-  // beginner | some_experience | experienced
+  country: text("country"),
+  // beginner | intermediate | independent_perfumer | brand_owner
   experience_level: text("experience_level"),
-  learning_goals: text("learning_goals"),
-  // in_person | online | either
-  preferred_format: text("preferred_format"),
+  // yes | no
+  has_formula: text("has_formula"),
+  material_count: text("material_count"),
+  // comma-separated: longevity,diffusion,balance,structure,drydown,opening,material_selection,accord_building,formula_simplification,other
+  improve_goals: text("improve_goals"),
+  formula_or_question: text("formula_or_question").notNull(),
+  fragrance_direction: text("fragrance_direction"),
+  // new | reviewed | contacted
   status: text("status").notNull().default("new"),
   created_at: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });

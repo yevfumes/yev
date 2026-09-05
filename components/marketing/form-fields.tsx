@@ -120,6 +120,50 @@ export function TSelect({
   );
 }
 
+export function CheckboxCardGroup({
+  name,
+  register,
+  options,
+  columns = 3,
+}: {
+  name: string;
+  register: UseFormRegisterReturn;
+  options: { value: string; label: string }[];
+  columns?: 2 | 3 | 4;
+}) {
+  return (
+    <div
+      className={cn(
+        "grid gap-3",
+        columns === 2 && "sm:grid-cols-2",
+        columns === 3 && "sm:grid-cols-3",
+        columns === 4 && "sm:grid-cols-2 lg:grid-cols-4"
+      )}
+    >
+      {options.map((opt) => {
+        const id = `${name}-${opt.value}`;
+        return (
+          <div key={opt.value}>
+            <input
+              type="checkbox"
+              id={id}
+              value={opt.value}
+              {...register}
+              className="peer sr-only"
+            />
+            <label
+              htmlFor={id}
+              className="flex min-h-[3.25rem] cursor-pointer flex-col justify-center rounded-md border border-ink/20 bg-ivory px-4 py-3 text-center font-sans text-sm text-ink/75 transition-colors peer-checked:border-ink peer-checked:bg-ink peer-checked:text-ivory peer-focus-visible:ring-2 peer-focus-visible:ring-clay hover:border-ink/50"
+            >
+              <span className="font-medium">{opt.label}</span>
+            </label>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 export function RadioCardGroup({
   name,
   register,

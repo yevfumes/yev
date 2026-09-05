@@ -7,10 +7,9 @@ import { cn } from "@/lib/utils";
 
 const links = [
   { href: "/", label: "Home" },
-  { href: "/learn", label: "Learn" },
-  { href: "/formula-library", label: "Formula Library" },
-  { href: "/consultations", label: "Consultations" },
-  { href: "/materials", label: "Materials" },
+  { href: "/perfumery-learning", label: "Perfumery Learning" },
+  { href: "/formula-consultations", label: "Formula Consultations" },
+  { href: "/formulas", label: "Formulas" },
   { href: "/about", label: "About" },
 ];
 
@@ -63,10 +62,10 @@ export function SiteHeader() {
 
         <div className="hidden lg:block">
           <Link
-            href="/waitlist"
+            href="/perfumery-learning"
             className="inline-flex items-center rounded-full bg-clay px-6 py-2.5 font-sans text-[13px] font-medium uppercase tracking-wide2 text-ivory transition-colors hover:bg-clay-dark"
           >
-            Join Early Access
+            Register Interest
           </Link>
         </div>
 
@@ -118,10 +117,10 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            href="/waitlist"
+            href="/perfumery-learning"
             className="mt-8 inline-flex items-center justify-center rounded-full bg-clay px-6 py-4 font-sans text-sm font-medium uppercase tracking-wide2 text-ivory"
           >
-            Join Early Access
+            Register Interest
           </Link>
         </nav>
       </div>

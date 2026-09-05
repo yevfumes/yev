@@ -23,18 +23,18 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-3 font-sans text-sm text-ink/70">
               <li>
-                <Link href="/learn" className="hover:text-ink">
-                  Learn
+                <Link href="/perfumery-learning" className="hover:text-ink">
+                  Perfumery Learning
                 </Link>
               </li>
               <li>
-                <Link href="/formula-library" className="hover:text-ink">
-                  Formula Library
+                <Link href="/formula-consultations" className="hover:text-ink">
+                  Formula Consultations
                 </Link>
               </li>
               <li>
-                <Link href="/materials" className="hover:text-ink">
-                  Materials
+                <Link href="/formulas" className="hover:text-ink">
+                  Formulas
                 </Link>
               </li>
               <li>
@@ -51,13 +51,13 @@ export function SiteFooter() {
             </p>
             <ul className="mt-4 space-y-3 font-sans text-sm text-ink/70">
               <li>
-                <Link href="/waitlist" className="hover:text-ink">
-                  Join Early Access
+                <Link href="/perfumery-learning" className="hover:text-ink">
+                  Register Interest
                 </Link>
               </li>
               <li>
-                <Link href="/consultations" className="hover:text-ink">
-                  Book a Consultation
+                <Link href="/formula-consultations" className="hover:text-ink">
+                  Submit a Consultation Inquiry
                 </Link>
               </li>
             </ul>

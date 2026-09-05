@@ -100,15 +100,15 @@ export default function AboutPage() {
             Ready to start learning?
           </h2>
           <p className="mx-auto mt-5 max-w-lg font-sans text-ink/65">
-            Join early access to be the first in as the platform, formulas
-            and new bases go live.
+            Register your interest to be the first in as the platform,
+            formulas and new bases go live.
           </p>
           <div className="mt-9 flex flex-col justify-center gap-4 sm:flex-row">
-            <MButton href="/waitlist" size="lg">
-              Join Early Access
+            <MButton href="/perfumery-learning" size="lg">
+              Register Interest
             </MButton>
-            <MButton href="/consultations" variant="secondary" size="lg">
-              Book a Consultation
+            <MButton href="/formula-consultations" variant="secondary" size="lg">
+              Formula Consultations
             </MButton>
           </div>
         </Container>

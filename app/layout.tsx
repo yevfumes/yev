@@ -18,11 +18,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.yevfumes.com"),
   title: {
-    default: "Yevfumes — Learn Perfumery By Actually Making Perfume",
+    default: "Yevfumes — Learn Perfumery. Build Your Own Formulas.",
     template: "%s | Yevfumes",
   },
   description:
-    "A practical perfumery education platform for independent perfumers — formulas to test and modify, live classes, consultations, a community, and new perfumery bases to experiment with.",
+    "Education, formulas, consultations and creative tools for independent perfumers. A practical perfumery learning platform — you create, we help you get there.",
 };
 
 export default function RootLayout({
