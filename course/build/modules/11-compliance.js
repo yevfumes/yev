@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 11 · Compliance",
     graphic: "rings",
-    eyebrow: "Presented by Yev",
     titleText: "Compliance,\nSimply Explained",
     subtitle: "An introduction to keeping your formulas safe and legal to sell — not a substitute for professional guidance.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "IFRA limits, worked through two real calculations",
       "What an SDS and allergen declaration actually cover",
     ],
-    presenter: "Yev",
     accent: C.taupeDk,
     note: "Deliver this module calmly and clearly — compliance overwhelms beginners fast. Keep the visual language simple throughout.",
   });

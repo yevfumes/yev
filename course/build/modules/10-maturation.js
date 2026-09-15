@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 10 · Maturation & Maceration",
     graphic: "bottle",
-    eyebrow: "Presented by Kristan",
     titleText: "Why Perfume Needs\nTime To Rest",
     subtitle: "What actually happens to a compound after it's bottled — and what doesn't.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "How long to wait, and how to tell it's ready",
       "Storage conditions that protect — or ruin — a batch",
     ],
-    presenter: "Kristan",
     accent: C.plum,
     note: "This module often gets skipped by impatient beginners — make the case for why patience pays off here.",
   });

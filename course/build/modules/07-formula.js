@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 07 · Formula Construction",
     graphic: "wood",
-    eyebrow: "Presented by Yev",
     titleText: "From Accords\nTo A Full Formula",
     subtitle: "How individual materials and accords come together into a complete, structured perfume.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "The eight-step process for building a full perfume",
       "Two full worked formulas, plus a professional-style deep dive",
     ],
-    presenter: "Yev",
     accent: C.plum,
     note: "This is the module where everything so far converges — terminology, materials, dilution, accords. Frame it as the culmination.",
   });

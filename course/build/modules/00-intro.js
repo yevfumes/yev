@@ -11,10 +11,9 @@ module.exports = function build(pres) {
     subtitle: "A hands-on, beginner-to-intermediate perfumery education — built to be watched, smelled, and practiced alongside every lesson.",
     points: [
       "How this deck, the videos and Discord fit together",
-      "Meet your teachers, Yev and Kristan",
+      "Why this course is hands-on, not passive",
       "Your roadmap through all 13 modules",
     ],
-    presenter: "Taught by Yev & Kristan",
     big: true,
     noBrandMark: true,
     note: "Warm cold open. Set the tone: this is not a corporate course, it's a creative lab. Introduce the energy of the whole program before naming a single ingredient.",
@@ -25,7 +24,7 @@ module.exports = function build(pres) {
     titleText: "This deck is not the lesson.\nIt's your lab notebook.",
     tag: "00 · Introduction",
     rows: [
-      { h: "Built for video, not for reading", d: "Every slide is a visual anchor for what Yev or Kristan are explaining out loud — not a script. Watch, listen, and use the slide to stay oriented." },
+      { h: "Built for video, not for reading", d: "Every slide is a visual anchor for what's being explained out loud — not a script. Watch, listen, and use the slide to stay oriented." },
       { h: "Beginner to intermediate", d: "We start with zero assumptions and build to full formula construction, evaluation, compliance and brand launch." },
       { h: "Made to be practiced", d: "Every module pairs with real smelling, real dilution, and real formula work — not passive watching." },
     ],
@@ -34,19 +33,6 @@ module.exports = function build(pres) {
     },
     visualCaption: "Your course companion — one bottle, one page, one idea at a time.",
     note: "Explain the philosophy: slides support the video, they never replace it. Encourage students to keep a physical notebook too.",
-  });
-
-  L.bioSlide(pres, {
-    eyebrow: "Meet Your Teachers",
-    titleText: "Yev & Kristan",
-    tag: "00 · Introduction",
-    people: [
-      { initials: "Y", name: "Yev", role: "Formulation · Lab · Business", color: C.rust,
-        bio: "Runs the technical side — equipment, dilution, compounding, compliance and building a brand around a formula." },
-      { initials: "K", name: "Kristan", role: "Materials · Nose Training · Composition", color: C.olive,
-        bio: "Runs the creative side — raw materials, olfactory training, accord building and formula evaluation." },
-    ],
-    note: "Give each teacher a genuine, personal introduction here — background, how you got into perfumery, why you're teaching this together.",
   });
 
   L.cardGrid(pres, {
@@ -69,21 +55,21 @@ module.exports = function build(pres) {
     eyebrow: "The Full Course",
     titleText: "Your roadmap through 13 modules",
     modules: [
-      { num: "00", title: "Introduction", presenter: "Yev + Kristan" },
-      { num: "01", title: "Perfumery Basics", presenter: "Kristan" },
-      { num: "02", title: "Equipment", presenter: "Yev" },
-      { num: "03.1", title: "Raw Materials — Naturals", presenter: "Kristan" },
-      { num: "03.2", title: "Raw Materials — Synthetics", presenter: "Yev" },
-      { num: "03", title: "What To Order", presenter: "Yev + Kristan" },
-      { num: "04", title: "How To Dilute", presenter: "Yev" },
-      { num: "05", title: "Training Your Nose", presenter: "Kristan" },
-      { num: "06", title: "Building Accords", presenter: "Kristan" },
-      { num: "07", title: "Formula Construction", presenter: "Yev" },
-      { num: "08", title: "Evaluating & Developing", presenter: "Kristan" },
-      { num: "09", title: "Alcohol & Compounding", presenter: "Yev" },
-      { num: "10", title: "Maturation & Maceration", presenter: "Kristan" },
-      { num: "11", title: "Compliance", presenter: "Yev" },
-      { num: "12", title: "Starting A Brand", presenter: "Yev + Kristan" },
+      { num: "00", title: "Introduction" },
+      { num: "01", title: "Perfumery Basics" },
+      { num: "02", title: "Equipment" },
+      { num: "03.1", title: "Raw Materials — Naturals" },
+      { num: "03.2", title: "Raw Materials — Synthetics" },
+      { num: "03", title: "What To Order" },
+      { num: "04", title: "How To Dilute" },
+      { num: "05", title: "Training Your Nose" },
+      { num: "06", title: "Building Accords" },
+      { num: "07", title: "Formula Construction" },
+      { num: "08", title: "Evaluating & Developing" },
+      { num: "09", title: "Alcohol & Compounding" },
+      { num: "10", title: "Maturation & Maceration" },
+      { num: "11", title: "Compliance" },
+      { num: "12", title: "Starting A Brand" },
     ],
     note: "Walk through the roadmap top to bottom. Give students a sense of pacing — this is a real curriculum, not a random collection of videos.",
   });
@@ -95,7 +81,7 @@ module.exports = function build(pres) {
     rows: [
       { h: "Video + slide, every lesson", d: "Watch the video with this deck open — the slide tells you where you are, the video does the teaching." },
       { h: "Practice alongside every module", d: "Physically smell and log the materials each module covers, at your own pace — this is where the learning actually happens." },
-      { h: "Community threads", d: "Post your evaluations, accords and formulas in Discord for feedback from Yev, Kristan and the group." },
+      { h: "Community threads", d: "Post your evaluations, accords and formulas in Discord for feedback from the group." },
       { h: "Office hours", d: "Live Q&A sessions to troubleshoot formulas and answer anything the videos didn't cover." },
     ],
     drawVisual: (s, x, y, w, h) => {

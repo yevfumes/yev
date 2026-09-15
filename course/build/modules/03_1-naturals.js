@@ -6,10 +6,8 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 03.1 · Raw Materials",
     graphic: "flower",
-    eyebrow: "Presented by Kristan",
     titleText: "Naturals & How\nMaterials Behave",
     subtitle: "Before you shop, you need a framework — how perfumers actually think about a raw material.",
-    presenter: "Kristan",
     accent: C.olive,
     points: [
       "The vocabulary: volatility, diffusion, tenacity, role",

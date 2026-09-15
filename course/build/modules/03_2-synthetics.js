@@ -6,10 +6,8 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 03.2 · Raw Materials",
     graphic: "molecule",
-    eyebrow: "Presented by Yev",
     titleText: "Synthetics —\nThe Modern Palette",
     subtitle: "Modern perfumery is built on synthetic molecules. This module will change how you see them, for good.",
-    presenter: "Yev",
     accent: C.gold,
     points: [
       "Seven synthetic families, in real depth",

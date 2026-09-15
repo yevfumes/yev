@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 08 · Evaluating & Developing",
     graphic: "strip",
-    eyebrow: "Presented by Kristan",
     titleText: "After Version 1:\nEvaluate & Develop",
     subtitle: "Making the formula was the easy part. Now the real work of perfumery begins.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "A structured framework — opening, heart, drydown, diffusion, balance and more",
       "A troubleshooting guide — symptom to fix",
     ],
-    presenter: "Kristan",
     accent: C.olive,
     note: "Set expectations: version 1 is never the finished formula. This module is about the iteration that follows.",
   });

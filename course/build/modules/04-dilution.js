@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 04 · Dilution",
     graphic: "flask",
-    eyebrow: "Presented by Yev",
     titleText: "How To Dilute\nWith Confidence",
     subtitle: "Dilution is the skill that makes every other skill in this course possible.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "Diluting liquids vs. solids, step by step",
       "How to label a dilution so it's never a mystery",
     ],
-    presenter: "Yev",
     accent: C.gold,
     note: "This is one of the most practical, hands-on modules — encourage students to have their scale out while watching.",
   });

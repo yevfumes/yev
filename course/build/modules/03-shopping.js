@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 03 · What To Order",
     graphic: "citrus",
-    eyebrow: "Presented by Yev + Kristan",
     titleText: "Building Your\nFirst Palette",
     subtitle: "What do you actually order first? A practical, no-nonsense shopping module.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "Shopping by family, not by impulse",
       "Your starter-perfumer checklist",
     ],
-    presenter: "Yev + Kristan",
     accent: C.olive,
     note: "This module bridges materials theory to a real purchase order — the most actionable module so far.",
   });

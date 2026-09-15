@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 12 · Starting A Brand",
     graphic: "bottle",
-    eyebrow: "Presented by Yev + Kristan",
     titleText: "From Formula\nTo Brand",
     subtitle: "Everything you've learned, now aimed at building something the world can actually buy.",
     points: [
@@ -14,10 +13,9 @@ module.exports = function build(pres) {
       "Finding your lane and telling a real story",
       "Where fragrance brands actually sell",
     ],
-    presenter: "Yev + Kristan",
     accent: C.gold,
     big: true,
-    note: "This is the closing, exciting module — bring both presenters' energy together for the finale.",
+    note: "This is the closing, exciting module — bring high energy for the finale.",
   });
 
   L.cardGrid(pres, {

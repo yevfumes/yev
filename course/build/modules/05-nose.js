@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 05 · Nose Training",
     graphic: "strip",
-    eyebrow: "Presented by Kristan",
     titleText: "Training Your Nose\nLike A Perfumer",
     subtitle: "The nose is a muscle. This module is how professionals actually train it.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "What to record, every single time",
       "How to actually build lasting scent memory",
     ],
-    presenter: "Kristan",
     accent: C.olive,
     note: "Set the tone: this is a discipline, not a talent. Anyone who does this consistently improves.",
   });

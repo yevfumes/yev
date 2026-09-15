@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 02 · Equipment",
     graphic: "scale",
-    eyebrow: "Presented by Yev",
     titleText: "Building Your\nHome Bench",
     subtitle: "You don't need a professional lab to start — you need the right small set of tools, chosen for accuracy, and you need to know exactly what each one is for.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "Every tool on the bench, one at a time",
       "Your starter checklist, and what to skip",
     ],
-    presenter: "Yev",
     accent: C.rust,
     note: "Set expectations: this is a lean, practical kit, not an expensive lab buildout. Everything shown is realistic for a beginner budget. This module now runs long — take it one topic per take.",
   });

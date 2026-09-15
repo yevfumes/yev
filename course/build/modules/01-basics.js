@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 01 · Perfumery Basics",
     graphic: "molecule",
-    eyebrow: "Presented by Kristan",
     titleText: "The Vocabulary\nof Perfumery",
     subtitle: "Before you can build a formula, you need the words perfumers actually use to describe one.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "The fragrance pyramid and concentration tiers",
       "Naturals vs. synthetics, and the myths around both",
     ],
-    presenter: "Kristan",
     note: "Set expectations: this module is foundational vocabulary and concepts. Nothing hands-on yet, but everything after this depends on it.",
   });
 

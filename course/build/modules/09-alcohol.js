@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 09 · Alcohol & Compounding",
     graphic: "flask",
-    eyebrow: "Presented by Yev",
     titleText: "Alcohol, Scaling\n& Compounding",
     subtitle: "Turning a finished concentrate into a real, wearable perfume.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "Scaling a formula up from a small test batch",
       "Compounding, bottling and labelling basics",
     ],
-    presenter: "Yev",
     accent: C.rust,
     note: "This module bridges formula work to an actual finished bottle — a satisfying, tangible module.",
   });

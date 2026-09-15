@@ -6,7 +6,6 @@ module.exports = function build(pres) {
   L.titleSlide(pres, {
     tag: "Module 06 · Building Accords",
     graphic: "drop",
-    eyebrow: "Presented by Kristan",
     titleText: "From Materials\nTo Accords",
     subtitle: "This is where perfumery gets creative — combining individual materials into one recognisable smell.",
     points: [
@@ -14,7 +13,6 @@ module.exports = function build(pres) {
       "The Jean Carles method, step by step",
       "Iterating an accord until it reads true",
     ],
-    presenter: "Kristan",
     accent: C.berry,
     note: "This is a hands-on, practical module. Encourage students to have a few materials on hand to build alongside.",
   });
