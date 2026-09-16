@@ -7,7 +7,7 @@ module.exports = function build(pres) {
     tag: "Module 00 · Introduction",
     graphic: "rings",
     eyebrow: "The Art & Science of Perfumery",
-    titleText: `${T.BRAND_NAME.split(" ").slice(0, 2).join(" ")}\n${T.BRAND_NAME.split(" ").slice(2).join(" ")}`,
+    titleText: `${T.BRAND_NAME.slice(0, 8)}\n${T.BRAND_NAME.slice(8)}`,
     subtitle: "A hands-on, beginner-to-intermediate perfumery education — built to be watched, smelled, and practiced alongside every lesson.",
     points: [
       "How this deck, the videos and Discord fit together",

@@ -30,7 +30,7 @@ for (const m of modules) {
   require(m)(pres);
 }
 
-const outPath = process.argv[2] || "./LA_PARFUM_SIMPLIFIE.pptx";
+const outPath = process.argv[2] || "./LEPARFUMSIMPLIFIE.pptx";
 pres.writeFile({ fileName: outPath }).then(() => {
   console.log("Wrote", outPath);
 }).catch((err) => {

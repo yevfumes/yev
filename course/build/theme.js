@@ -1,5 +1,5 @@
 // ============================================================
-// LA PARFUM SIMPLIFIE — visual design system
+// LEPARFUMSIMPLIFIE — visual design system
 // ============================================================
 const PptxGenJS = require("pptxgenjs");
 
@@ -78,7 +78,7 @@ function pageNum(slide, n, opts = {}) {
   });
 }
 
-const BRAND_NAME = "LA PARFUM SIMPLIFIE";
+const BRAND_NAME = "LEPARFUMSIMPLIFIE";
 
 // Small, quiet wordmark — sits immediately left of the page number, bottom-right,
 // the one corner already proven clear of content across the whole deck.
