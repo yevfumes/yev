@@ -212,13 +212,14 @@ class Pictogram(Flowable):
         c.saveState()
         c.translate(r, 8 * mm + r)
         c.scale(r, r)  # unit coords: diamond vertices at (0,±1), (±1,0)
-        diamond = c.beginPath()
-        diamond.moveTo(0, 1); diamond.lineTo(1, 0); diamond.lineTo(0, -1); diamond.lineTo(-1, 0)
-        diamond.close()
-        c.setFillColor(colors.white); c.setStrokeColor(self.CLP_RED)
-        c.setLineWidth(0.13); c.setLineJoin(1)
-        c.drawPath(diamond, fill=1, stroke=1)
+        c.setFillColor(self.CLP_RED)
+        c.drawPath(self._diamond(c, 1.0), fill=1, stroke=0)   # red frame
+        c.setFillColor(colors.white)
+        inner = self._diamond(c, self.INNER)
+        c.drawPath(inner, fill=1, stroke=0)
+        c.clipPath(self._diamond(c, self.INNER), stroke=0, fill=0)
         c.setFillColor(colors.black); c.setStrokeColor(colors.black)
+        c.setLineCap(1); c.setLineJoin(1)
         getattr(self, "_" + self.code.lower())(c)
         c.restoreState()
         c.setFillColor(colors.black)
@@ -227,64 +228,72 @@ class Pictogram(Flowable):
         c.setFont("Helvetica", 6.3)
         c.drawCentredString(r, 0.8 * mm, self.label)
 
+    INNER = 0.83  # white field; the red frame is the band outside it
+
     @staticmethod
-    def _poly(c, pts, fill=True):
+    def _diamond(c, k):
+        d = c.beginPath()
+        d.moveTo(0, k); d.lineTo(k, 0); d.lineTo(0, -k); d.lineTo(-k, 0)
+        d.close()
+        return d
+
+    @staticmethod
+    def _poly(c, pts):
         p = c.beginPath()
         p.moveTo(*pts[0])
         for pt in pts[1:]:
             p.lineTo(*pt)
         p.close()
-        c.drawPath(p, fill=1 if fill else 0, stroke=0)
-
-    def _ghs07(self, c):
-        # Exclamation mark
-        self._poly(c, [(-0.13, 0.56), (0.13, 0.56), (0.06, -0.16), (-0.06, -0.16)])
-        c.circle(0, -0.36, 0.1, stroke=0, fill=1)
-
-    def _ghs08(self, c):
-        # Human bust with white starburst on the chest (health hazard)
-        c.circle(0, 0.40, 0.15, stroke=0, fill=1)
-        p = c.beginPath()
-        p.moveTo(-0.42, -0.50)
-        p.lineTo(-0.42, -0.02)
-        p.curveTo(-0.42, 0.16, -0.26, 0.23, -0.10, 0.23)
-        p.lineTo(0.10, 0.23)
-        p.curveTo(0.26, 0.23, 0.42, 0.16, 0.42, -0.02)
-        p.lineTo(0.42, -0.50)
-        p.close()
         c.drawPath(p, fill=1, stroke=0)
 
+    def _ghs07(self, c):
+        # Exclamation mark: tapered bar with rounded top, round dot
+        self._poly(c, [(-0.135, 0.52), (0.135, 0.52), (0.065, -0.13), (-0.065, -0.13)])
+        c.circle(0, 0.52, 0.135, stroke=0, fill=1)
+        c.circle(0, -0.36, 0.115, stroke=0, fill=1)
+
+    def _ghs08(self, c):
+        # Human bust cut by the frame, white starburst on the chest (health hazard)
+        c.circle(0, 0.37, 0.175, stroke=0, fill=1)
+        p = c.beginPath()
+        p.moveTo(-0.62, -0.95)
+        p.lineTo(-0.62, -0.06)
+        p.curveTo(-0.62, 0.11, -0.38, 0.165, -0.13, 0.165)
+        p.lineTo(0.13, 0.165)
+        p.curveTo(0.38, 0.165, 0.62, 0.11, 0.62, -0.06)
+        p.lineTo(0.62, -0.95)
+        p.close()
+        c.drawPath(p, fill=1, stroke=0)
         pts = []
         for i in range(16):
             a = math.pi / 2 + i * math.pi / 8
-            rad = 0.24 if i % 2 == 0 else 0.09
-            pts.append((rad * math.cos(a), -0.16 + rad * math.sin(a)))
+            rad = 0.27 if i % 2 == 0 else 0.1
+            pts.append((rad * math.cos(a), -0.2 + rad * math.sin(a)))
         c.setFillColor(colors.white)
         self._poly(c, pts)
         c.setFillColor(colors.black)
 
     def _ghs09(self, c):
-        # Dead tree and dead fish (hazardous to the aquatic environment)
-        c.setLineCap(1)
-        c.setLineWidth(0.06)
-        c.line(-0.62, -0.30, 0.62, -0.30)                    # ground / water line
+        # Dead tree and dead fish on the bank (hazardous to the aquatic environment)
         c.setLineWidth(0.075)
-        c.line(-0.30, -0.30, -0.30, 0.40)                    # trunk
-        c.setLineWidth(0.05)
-        for x0, y0, x1, y1 in [(-0.30, 0.02, -0.52, 0.20), (-0.30, 0.14, -0.10, 0.36),
-                               (-0.30, 0.28, -0.44, 0.44), (-0.41, 0.11, -0.47, 0.30),
-                               (-0.19, 0.24, -0.08, 0.20)]:
-            c.line(x0, y0, x1, y1)
-        # fish, belly-up, lying on the water line
-        body = c.beginPath()
-        body.moveTo(-0.02, -0.19)
-        body.curveTo(0.08, -0.05, 0.30, -0.05, 0.40, -0.17)
-        body.curveTo(0.30, -0.28, 0.08, -0.28, -0.02, -0.19)
+        c.line(-0.62, -0.28, 0.62, -0.28)                            # ground line
+        self._poly(c, [(-0.36, -0.28), (-0.22, -0.28), (-0.25, 0.08),  # trunk, tapering
+                       (-0.27, 0.43), (-0.315, 0.43), (-0.33, 0.08)])
+        c.setLineWidth(0.058)
+        for x0, y0, x1, y1 in [(-0.31, -0.02, -0.52, 0.19), (-0.27, 0.10, -0.07, 0.33),
+                               (-0.29, 0.29, -0.40, 0.41), (-0.43, 0.10, -0.47, 0.29),
+                               (-0.15, 0.22, -0.03, 0.19)]:
+            c.line(x0, y0, x1, y1)                                   # bare branches
+        body = c.beginPath()                                         # fish, belly-up
+        body.moveTo(-0.08, -0.15)
+        body.curveTo(0.02, 0.0, 0.30, 0.0, 0.42, -0.14)
+        body.curveTo(0.30, -0.26, 0.02, -0.27, -0.08, -0.15)
         body.close()
         c.drawPath(body, fill=1, stroke=0)
-        self._poly(c, [(0.37, -0.17), (0.56, -0.07), (0.56, -0.27)])  # tail
-        c.setStrokeColor(colors.white); c.setLineWidth(0.025)
-        c.line(0.05, -0.14, 0.11, -0.20); c.line(0.05, -0.20, 0.11, -0.14)  # X eye
+        self._poly(c, [(0.38, -0.14), (0.56, -0.02), (0.53, -0.14), (0.56, -0.26)])  # tail
+        self._poly(c, [(0.12, -0.04), (0.22, -0.04), (0.14, 0.06)])                 # fin
+        c.setStrokeColor(colors.white); c.setLineWidth(0.03)
+        c.line(0.0, -0.10, 0.07, -0.17); c.line(0.0, -0.17, 0.07, -0.10)            # X eye
         c.setStrokeColor(colors.black)
 
 
