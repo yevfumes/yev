@@ -1,11 +1,12 @@
 """
-Generate GHS / GCC (GSO) format Safety Data Sheets for the Nasser Summer and
-Nasser Winter fragrance concentrates.
+Generate UK REACH / GB CLP format Safety Data Sheets (also valid for GHS / GCC
+GSO use in Kuwait) for the Nasser Summer and Nasser Winter fragrance concentrates.
 
 Classification uses the GHS mixture calculation method (additivity, ATEmix,
 summation for aquatic hazards) applied to typical raw-material classifications
 taken from supplier SDSs / ECHA C&L. Run:  python3 docs/sds/generate_sds.py
 """
+import math
 from datetime import date
 from pathlib import Path
 
@@ -22,10 +23,11 @@ ISSUE = date.today().isoformat()
 
 SUPPLIER = {
     "name": "Yevfumes",
-    "address": "[Street address, City, State/Province, Postcode, Country]",
-    "phone": "[Company phone]",
+    "address": "[Street address, Town/City, Postcode, United Kingdom]",
+    "phone": "[+44 company phone]",
     "email": "yevfumes@gmail.com",
-    "emergency": "[24-hour emergency number, e.g. CHEMTREC / Chemtel contract number]",
+    "emergency": "[24-hour emergency number, e.g. NCEC Carechem24 / "
+                 "Chemtrec UK contract number]",
 }
 
 # --------------------------------------------------------------------------
@@ -194,30 +196,96 @@ NAVY = colors.HexColor("#1f3a5f")
 
 
 class Pictogram(Flowable):
-    """Red-bordered GHS diamond with a symbol label."""
+    """GB CLP / GHS hazard pictogram: black symbol on white, red diamond border,
+    drawn as vector paths so it prints sharply at any size."""
 
-    def __init__(self, code, label, size=20 * mm):
+    CLP_RED = colors.HexColor("#E30613")
+
+    def __init__(self, code, label, size=26 * mm):
         super().__init__()
         self.code, self.label, self.size = code, label, size
-        self.width, self.height = size, size + 7 * mm
+        self.width, self.height = size, size + 8 * mm
 
     def draw(self):
         c, s = self.canv, self.size
+        r = s / 2
         c.saveState()
-        c.translate(s / 2, 7 * mm + s / 2)
-        c.rotate(45)
-        d = s / 1.45
-        c.setStrokeColor(colors.red); c.setLineWidth(2.2); c.setFillColor(colors.white)
-        c.rect(-d / 2, -d / 2, d, d, fill=1)
+        c.translate(r, 8 * mm + r)
+        c.scale(r, r)  # unit coords: diamond vertices at (0,±1), (±1,0)
+        diamond = c.beginPath()
+        diamond.moveTo(0, 1); diamond.lineTo(1, 0); diamond.lineTo(0, -1); diamond.lineTo(-1, 0)
+        diamond.close()
+        c.setFillColor(colors.white); c.setStrokeColor(self.CLP_RED)
+        c.setLineWidth(0.13); c.setLineJoin(1)
+        c.drawPath(diamond, fill=1, stroke=1)
+        c.setFillColor(colors.black); c.setStrokeColor(colors.black)
+        getattr(self, "_" + self.code.lower())(c)
         c.restoreState()
         c.setFillColor(colors.black)
-        glyph = {"GHS07": "!", "GHS08": "✱", "GHS09": "≈"}[self.code]
-        c.setFont("Helvetica-Bold", 20 if glyph == "!" else 16)
-        c.drawCentredString(s / 2, 7 * mm + s / 2 - 6, glyph)
-        c.setFont("Helvetica-Bold", 6.5)
-        c.drawCentredString(s / 2, 3.5 * mm, self.code)
-        c.setFont("Helvetica", 5.8)
-        c.drawCentredString(s / 2, 0.5 * mm, self.label)
+        c.setFont("Helvetica-Bold", 7)
+        c.drawCentredString(r, 4 * mm, self.code)
+        c.setFont("Helvetica", 6.3)
+        c.drawCentredString(r, 0.8 * mm, self.label)
+
+    @staticmethod
+    def _poly(c, pts, fill=True):
+        p = c.beginPath()
+        p.moveTo(*pts[0])
+        for pt in pts[1:]:
+            p.lineTo(*pt)
+        p.close()
+        c.drawPath(p, fill=1 if fill else 0, stroke=0)
+
+    def _ghs07(self, c):
+        # Exclamation mark
+        self._poly(c, [(-0.13, 0.56), (0.13, 0.56), (0.06, -0.16), (-0.06, -0.16)])
+        c.circle(0, -0.36, 0.1, stroke=0, fill=1)
+
+    def _ghs08(self, c):
+        # Human bust with white starburst on the chest (health hazard)
+        c.circle(0, 0.40, 0.15, stroke=0, fill=1)
+        p = c.beginPath()
+        p.moveTo(-0.42, -0.50)
+        p.lineTo(-0.42, -0.02)
+        p.curveTo(-0.42, 0.16, -0.26, 0.23, -0.10, 0.23)
+        p.lineTo(0.10, 0.23)
+        p.curveTo(0.26, 0.23, 0.42, 0.16, 0.42, -0.02)
+        p.lineTo(0.42, -0.50)
+        p.close()
+        c.drawPath(p, fill=1, stroke=0)
+
+        pts = []
+        for i in range(16):
+            a = math.pi / 2 + i * math.pi / 8
+            rad = 0.24 if i % 2 == 0 else 0.09
+            pts.append((rad * math.cos(a), -0.16 + rad * math.sin(a)))
+        c.setFillColor(colors.white)
+        self._poly(c, pts)
+        c.setFillColor(colors.black)
+
+    def _ghs09(self, c):
+        # Dead tree and dead fish (hazardous to the aquatic environment)
+        c.setLineCap(1)
+        c.setLineWidth(0.06)
+        c.line(-0.62, -0.30, 0.62, -0.30)                    # ground / water line
+        c.setLineWidth(0.075)
+        c.line(-0.30, -0.30, -0.30, 0.40)                    # trunk
+        c.setLineWidth(0.05)
+        for x0, y0, x1, y1 in [(-0.30, 0.02, -0.52, 0.20), (-0.30, 0.14, -0.10, 0.36),
+                               (-0.30, 0.28, -0.44, 0.44), (-0.41, 0.11, -0.47, 0.30),
+                               (-0.19, 0.24, -0.08, 0.20)]:
+            c.line(x0, y0, x1, y1)
+        # fish, belly-up, lying on the water line
+        body = c.beginPath()
+        body.moveTo(-0.02, -0.19)
+        body.curveTo(0.08, -0.05, 0.30, -0.05, 0.40, -0.17)
+        body.curveTo(0.30, -0.28, 0.08, -0.28, -0.02, -0.19)
+        body.close()
+        c.drawPath(body, fill=1, stroke=0)
+        self._poly(c, [(0.37, -0.17), (0.56, -0.07), (0.56, -0.27)])  # tail
+        c.setStrokeColor(colors.white); c.setLineWidth(0.025)
+        c.line(0.05, -0.14, 0.11, -0.20); c.line(0.05, -0.20, 0.11, -0.14)  # X eye
+        c.setStrokeColor(colors.black)
 
 
 def section(num, title, rows):
@@ -262,15 +330,12 @@ def build(key, p):
     aq_h = "H410" if "AC1" in hz else "H411" if "AC2" in hz else "H412"
     aq_cat = {"H410": "Aquatic Chronic 1", "H411": "Aquatic Chronic 2",
               "H412": "Aquatic Chronic 3"}[aq_h]
-    h_codes = ["H227", "H304", "H315", "H317", "H319", aq_h]
-    class_lines = [
-        "Flammable Liquid Cat. 4 (GHS; H227) – based on estimated flash point, see Section 9",
-        "Aspiration Hazard Cat. 1 (H304)", "Skin Irritation Cat. 2 (H315)",
-        "Skin Sensitisation Cat. 1 (H317)", "Eye Irritation Cat. 2 (H319)",
-    ]
+    h_codes = ["H304", "H315", "H317", "H319", aq_h]
+    class_lines = ["Asp. Tox. 1, H304", "Skin Irrit. 2, H315", "Skin Sens. 1, H317",
+                   "Eye Irrit. 2, H319"]
     if cls["acute1"]:
-        class_lines.append("Hazardous to the aquatic environment – Acute Cat. 1 (H400)")
-    class_lines.append(f"Hazardous to the aquatic environment – {aq_cat.replace('Aquatic ', '')} ({aq_h})")
+        class_lines.append("Aquatic Acute 1, H400")
+    class_lines.append(f"{aq_cat}, {aq_h}")
     for code, needed in (("AT1", "H304"), ("SI2", "H315"), ("SS1", "H317"), ("EI2", "H319")):
         assert code in hz, (key, code)
 
@@ -283,8 +348,8 @@ def build(key, p):
         c.saveState()
         c.setFont("Helvetica", 7)
         c.setFillColor(colors.grey)
-        c.drawString(15 * mm, 9 * mm, f"{p['title']} ({p['code']})  |  SDS according to GHS Rev. 10 "
-                                      f"and GSO GHS requirements  |  Issue {ISSUE}  |  Version 1.0")
+        c.drawString(15 * mm, 9 * mm, f"{p['title']} ({p['code']})  |  SDS according to UK REACH Annex II (as "
+                                      f"amended) and GB CLP  |  Issue {ISSUE}  |  Version 1.1")
         c.drawRightString(195 * mm, 9 * mm, f"Page {d.page}")
         c.restoreState()
 
@@ -292,39 +357,48 @@ def build(key, p):
     f += [Paragraph("SAFETY DATA SHEET", H1),
           Paragraph(f"<b>{p['title']}</b> – Fragrance concentrate (perfume compound)",
                     ParagraphStyle("c", parent=BODY, alignment=TA_CENTER, fontSize=10)),
-          Paragraph("Prepared in accordance with the UN GHS (Rev. 10) and GCC Standardization "
-                    "Organization GHS labelling requirements, for use in the State of Kuwait",
+          Paragraph("According to UK REACH (retained Regulation (EC) No 1907/2006) Annex II, as "
+                    "amended, and GB CLP (retained Regulation (EC) No 1272/2008).<br/>Also "
+                    "prepared to UN GHS Rev. 10 / GCC (GSO) requirements for export to the State "
+                    "of Kuwait.",
                     ParagraphStyle("c2", parent=SMALL, alignment=TA_CENTER))]
 
     f += section(1, "Identification of the substance/mixture and of the company", [
-        ("Product name", p["title"]), ("Product code", p["code"]),
-        ("Product type", "Mixture – fragrance concentrate (perfume compound), undiluted"),
-        ("Recommended use", "Fragrance ingredient for the manufacture of fine fragrance and "
+        ("1.1 Product identifier", f"{p['title']}<br/>Product code: {p['code']}<br/>Mixture – "
+                                   "fragrance concentrate (perfume compound), undiluted"),
+        ("1.2 Relevant identified uses", "Fragrance ingredient for the manufacture of fine fragrance and "
                             "cosmetic products. Industrial/professional use."),
         ("Uses advised against", "Direct application to skin undiluted. Not for ingestion."),
-        ("Supplier", f"{SUPPLIER['name']}<br/>{SUPPLIER['address']}<br/>Tel: {SUPPLIER['phone']}"
+        ("1.3 Supplier of the safety data sheet", f"{SUPPLIER['name']}<br/>{SUPPLIER['address']}<br/>Tel: {SUPPLIER['phone']}"
                      f"<br/>E-mail: {SUPPLIER['email']}"),
-        ("Emergency telephone", SUPPLIER["emergency"] +
-         "<br/>Kuwait emergency services: 112. Kuwait Poison Control Centre (Ministry of Health)."),
+        ("1.4 Emergency telephone number", SUPPLIER["emergency"] +
+         "<br/>UK: 999 (emergency) / NHS 111 (medical advice). Clinicians: National Poisons "
+         "Information Service via TOXBASE."
+         "<br/>Kuwait: 112 (emergency services)."),
     ])
 
     picto = Table([[Pictogram("GHS07", "Exclamation mark"), Pictogram("GHS08", "Health hazard"),
-                    Pictogram("GHS09", "Environment")]], colWidths=[28 * mm] * 3, hAlign="LEFT")
+                    Pictogram("GHS09", "Environment")]], colWidths=[34 * mm] * 3, hAlign="CENTER")
     f += section(2, "Hazards identification", [
-        ("Classification of the mixture", "<br/>".join(class_lines)),
+        ("2.1 Classification (GB CLP)", "<br/>".join(class_lines)),
+        ("GHS Rev. 10 only (export)", "Flam. Liq. 4, H227 Combustible liquid – based on the "
+                                      "estimated flash point (60–93 °C). This category does not "
+                                      "exist in GB CLP. Confirm by test (Section 9)."),
+        ("2.2 Label elements", "Labelling according to GB CLP."),
+        ("Hazard pictograms", "GHS07 (exclamation mark), GHS08 (health hazard), "
+                              "GHS09 (environment)"),
+        Spacer(1, 2 * mm), picto, Spacer(1, 1 * mm),
         ("Signal word", "<b>DANGER</b>"),
-        ("Hazard pictograms", "GHS07, GHS08, GHS09"),
-        picto,
         ("Hazard statements", "<br/>".join(H_TEXT[h] for h in h_codes)),
         ("Precautionary statements", "<br/>".join(P_TEXT)),
-        ("Contains (sensitisers)", ", ".join(
+        ("Contains (sensitisers, named per GB CLP Art. 18)", ", ".join(
             n for n, pct in p["formula"] if "SS1" in RM[n]["codes"] and pct >= 0.1)),
-        ("Other hazards", "Not expected to meet PBT/vPvB criteria as a mixture. Contains "
+        ("2.3 Other hazards", "Not expected to meet PBT/vPvB criteria as a mixture. Contains "
                           "natural essential oils; may cause photosensitivity in rare cases "
                           "(Bergamot FCF is furocoumarin-reduced)."),
     ])
 
-    rows = [["Component", "CAS No.", "% w/w", "GHS classification (component)"]]
+    rows = [["Component", "CAS No.", "% w/w", "Classification (GB CLP)"]]
     for n, pct in p["formula"]:
         if pct < 0.1:
             continue
@@ -346,13 +420,13 @@ def build(key, p):
                   "undecanal is 112-44-7. Confirm against the supplier label (present at 0.012% – "
                   "no effect on classification).")
     f += section(3, "Composition / information on ingredients", [
-        ("Chemical nature", "Mixture of fragrance materials (aroma chemicals, essential oils, "
+        ("3.2 Mixtures", "Mixture of fragrance materials (aroma chemicals, essential oils, "
                             "resinoids)."),
         grid(rows, [52 * mm, 25 * mm, 14 * mm, 89 * mm]), Spacer(1, 1 * mm),
         Paragraph(notes, SMALL)])
 
     f += section(4, "First-aid measures", [
-        ("Inhalation", "Move to fresh air. If symptoms persist, get medical advice."),
+        ("4.1 Inhalation", "Move to fresh air. If symptoms persist, get medical advice."),
         ("Skin contact", "Remove contaminated clothing. Wash skin with plenty of soap and water. "
                          "If irritation or rash develops, get medical advice."),
         ("Eye contact", "Rinse cautiously with water for at least 15 minutes, holding eyelids "
@@ -360,53 +434,57 @@ def build(key, p):
                         "medical attention."),
         ("Ingestion", "Do NOT induce vomiting (aspiration hazard). Rinse mouth with water. Call a "
                       "poison centre or doctor immediately. Show this SDS."),
-        ("Most important symptoms", "Skin redness/irritation; allergic skin reaction in "
+        ("4.2 Most important symptoms", "Skin redness/irritation; allergic skin reaction in "
                                     "sensitised persons; eye irritation; aspiration into lungs "
                                     "if swallowed may cause chemical pneumonitis."),
-        ("Note to physician", "Treat symptomatically."),
+        ("4.3 Note to physician", "Treat symptomatically."),
     ])
     f += section(5, "Fire-fighting measures", [
-        ("Suitable extinguishing media", "Alcohol-resistant foam, carbon dioxide, dry chemical "
+        ("5.1 Suitable extinguishing media", "Alcohol-resistant foam, carbon dioxide, dry chemical "
                                          "powder, water spray (fog)."),
         ("Unsuitable media", "Direct high-volume water jet (may spread burning liquid)."),
-        ("Specific hazards", "Combustible liquid. Combustion produces carbon monoxide, carbon "
+        ("5.2 Specific hazards", "Combustible liquid. Combustion produces carbon monoxide, carbon "
                              "dioxide and irritating smoke."),
-        ("Advice for fire-fighters", "Wear self-contained breathing apparatus and full protective "
+        ("5.3 Advice for fire-fighters", "Wear self-contained breathing apparatus and full protective "
                                      "clothing. Cool closed containers with water spray. Prevent "
                                      "fire-fighting water from entering drains or waterways."),
     ])
     f += section(6, "Accidental release measures", [
-        ("Personal precautions", "Remove ignition sources. Ventilate the area. Wear gloves and "
+        ("6.1 Personal precautions", "Remove ignition sources. Ventilate the area. Wear gloves and "
                                  "eye protection. Avoid contact with skin and eyes."),
-        ("Environmental precautions", "Do not allow to enter drains, sewers or watercourses. "
+        ("6.2 Environmental precautions", "Do not allow to enter drains, sewers or watercourses. "
                                       "Inform authorities if released to the environment."),
-        ("Clean-up", "Absorb with inert material (sand, vermiculite, diatomaceous earth). Collect "
+        ("6.3 Containment and clean-up", "Absorb with inert material (sand, vermiculite, diatomaceous earth). Collect "
                      "into closed, labelled containers for disposal. Wash the area with "
                      "detergent and water; collect washings."),
     ])
     f += section(7, "Handling and storage", [
-        ("Safe handling", "Use in a well-ventilated area. Avoid contact with skin and eyes. Keep "
+        ("7.1 Safe handling", "Use in a well-ventilated area. Avoid contact with skin and eyes. Keep "
                           "away from heat and ignition sources. Do not eat, drink or smoke when "
                           "handling. Wash hands after use."),
-        ("Storage", "Store in tightly closed original containers (glass, aluminium, or lacquered/"
+        ("7.2 Storage", "Store in tightly closed original containers (glass, aluminium, or lacquered/"
                     "lined steel) in a cool, dry, dark, well-ventilated place, ideally 10–25 °C. "
-                    "Protect from direct sunlight and heat – important in Kuwait summer "
-                    "conditions (do not leave in vehicles or unshaded outdoor storage). Minimise "
+                    "Protect from direct sunlight and heat – important in hot climates "
+                    "such as Kuwait summer conditions (do not leave in vehicles or unshaded outdoor storage). Minimise "
                     "headspace or blanket with nitrogen to limit oxidation."),
         ("Incompatible materials", "Strong oxidising agents, strong acids and bases."),
     ])
     f += section(8, "Exposure controls / personal protection", [
-        ("Occupational exposure limits", "No component has a Kuwait or ACGIH occupational "
-                                         "exposure limit at the concentration present."),
-        ("Engineering controls", "General or local exhaust ventilation."),
-        ("Eye/face protection", "Safety glasses with side shields (EN 166 / ANSI Z87.1)."),
-        ("Hand protection", "Nitrile rubber gloves (≥0.4 mm, EN 374). Replace if contaminated."),
+        ("8.1 Occupational exposure limits", "No component has a UK Workplace Exposure Limit "
+                                             "(HSE EH40/2005, as amended) or Kuwait limit. "
+                                             "DNEL/PNEC: not established for the mixture."),
+        ("8.2 Engineering controls", "General or local exhaust ventilation. Assess under COSHH "
+                                     "2002."),
+        ("Eye/face protection", "Safety glasses with side shields (BS EN ISO 16321 / "
+                                "BS EN 166)."),
+        ("Hand protection", "Nitrile rubber gloves (≥0.4 mm, BS EN ISO 374-1). Replace if "
+                            "contaminated."),
         ("Skin/body protection", "Lab coat or protective clothing."),
         ("Respiratory protection", "Not normally required with adequate ventilation. For "
-                                   "aerosols or large spills, organic-vapour filter (type A)."),
+                                   "aerosols or large spills, organic-vapour filter type A (BS EN 14387)."),
     ])
     f += section(9, "Physical and chemical properties", [
-        ("Physical state / appearance", p["appearance"]), ("Odour", p["odour"]),
+        ("9.1 Physical state / appearance", p["appearance"]), ("Odour", p["odour"]),
         ("Flash point (closed cup)", "<b>Estimated &gt;60 °C (typically 65–90 °C for this type of "
                                      "composition). MUST be confirmed by laboratory test "
                                      "(ISO 2719 / ASTM D93 or ISO 3679 / ASTM D3828) before "
@@ -422,15 +500,15 @@ def build(key, p):
         ("Other", p["colour_note"]),
     ])
     f += section(10, "Stability and reactivity", [
-        ("Reactivity / stability", "Stable under recommended storage conditions."),
-        ("Conditions to avoid", "Heat, flames, sparks, direct sunlight, prolonged air exposure."),
+        ("10.1–10.2 Reactivity / stability", "Stable under recommended storage conditions."),
+        ("10.4 Conditions to avoid", "Heat, flames, sparks, direct sunlight, prolonged air exposure."),
         ("Incompatible materials", "Strong oxidising agents, strong acids and bases."),
-        ("Hazardous decomposition", "None under normal use. Combustion: CO, CO₂."),
+        ("10.6 Hazardous decomposition", "None under normal use. Combustion: CO, CO₂."),
         ("Hazardous polymerisation", "Will not occur."),
     ])
     ate = sums["ate_oral"]
     f += section(11, "Toxicological information", [
-        ("Acute oral toxicity", f"ATEmix (calculated) ≈ {ate:,.0f} mg/kg bw – not classified "
+        ("11.1 Acute oral toxicity", f"ATEmix (calculated) ≈ {ate:,.0f} mg/kg bw – not classified "
                                 "(&gt;2000 mg/kg)."),
         ("Acute dermal / inhalation", "Not classified based on available component data."),
         ("Skin corrosion/irritation", f"Causes skin irritation (Cat. 2; sum of Cat. 2 components "
@@ -452,20 +530,24 @@ def build(key, p):
                f"Mixture classified <b>{aq_cat} ({aq_h})</b>"
                + (" and Aquatic Acute 1 (H400)." if cls["acute1"] else "."))
     f += section(12, "Ecological information", [
-        ("Toxicity", aq_line),
-        ("Persistence / degradability", "Contains components that are not readily biodegradable "
+        ("12.1 Toxicity", aq_line),
+        ("12.2 Persistence / degradability", "Contains components that are not readily biodegradable "
                                         "(e.g. polycyclic / macrocyclic musks)."),
-        ("Bioaccumulation", "Some components have log Kow &gt; 4 and potential to bioaccumulate."),
-        ("Mobility in soil", "Low water solubility; expected to adsorb to soil/sediment."),
-        ("PBT / vPvB", "Mixture not assessed as PBT/vPvB."),
+        ("12.3 Bioaccumulation", "Some components have log Kow &gt; 4 and potential to bioaccumulate."),
+        ("12.4 Mobility in soil", "Low water solubility; expected to adsorb to soil/sediment."),
+        ("12.5 PBT / vPvB", "Mixture not assessed as PBT/vPvB."),
         ("Other adverse effects", "Avoid release to drains and the environment."),
     ])
     f += section(13, "Disposal considerations", [
-        ("Product", "Dispose of as hazardous chemical waste through a licensed contractor, in "
-                    "accordance with Kuwait Environment Public Authority (KEPA) regulations and "
-                    "local rules. Do not pour into drains."),
-        ("Packaging", "Empty containers retain residue; handle as the product. Recycle only when "
-                      "fully cleaned."),
+        ("13.1 Product", "Hazardous waste. Dispose of through a licensed waste contractor in "
+                         "accordance with the Environmental Protection Act 1990 and the "
+                         "Hazardous Waste (England and Wales) Regulations 2005 (or the Scottish/"
+                         "NI equivalents). Suggested List of Wastes code: 16 03 05* (organic "
+                         "wastes containing hazardous substances). In Kuwait: per Kuwait "
+                         "Environment Public Authority (KEPA) rules. Do not pour into drains."),
+        ("Packaging", "Empty containers retain residue; handle as the product. List of Wastes "
+                      "code 15 01 10* (packaging containing residues of hazardous substances) "
+                      "unless fully cleaned."),
     ])
 
     tech = p["technical"]
@@ -476,14 +558,14 @@ def build(key, p):
         ["IMDG (sea)", "UN3082",
          f"ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. ({tech})", "9", "III",
          "Yes – MARINE POLLUTANT"],
-        ["ADR (road)", "UN3082",
+        ["ADR / CDG 2009 (UK road)", "UN3082",
          f"ENVIRONMENTALLY HAZARDOUS SUBSTANCE, LIQUID, N.O.S. ({tech})", "9", "III", "Yes"],
     ]
     f += section(14, "Transport information", [
         Paragraph("<b>Classification below applies if the tested flash point is &gt;60 °C</b> "
                   "(expected for this composition):", BODY), Spacer(1, 1 * mm),
         grid(un_rows, [22 * mm, 16 * mm, 76 * mm, 13 * mm, 10 * mm, 43 * mm]), Spacer(1, 2 * mm),
-        ("Small-quantity exemption",
+        ("14.1–14.5 Small-quantity exemption",
          "Single or inner packagings containing <b>≤5 L</b> net (liquid) of UN3082 are "
          "<b>not subject to dangerous-goods regulations</b> under IATA Special Provision A197, "
          "IMDG Code 2.10.2.7 and ADR Special Provision 375. Shipments in bottles/containers of "
@@ -493,12 +575,25 @@ def build(key, p):
                                   "ADR). Limited Quantity (Y344 air, up to 10 L per inner "
                                   "packaging) and Excepted Quantity (E1) provisions apply. The "
                                   "A197 exemption does NOT apply to Class 3."),
-        ("Transport in bulk", "Not intended."),
-        ("Special precautions", "Keep upright, cushioned and sealed. Protect from heat during "
+        ("14.7 Transport in bulk", "Not intended (MARPOL Annex II / IBC Code not applicable)."),
+        ("14.6 Special precautions", "Keep upright, cushioned and sealed. Protect from heat during "
                                 "transit and customs holding in Kuwait."),
     ])
+    comah = "E1" if cls["acute1"] or "AC1" in hz else "E2"
     f += section(15, "Regulatory information", [
-        ("GCC / Kuwait", "SDS and labelling prepared per GSO GHS requirements (GCC Standardization "
+        ("15.1 UK regulations", "UK REACH (SI 2019/758 as amended); GB CLP; Control of "
+                                "Substances Hazardous to Health Regulations 2002 (COSHH); "
+                                "Dangerous Substances and Explosive Atmospheres Regulations "
+                                "2002 (DSEAR); Carriage of Dangerous Goods Regulations 2009 "
+                                "(CDG). Control of Major Accident Hazards Regulations 2015 "
+                                f"(COMAH): category {comah} (Hazardous to the aquatic "
+                                "environment); relevant only at tonnage quantities."),
+        ("UK Cosmetics Regulation", "If used in cosmetic products placed on the GB market, the "
+                                    "finished product must comply with the UK Cosmetics "
+                                    "Regulation (retained Regulation (EC) No 1223/2009), "
+                                    "including Annex III allergen labelling."),
+        ("15.2 Chemical safety assessment", "Not carried out for this mixture."),
+        ("GCC / Kuwait (export)", "SDS and labelling prepared per GSO GHS requirements (GCC Standardization "
                          "Organization) and the UN GHS as used in the State of Kuwait. Importers "
                          "may be asked for this SDS by Kuwait General Administration of "
                          "Customs, the Public Authority for Industry and KEPA. An Arabic "
@@ -508,8 +603,8 @@ def build(key, p):
                  "should accompany the product."),
     ] + ([("Regulatory note – Peru Balsam",
            "<b>Crude Peru balsam (Myroxylon pereirae) is prohibited as a fragrance ingredient</b> "
-           "under IFRA and in cosmetics under EU Regulation 1223/2009 Annex II, which GSO 1943 "
-           "(GCC cosmetic safety requirements) follows. Only IFRA-compliant extracts/distillates "
+           "under IFRA and in cosmetics under Annex II of the UK Cosmetics Regulation and EU "
+           "Regulation 1223/2009, which GSO 1943 (GCC cosmetic safety requirements) follows. Only IFRA-compliant extracts/distillates "
            "are allowed, restricted to 0.4% in the finished product. At 4.5% in this "
            "concentrate, the finished perfume must use no more than ~8.9% of this concentrate, "
            "and the grade used must be an extract/distillate. Confirm the grade with your "
@@ -522,15 +617,18 @@ def build(key, p):
          "skin reaction. H319 Causes serious eye irritation. H400 Very toxic to aquatic life. "
          "H410 Very toxic to aquatic life with long lasting effects. H411 Toxic to aquatic life "
          "with long lasting effects. H412 Harmful to aquatic life with long lasting effects."),
-        ("Classification method", "Calculation method per GHS Rev. 10 Parts 3–4 (additivity, "
+        ("Classification method", "Calculation method per GB CLP Annex I and GHS Rev. 10 Parts 3–4 (additivity, "
                                   "ATEmix, summation method for aquatic hazards) using component "
                                   "classifications from raw-material supplier SDSs / ECHA C&amp;L "
-                                  "inventory. Flash point and viscosity are estimated."),
+                                  "inventory and GB Mandatory Classification List. Flash point and viscosity are estimated."),
         ("Abbreviations", "ATE: Acute Toxicity Estimate. GHS: Globally Harmonized System. GSO: "
                           "GCC Standardization Organization. IATA: International Air Transport "
                           "Association. IMDG: International Maritime Dangerous Goods Code. PG: "
                           "Packing Group. PBT: Persistent, Bioaccumulative, Toxic."),
-        ("Issue date / version", f"{ISSUE} / 1.0"),
+        ("Issue date / version", f"{ISSUE} / 1.1 – revised to UK REACH / GB CLP format; "
+                                 "hazard pictograms redrawn."),
+        ("Training advice", "Staff handling this product should be trained in COSHH and in the "
+                            "contents of this SDS."),
         ("Disclaimer", "The information in this SDS is based on our present knowledge and on data "
                        "from raw-material suppliers. It describes the product only in terms of "
                        "safety requirements and is not a product specification. Users must "
