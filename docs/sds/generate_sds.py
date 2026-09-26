@@ -36,15 +36,18 @@ SUPPLIER = {
 #     SI2 skin irrit 2 | EI2 eye irrit 2 | SS1 skin sens 1/1B | AT1 asp tox 1
 #     AA1 aquatic acute 1 | AC1/AC2/AC3 aquatic chronic | FL3 flam liq 3
 #   ate: oral LD50 (mg/kg) where acute tox 4 applies
+#   hc: typical fraction of Asp. Tox. 1 hydrocarbons (limonene, pinenes, terpinenes,
+#       sesquiterpenes) in a natural. Aspiration hazard is assessed on these constituents,
+#       per the IFRA-IOFI Labelling Manual approach for natural complex substances.
 # --------------------------------------------------------------------------
 RM = {
     "Aldehyde C-11": dict(cas="112-31-2 *", codes=["SI2", "EI2", "AC2"]),
     "Aldehyde C-8 (Octanal)": dict(cas="124-13-0", codes=["FL3", "SI2", "EI2", "AC3"]),
     "Allyl Amyl Glycolate": dict(cas="67634-00-8", codes=["SS1", "AC2"], ate=1000),
     "Benzoin Siam resinoid": dict(cas="9000-72-0", codes=["SS1"]),
-    "Bergamot oil FCF": dict(cas="89957-91-5", codes=["FL3", "AT1", "SI2", "EI2", "SS1", "AC2"]),
+    "Bergamot oil FCF": dict(cas="89957-91-5", codes=["FL3", "AT1", "SI2", "EI2", "SS1", "AC2"], hc=0.5),
     "Beta Ionone": dict(cas="79-77-6", codes=["AC2"]),
-    "Blood Orange oil": dict(cas="8028-48-6", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"]),
+    "Blood Orange oil": dict(cas="8028-48-6", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"], hc=0.96),
     "Coumarin": dict(cas="91-64-5", codes=["SS1", "AC3"], ate=293),
     "Dihydromyrcenol": dict(cas="18479-58-8", codes=["SI2", "EI2"]),
     "Ethyl Maltol": dict(cas="4940-11-8", codes=[], ate=1150),
@@ -54,30 +57,30 @@ RM = {
     "Habanolide": dict(cas="34902-57-3", codes=["AC2"]),
     "Hydroxycitronellal": dict(cas="107-75-5", codes=["EI2", "SS1"]),
     "Iso E Super (OTNE)": dict(cas="54464-57-2", codes=["SI2", "SS1", "AA1", "AC1"]),
-    "Lemon oil": dict(cas="84929-31-7", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"]),
+    "Lemon oil": dict(cas="84929-31-7", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"], hc=0.9),
     "Linalool": dict(cas="78-70-6", codes=["SI2", "EI2", "SS1"]),
     "Linalyl Acetate": dict(cas="115-95-7", codes=["SI2", "EI2", "SS1"]),
-    "Mandarin oil (green)": dict(cas="84929-38-4", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"]),
+    "Mandarin oil (green)": dict(cas="84929-38-4", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"], hc=0.92),
     "Methyl Pamplemousse": dict(cas="67674-46-8", codes=["SI2", "AC2"]),
     "Phenyl Ethyl Alcohol": dict(cas="60-12-8", codes=["EI2"], ate=1609),
-    "Sweet Orange oil": dict(cas="8008-57-9", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"]),
+    "Sweet Orange oil": dict(cas="8008-57-9", codes=["FL3", "AT1", "SI2", "SS1", "AA1", "AC1"], hc=0.96),
     "Tonalide (AHTN)": dict(cas="1506-02-1", codes=["AA1", "AC1"], ate=570),
     "Vanillin": dict(cas="121-33-5", codes=["EI2"]),
     "Verdox": dict(cas="88-41-5", codes=["AC2"]),
     "Ambrettolide HC": dict(cas="28645-51-4", codes=["AC2"]),
     "Ambroxan": dict(cas="6790-58-5", codes=["AA1", "AC1"]),
-    "Amyris oil": dict(cas="8015-65-4", codes=["AT1", "SS1", "AC2"]),
+    "Amyris oil": dict(cas="8015-65-4", codes=["AT1", "SS1", "AC2"], hc=0.15),
     "Bacdanol": dict(cas="28219-61-6", codes=["SI2", "EI2", "AC2"]),
-    "Cedarwood oil Virginia": dict(cas="8000-27-9", codes=["AT1", "AA1", "AC1"]),
+    "Cedarwood oil Virginia": dict(cas="8000-27-9", codes=["AT1", "AA1", "AC1"], hc=0.6),
     "Ethylene Brassylate": dict(cas="105-95-3", codes=["AC3"]),
     "Heliotropix (base)": dict(cas="proprietary", codes=["SS1"]),
     "Indolarome": dict(cas="18096-62-3", codes=["AC2"], ate=1000),
     "Kephalis": dict(cas="36306-87-3", codes=["AC2"]),
     "Labdanum absolute": dict(cas="8016-26-0", codes=["SS1", "AC2"]),
-    "Patchouli oil (coeur)": dict(cas="8014-09-3", codes=["AA1", "AC1"]),
+    "Patchouli oil (coeur)": dict(cas="8014-09-3", codes=["AA1", "AC1"], hc=0.25),
     "Peru Balsam": dict(cas="8007-00-9", codes=["SS1"]),
     "Tobacco Furanone": dict(cas="n/a", codes=[]),
-    "Vetiver oil": dict(cas="8016-96-4", codes=["AC2"]),
+    "Vetiver oil": dict(cas="8016-96-4", codes=["AC2"], hc=0.05),
     "Diluent (from pre-dilutions)": dict(cas="see note", codes=[]),
 }
 
@@ -114,7 +117,8 @@ WINTER = [
 def classify(formula):
     s = lambda code: sum(p for n, p in formula if code in RM[n]["codes"])
     si, ei, ss_max, at = s("SI2"), s("EI2"), max(
-        [p for n, p in formula if "SS1" in RM[n]["codes"]] or [0]), s("AT1")
+        [p for n, p in formula if "SS1" in RM[n]["codes"]] or [0]), sum(
+        p * RM[n].get("hc", 0) for n, p in formula)
     aa1, ac1, ac2, ac3 = s("AA1"), s("AC1"), s("AC2"), s("AC3")
     inv = sum(p / RM[n]["ate"] for n, p in formula if RM[n].get("ate"))
     ate = 100 / inv if inv else None
@@ -339,13 +343,14 @@ def build(key, p):
     aq_h = "H410" if "AC1" in hz else "H411" if "AC2" in hz else "H412"
     aq_cat = {"H410": "Aquatic Chronic 1", "H411": "Aquatic Chronic 2",
               "H412": "Aquatic Chronic 3"}[aq_h]
-    h_codes = ["H304", "H315", "H317", "H319", aq_h]
-    class_lines = ["Asp. Tox. 1, H304", "Skin Irrit. 2, H315", "Skin Sens. 1, H317",
-                   "Eye Irrit. 2, H319"]
+    asp = "AT1" in hz
+    h_codes = (["H304"] if asp else []) + ["H315", "H317", "H319", aq_h]
+    class_lines = (["Asp. Tox. 1, H304"] if asp else []) + [
+        "Skin Irrit. 2, H315", "Skin Sens. 1, H317", "Eye Irrit. 2, H319"]
     if cls["acute1"]:
         class_lines.append("Aquatic Acute 1, H400")
     class_lines.append(f"{aq_cat}, {aq_h}")
-    for code, needed in (("AT1", "H304"), ("SI2", "H315"), ("SS1", "H317"), ("EI2", "H319")):
+    for code in ("SI2", "SS1", "EI2"):
         assert code in hz, (key, code)
 
     doc = SimpleDocTemplate(str(OUT / f"SDS_{key}.pdf"), pagesize=A4,
@@ -386,20 +391,25 @@ def build(key, p):
          "<br/>Kuwait: 112 (emergency services)."),
     ])
 
-    picto = Table([[Pictogram("GHS07", "Exclamation mark"), Pictogram("GHS08", "Health hazard"),
-                    Pictogram("GHS09", "Environment")]], colWidths=[34 * mm] * 3, hAlign="CENTER")
+    pics = [("GHS07", "Exclamation mark")] + ([("GHS08", "Health hazard")] if asp else []) + [
+        ("GHS09", "Environment")]
+    picto = Table([[Pictogram(*x) for x in pics]], colWidths=[34 * mm] * len(pics),
+                  hAlign="CENTER")
+    p_text = [t for t in P_TEXT if asp or not t.startswith(("P301+P310", "P331", "P405"))]
+    if not asp:
+        p_text.insert(p_text.index(next(t for t in p_text if t.startswith("P302"))),
+                      "P301+P312 IF SWALLOWED: Call a POISON CENTRE/doctor if you feel unwell.")
     f += section(2, "Hazards identification", [
         ("2.1 Classification (GB CLP)", "<br/>".join(class_lines)),
         ("GHS Rev. 10 only (export)", "Flam. Liq. 4, H227 Combustible liquid – based on the "
                                       "estimated flash point (60–93 °C). This category does not "
                                       "exist in GB CLP. Confirm by test (Section 9)."),
         ("2.2 Label elements", "Labelling according to GB CLP."),
-        ("Hazard pictograms", "GHS07 (exclamation mark), GHS08 (health hazard), "
-                              "GHS09 (environment)"),
+        ("Hazard pictograms", ", ".join(f"{c} ({l.lower()})" for c, l in pics)),
         Spacer(1, 2 * mm), picto, Spacer(1, 1 * mm),
-        ("Signal word", "<b>DANGER</b>"),
+        ("Signal word", "<b>DANGER</b>" if asp else "<b>WARNING</b>"),
         ("Hazard statements", "<br/>".join(H_TEXT[h] for h in h_codes)),
-        ("Precautionary statements", "<br/>".join(P_TEXT)),
+        ("Precautionary statements", "<br/>".join(p_text)),
         ("Contains (sensitisers, named per GB CLP Art. 18)", ", ".join(
             n for n, pct in p["formula"] if "SS1" in RM[n]["codes"] and pct >= 0.1)),
         ("2.3 Other hazards", "Not expected to meet PBT/vPvB criteria as a mixture. Contains "
@@ -441,11 +451,14 @@ def build(key, p):
         ("Eye contact", "Rinse cautiously with water for at least 15 minutes, holding eyelids "
                         "open. Remove contact lenses if easy to do. If irritation persists, get "
                         "medical attention."),
-        ("Ingestion", "Do NOT induce vomiting (aspiration hazard). Rinse mouth with water. Call a "
-                      "poison centre or doctor immediately. Show this SDS."),
+        ("Ingestion", ("Do NOT induce vomiting (aspiration hazard). Rinse mouth with water. "
+                       "Call a poison centre or doctor immediately. Show this SDS.") if asp else
+                      ("Rinse mouth with water. Do not induce vomiting. Call a poison centre or "
+                       "doctor if you feel unwell. Show this SDS.")),
         ("4.2 Most important symptoms", "Skin redness/irritation; allergic skin reaction in "
-                                    "sensitised persons; eye irritation; aspiration into lungs "
-                                    "if swallowed may cause chemical pneumonitis."),
+                                    "sensitised persons; eye irritation"
+                                    + ("; aspiration into lungs if swallowed may cause chemical "
+                                       "pneumonitis." if asp else ".")),
         ("4.3 Note to physician", "Treat symptomatically."),
     ])
     f += section(5, "Fire-fighting measures", [
@@ -504,8 +517,9 @@ def build(key, p):
         ("Boiling point", "&gt;150 °C (mixture, estimated)"),
         ("Auto-ignition temperature", "&gt;200 °C (estimated)"),
         ("Explosive / oxidising properties", "Not explosive. Not oxidising."),
-        ("Kinematic viscosity", "Not determined. If measured &gt;20.5 mm²/s at 40 °C, the H304 "
-                                "classification may be removed."),
+        ("Kinematic viscosity", "Not determined." + (" If measured &gt;20.5 mm²/s at 40 °C, "
+                                "the H304 classification (and GHS08) can be removed." if asp
+                                else "")),
         ("Other", p["colour_note"]),
     ])
     f += section(10, "Stability and reactivity", [
@@ -530,9 +544,14 @@ def build(key, p):
         ("Germ cell mutagenicity / Carcinogenicity / Reproductive toxicity",
          "Not classified. No component present at ≥0.1% is classified CMR."),
         ("STOT single / repeated exposure", "Not classified."),
-        ("Aspiration hazard", f"Asp. Tox. 1 – contains {sums['asp_tox']:.1f}% of Cat. 1 "
-                              "components (hydrocarbon-rich essential oils); viscosity not "
-                              "measured."),
+        ("Aspiration hazard", (f"Asp. Tox. 1 – contains approx. {sums['asp_tox']:.1f}% "
+                               "hydrocarbons (limonene, pinenes, terpinenes, sesquiterpenes, "
+                               "calculated from the constituents of the essential oils), which "
+                               "is at or above the 10% threshold; viscosity not measured.")
+                              if asp else
+                              (f"Not classified – contains approx. {sums['asp_tox']:.1f}% "
+                               "hydrocarbons (calculated from the constituents of the essential "
+                               "oils), below the 10% threshold.")),
     ])
     aq_line = (f"Sum of Aquatic Chronic 1 components = {sums['aq_chronic1']:.1f}% "
                f"(M-factor 1); Chronic 2 = {sums['aq_chronic2']:.1f}%. "
@@ -635,7 +654,8 @@ def build(key, p):
                           "Association. IMDG: International Maritime Dangerous Goods Code. PG: "
                           "Packing Group. PBT: Persistent, Bioaccumulative, Toxic."),
         ("Issue date / version", f"{ISSUE} / 1.1 – revised to UK REACH / GB CLP format; "
-                                 "hazard pictograms redrawn."),
+                                 "hazard pictograms redrawn; aspiration hazard assessed on essential-oil "
+                                 "constituents."),
         ("Training advice", "Staff handling this product should be trained in COSHH and in the "
                             "contents of this SDS."),
         ("Disclaimer", "The information in this SDS is based on our present knowledge and on data "
