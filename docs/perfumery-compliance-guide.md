@@ -33,9 +33,15 @@ Fixed legal thresholds that come from law (for example the EU/UK allergen labell
 
 > ⚠️ **Important** — something that can cause a real compliance problem.
 
+<!-- -->
+
 > ❌ **Common Mistake** — an error that beginners (and some professionals) make.
 
+<!-- -->
+
 > 📘 **Example** — a worked or practical example.
+
+<!-- -->
 
 > ✅ **Good Practice** — a habit that makes compliance easier.
 
@@ -109,6 +115,8 @@ An IFRA Certificate tells you only that the **fragrance concentrate**, used at o
 >
 > IFRA compliance is **one input** into the safety assessment. It is necessary in practice, but it is never sufficient on its own.
 
+<!-- -->
+
 > ❌ **Common Mistake**
 >
 > "My supplier gave me an IFRA Certificate, so my perfume is compliant."
@@ -129,6 +137,8 @@ An IFRA Certificate tells you only that the **fragrance concentrate**, used at o
 >
 > - For the perfume, Sam needs a CPSR, PIF, Responsible Person, notification and compliant labels.
 > - For the concentrate sold to the candle maker, Sam needs CLP classification and labelling, an SDS if hazardous, and an IFRA Certificate covering **Category 12** (candles) — plus, if the candle maker sells in the UK/EU, the candle itself has its own **CLP** obligations (candles are not cosmetics).
+
+<!-- -->
 
 > ⚠️ **Important — "perfume oil" sold to consumers**
 >
@@ -180,6 +190,8 @@ IFRA publishes changes in batches called **Amendments** (e.g. "49th Amendment", 
 >
 > IFRA implementation dates relate to the date the **fragrance mixture** is placed on the market (i.e. supplied by the fragrance supplier), **not** the date a finished consumer product reaches a shop shelf. Read the "Guidance for the use of IFRA Standards" for the exact definitions of *new* and *existing* creations.
 
+<!-- -->
+
 > ⚠️ **Important — the 52nd Amendment**
 >
 > If you are reading this after late 2026, the 52nd Amendment has probably been notified. **Check every restricted material in your formulas against the new Standards**, especially citrus oils (furocoumarins) and any material that gains a new Standard. Your supplier's certificates will need to be reissued against the new Amendment.
@@ -223,7 +235,7 @@ A material with **no IFRA Standard** can still be limited by:
 
 > 📘 **Example**
 >
-> Several materials were banned in EU cosmetics by law (e.g. **butylphenyl methylpropional**, "Lilial", banned in the EU from March 2022 due to reproductive toxicity classification; **HICC**/"Lyral", **atranol** and **chloroatranol** banned in EU cosmetics under Regulation (EU) 2017/1410). Legal bans can arrive through chemical classification routes, independent of IFRA's timetable. Always check the current Annex II of the relevant cosmetics regulation.
+> Several materials were banned in EU cosmetics by law (e.g. **butylphenyl methylpropional**, "Lilial", banned in the EU from March 2022 due to reproductive toxicity classification; **HICC**/"Lyral", **atranol** and **chloroatranol** banned in EU cosmetics under Regulation (EU) 2017/1410). Legal bans can arrive through chemical classification routes, independent of IFRA's timetable. Always check the current Annex II of the relevant cosmetics regulation.  
 > Sources: [EU CosIng database](https://single-market-economy.ec.europa.eu/sectors/cosmetics/cosmetic-ingredient-database_en)
 
 ---
@@ -288,6 +300,8 @@ Because each category has its own limit, **the same concentrate** can have diffe
 >
 > *All numbers are HYPOTHETICAL.* The pattern is the lesson: a concentrate may be allowed at a higher dosage in a candle than in a lotion, because exposure is completely different. The limiting ingredient can also be **different** in each category.
 
+<!-- -->
+
 > ❌ **Common Mistake**
 >
 > Using the Category 4 figure for a body lotion or body mist "because it's the same scent". The category follows the **finished product**, not the fragrance.
@@ -320,10 +334,10 @@ The following mock-up is **invented for teaching**. It does not represent any re
 
 > 📘 **FICTIONAL IFRA Standard (teaching mock-up — not real)**
 >
-> **Name:** Exampleol
-> **CAS No.:** 00000-00-0 *(fictional)*
-> **Synonyms:** 2-Example-3-teachanol; "Teachal"
-> **Amendment:** 51st · **Type:** RESTRICTION
+> **Name:** Exampleol  
+> **CAS No.:** 00000-00-0 *(fictional)*  
+> **Synonyms:** 2-Example-3-teachanol; "Teachal"  
+> **Amendment:** 51st · **Type:** RESTRICTION  
 > **Intrinsic property driving risk management:** Dermal sensitisation
 >
 > | Category | Max concentration in finished product |
@@ -336,7 +350,7 @@ The following mock-up is **invented for teaching**. It does not represent any re
 > | … | … |
 > | 12 | No restriction |
 >
-> **Contributions from other sources:** Exampleol can be present in some essential oils. The limits apply to the **total** concentration from all sources.
+> **Contributions from other sources:** Exampleol can be present in some essential oils. The limits apply to the **total** concentration from all sources.  
 > **Notes:** Material must meet the purity specification in the Specification section.
 
 **How to read it:**
@@ -425,14 +439,14 @@ Material % in finished product = (material % in concentrate × concentrate % in 
 >
 > A raw material is used at **2%** of the fragrance concentrate. The perfume contains **20%** fragrance concentrate.
 >
-> **Step 1 — Convert percentages to fractions**
-> 2% ÷ 100 = 0.02
+> **Step 1 — Convert percentages to fractions**  
+> 2% ÷ 100 = 0.02  
 > 20% ÷ 100 = 0.20
 >
-> **Step 2 — Multiply**
+> **Step 2 — Multiply**  
 > 0.02 × 0.20 = 0.004
 >
-> **Step 3 — Convert back to a percentage**
+> **Step 3 — Convert back to a percentage**  
 > 0.004 × 100 = **0.4%**
 >
 > **Check with the shortcut:** (2 × 20) ÷ 100 = 40 ÷ 100 = 0.4% ✔
@@ -447,8 +461,8 @@ Material % in finished product = (material % in concentrate × concentrate % in 
 >
 > A material is used at **5%** of the concentrate. Finished perfume concentration = **25%**.
 >
-> **Step 1:** 5% ÷ 100 = 0.05; 25% ÷ 100 = 0.25
-> **Step 2:** 0.05 × 0.25 = 0.0125
+> **Step 1:** 5% ÷ 100 = 0.05; 25% ÷ 100 = 0.25  
+> **Step 2:** 0.05 × 0.25 = 0.0125  
 > **Step 3:** 0.0125 × 100 = **1.25%**
 >
 > **Shortcut:** (5 × 25) ÷ 100 = 125 ÷ 100 = 1.25% ✔
@@ -473,6 +487,8 @@ Maximum material % in concentrate
 
 > ⚠️ Units: divide the limit by the dosage **as a fraction** (e.g. 0.20, not 20). If you divide by 20 you'll get an answer 100 times too small.
 
+<!-- -->
+
 > 📘 **Example 3 (HYPOTHETICAL limit)**
 >
 > A material has a Category 4 IFRA maximum of **0.60%** in the finished product *(HYPOTHETICAL — for teaching only)*. What is the most you could use in a concentrate dosed at 10%, 15%, 20%, 25% and 30%?
@@ -488,6 +504,8 @@ Maximum material % in concentrate
 > **Check one of them:** at 25% dosage with 2.40% in the concentrate → (2.40 × 25) ÷ 100 = 60 ÷ 100 = 0.60% ✔ exactly at the limit.
 >
 > **Pattern:** the stronger the perfume (higher dosage), the **less** of the restricted material you can put in the concentrate.
+
+<!-- -->
 
 > ⚠️ **Important — this is a theoretical maximum**
 >
@@ -507,16 +525,16 @@ Many hobbyists measure in **millilitres**. IFRA works in **weight %**.
 
 > 📘 **Example — "20% by volume" is not "20% by weight"**
 >
-> You mix **20 ml** of concentrate with **80 ml** of perfumer's alcohol.
-> Assume concentrate density = 0.98 g/ml and alcohol density ≈ 0.79 g/ml (use your actual supplier values).
+> You mix **20 ml** of concentrate with **80 ml** of perfumer's alcohol.  
+> Assume concentrate density = 0.98 g/ml and perfumer's alcohol (≈96% ethanol) density ≈ 0.81 g/ml (use your actual supplier values).
 >
-> Concentrate mass = 20 ml × 0.98 g/ml = **19.6 g**
-> Alcohol mass = 80 ml × 0.79 g/ml = **63.2 g**
-> Total mass = 19.6 + 63.2 = **82.8 g**
+> Concentrate mass = 20 ml × 0.98 g/ml = **19.6 g**  
+> Alcohol mass = 80 ml × 0.81 g/ml = **64.8 g**  
+> Total mass = 19.6 + 64.8 = **84.4 g**
 >
-> Concentrate % by weight = 19.6 ÷ 82.8 = 0.2367 → × 100 = **23.7% w/w**
+> Concentrate % by weight = 19.6 ÷ 84.4 = 0.2322 → × 100 = **23.2% w/w**
 >
-> So your "20%" perfume is actually **~23.7% w/w** for IFRA purposes. If your certificate allowed 20% max, you'd be over the limit.
+> So your "20%" perfume is actually **~23.2% w/w** for IFRA purposes. If your certificate allowed 20% max, you'd be over the limit.
 >
 > **Solution:** weigh everything on a calibrated scale, and express formulas in grams / % w/w.
 
@@ -550,6 +568,8 @@ If the answer is **above 100%**, that material does **not** limit the concentrat
 >
 > **Check:** at 20% dosage: (3.0 × 20) ÷ 100 = 0.60% ✔
 
+<!-- -->
+
 > 📘 **Example 6B (HYPOTHETICAL limit)**
 >
 > Material B is **0.50%** of the concentrate. Its Category 4 limit is **0.05%** *(hypothetical)*.
@@ -557,6 +577,8 @@ If the answer is **above 100%**, that material does **not** limit the concentrat
 > 0.05 ÷ 0.50 = 0.10 → **10%**
 >
 > **Check:** (0.50 × 10) ÷ 100 = 0.05% ✔
+
+<!-- -->
 
 > 📘 **Example 6C (HYPOTHETICAL limit)**
 >
@@ -581,8 +603,8 @@ When a formula contains **several** restricted materials, calculate the maximum 
 >
 > **Limiting material: Material B.** The concentrate may be used at **no more than 10%** in Category 4.
 >
-> If you want to make a 20% EDP, you must reduce Material B. Using the Section 5.5 formula:
-> Max Material B in concentrate at 20% = 0.05 ÷ 0.20 = **0.25%**.
+> If you want to make a 20% EDP, you must reduce Material B. Using the Section 5.5 formula:  
+> Max Material B in concentrate at 20% = 0.05 ÷ 0.20 = **0.25%**.  
 > But now also check Material D at 20%: 0.12 × 20 ÷ 100 = 0.024% > 0.02% ✘ — so Material D **also** needs reducing (to ≤ 0.02 ÷ 0.20 = 0.10% in the concentrate).
 >
 > **Lesson:** fixing the limiting material often reveals the *next* limiting material. Recalculate everything after every change.
@@ -632,34 +654,44 @@ Solution % needed for a target active % = Target active % ÷ (Dilution % ÷ 100)
 
 > 📘 **10% dilution**
 >
-> Formula contains **5%** of a **10%** solution of a material in DPG.
-> Active % = 5 × (10 ÷ 100) = 5 × 0.10 = **0.5%**
+> Formula contains **5%** of a **10%** solution of a material in DPG.  
+> Active % = 5 × (10 ÷ 100) = 5 × 0.10 = **0.5%**  
 > Solvent (DPG) from this line = 5 − 0.5 = **4.5%**
 >
 > So the formula contains only **0.5%** of the actual material. Use 0.5%, **not** 5%, in IFRA calculations.
 
+<!-- -->
+
 > 📘 **1% dilution**
 >
-> Formula contains **3%** of a **1%** solution.
-> Active % = 3 × (1 ÷ 100) = 3 × 0.01 = **0.03%**
+> Formula contains **3%** of a **1%** solution.  
+> Active % = 3 × (1 ÷ 100) = 3 × 0.01 = **0.03%**  
 > Solvent = 3 − 0.03 = **2.97%**
 >
 > In a 20% perfume, the finished-product level = 0.03 × 0.20 = **0.006%**.
 
+<!-- -->
+
 > 📘 **50% dilution**
 >
-> Formula contains **8%** of a **50%** solution (e.g. a crystalline material pre-dissolved at 50%).
-> Active % = 8 × (50 ÷ 100) = 8 × 0.50 = **4.0%**
+> Formula contains **8%** of a **50%** solution (e.g. a crystalline material pre-dissolved at 50%).  
+> Active % = 8 × (50 ÷ 100) = 8 × 0.50 = **4.0%**  
 > Solvent = 8 − 4 = **4.0%**
+
+<!-- -->
 
 > 📘 **Working backwards**
 >
-> You want **0.2%** active of a material and have it as a **10%** dilution.
+> You want **0.2%** active of a material and have it as a **10%** dilution.  
 > Solution needed = 0.2 ÷ 0.10 = **2.0%** of the 10% solution.
+
+<!-- -->
 
 > ⚠️ **Important — "dilutions" that arrive from suppliers**
 >
 > Some materials are **sold** pre-diluted (e.g. "10% in DPG", "50% in IPM", or naturally occurring as solutions with carriers). Read the specification — the supplier's IFRA certificate may already account for dilution, or may refer to the pure material. Check which one before calculating.
+
+<!-- -->
 
 > ⚠️ **Important — solvents are ingredients too**
 >
@@ -696,22 +728,26 @@ A synthetic aroma chemical is usually one substance (or a defined isomer mix). A
 >
 > Your concentrate contains **8%** of "Essential Oil E". Your **supplier's** documentation states that Oil E contains **1.5%** of a restricted constituent, "Constituent K". Constituent K has a Category 4 limit of **0.05%** *(HYPOTHETICAL)*.
 >
-> **Step 1 — Constituent K in the concentrate**
+> **Step 1 — Constituent K in the concentrate**  
 > 8% × (1.5 ÷ 100) = 8 × 0.015 = **0.12%** of the concentrate
 >
-> **Step 2 — Add other sources**
-> Your formula also contains 0.03% of Constituent K as a pure material.
+> **Step 2 — Add other sources**  
+> Your formula also contains 0.03% of Constituent K as a pure material.  
 > Total = 0.12 + 0.03 = **0.15%** of the concentrate
 >
-> **Step 3 — Finished-product level at 20% dosage**
+> **Step 3 — Finished-product level at 20% dosage**  
 > 0.15 × 0.20 = **0.03%** of the finished perfume → below 0.05% ✔
 >
-> **Step 4 — Maximum dosage from Constituent K**
+> **Step 4 — Maximum dosage from Constituent K**  
 > 0.05 ÷ 0.15 = 0.333 → **33.3%**
+
+<!-- -->
 
 > ⚠️ **Important**
 >
 > Constituent percentages **must come from reliable supplier documentation** (allergen declaration, GC/MS, specification or IFRA statement for the specific material), or — where there is no better data — from recognised reference data such as IFRA's annex on contributions from other sources. **Do not** use a random percentage from a website or a different supplier's oil. Where data is given as a *range*, a conservative approach is to use the **upper** value and discuss it with your safety assessor.
+
+<!-- -->
 
 > ❌ **Common Mistake**
 >
@@ -855,7 +891,7 @@ A synthetic aroma chemical is usually one substance (or a defined isomer mix). A
 > - re-issue when anything changes;
 > - consider having your calculations checked by an experienced regulatory professional or using recognised software — and still check its data sources.
 >
-> Remember that IFRA Certificates of Conformity are formally a mechanism of the IFRA Code of Practice. Non-members can calculate IFRA compliance for their own formulas, but should be transparent about how the document was produced.
+> If you are not an IFRA member, you can still calculate IFRA compliance for your own formulas — but be transparent on the document about who produced it, which Amendment was used, and how it was calculated.
 
 ---
 
@@ -890,7 +926,7 @@ The allergen is counted from **all sources** (added directly, from naturals, fro
 | | **EU** | **Great Britain (UK)** |
 |---|---|---|
 | **Law** | Regulation (EC) No 1223/2009, Annex III, as amended by **Commission Regulation (EU) 2023/1545** | Retained Regulation (EC) No 1223/2009 as it applies in GB ("UK Cosmetics Regulation") |
-| **List** | Expanded list: the original allergens plus **56 new entries** (individual chemicals and certain natural extracts), >80 entries in total | At the time of writing, GB still uses the **original list** (the "26 allergens", minus substances since banned). OPSS has been expected to consult on alignment — **check the current position**. |
+| **List** | Expanded list: the original allergens (minus those since banned) plus **56 new entries** (individual chemicals and certain natural extracts) — around 80 entries in total | At the time of writing, GB still uses the **original list** (the "26 allergens", minus substances since banned). OPSS has been expected to consult on alignment — **check the current position**. |
 | **Transition** | Products **placed on the market from 31 July 2026** must comply. Products placed on the market before that date may continue to be **made available until 31 July 2028**. | Check current OPSS guidance. |
 | **Northern Ireland** | EU cosmetics rules generally apply in NI under the Windsor Framework — check current guidance. | — |
 
@@ -899,6 +935,8 @@ Sources: [Regulation (EU) 2023/1545 on EUR-Lex](https://eur-lex.europa.eu/eli/re
 > ⚠️ **Important**
 >
 > Transitional dates and the exact contents of the lists **must be checked from official sources**. The EU amendment also changed how some allergens are **named** on labels (and allows certain naming conventions for groups/isomers). Use the INCI names given in the current Annex III.
+
+<!-- -->
 
 > ✅ **Good Practice — label to the stricter list**
 >
@@ -920,29 +958,33 @@ Label it if:  leave-on → finished % > 0.001     rinse-off → finished % > 0.0
 > - Linalool (pure material): **3.0%**
 > - Lavender oil at **10%**, whose supplier allergen declaration shows **30%** linalool
 >
-> **Step 1 — linalool from lavender:** 10 × (30 ÷ 100) = 10 × 0.30 = **3.0%**
-> **Step 2 — total linalool in concentrate:** 3.0 + 3.0 = **6.0%**
-> **Step 3 — finished EDP at 18%:** 6.0 × (18 ÷ 100) = 6.0 × 0.18 = **1.08%**
+> **Step 1 — linalool from lavender:** 10 × (30 ÷ 100) = 10 × 0.30 = **3.0%**  
+> **Step 2 — total linalool in concentrate:** 3.0 + 3.0 = **6.0%**  
+> **Step 3 — finished EDP at 18%:** 6.0 × (18 ÷ 100) = 6.0 × 0.18 = **1.08%**  
 > **Step 4 — compare:** 1.08% > 0.001% → **Linalool must be labelled.**
 >
 > *(Real lavender linalool content varies — the 30% here is illustrative; use your supplier's declaration.)*
+
+<!-- -->
 
 > 📘 **Example 11B — same allergen, leave-on vs rinse-off**
 >
 > A concentrate contains **0.40%** of an allergen (from all sources).
 >
-> **Body lotion (leave-on) at 0.5% fragrance:**
+> **Body lotion (leave-on) at 0.5% fragrance:**  
 > 0.40 × (0.5 ÷ 100) = 0.40 × 0.005 = **0.002%** → > 0.001% → **Label.**
 >
-> **Shower gel (rinse-off) at 1.5% fragrance:**
+> **Shower gel (rinse-off) at 1.5% fragrance:**  
 > 0.40 × (1.5 ÷ 100) = 0.40 × 0.015 = **0.006%** → < 0.01% → **Not required** on the label.
 >
 > Same concentrate, different outcomes — because thresholds depend on product type.
 
+<!-- -->
+
 > 📘 **Example 11C — trace amount**
 >
-> A woody base is 12% of your concentrate; the supplier declares **0.005%** of a listed allergen in it.
-> In concentrate: 12 × (0.005 ÷ 100) = 12 × 0.00005 = **0.0006%**
+> A woody base is 12% of your concentrate; the supplier declares **0.005%** of a listed allergen in it.  
+> In concentrate: 12 × (0.005 ÷ 100) = 12 × 0.00005 = **0.0006%**  
 > In EDP at 20%: 0.0006 × 0.20 = **0.00012%** → below 0.001% → not required on the label (but record it and give the data to your assessor).
 
 ### 11.5 How allergens appear on a label
@@ -951,7 +993,7 @@ In the UK/EU, allergens above the threshold are listed **by their INCI name** in
 
 > *Alcohol Denat., Parfum (Fragrance), Aqua (Water), Limonene, Linalool, Coumarin, Citral.*
 
-*(Order and exact content depend on your product; the ingredient list follows descending order of weight for ingredients above 1%, and ingredients at or below 1% may be listed in any order after those above 1%.)*
+*(Order and exact content depend on your product. Ingredients are listed in descending order of weight at the time they are added; ingredients in concentrations of less than 1% may be listed in any order after those above 1%. An allergen present above 1% — possible in a perfume — must therefore take its correct place in the descending order.)*
 
 ---
 
@@ -1163,6 +1205,8 @@ These systems have **different purposes**, so the same product can be exempt fro
 > - **CLP labelling:** does **not** apply to the finished cosmetic (cosmetics in their finished state intended for the end user are exempt from CLP labelling).
 > - **Transport:** it **is** a flammable liquid — typically **UN 1266, Perfumery products with flammable solvents, Class 3** — and transport rules apply when it's shipped.
 
+<!-- -->
+
 > 📘 **Example**
 >
 > A 1 kg bottle of fragrance concentrate supplied to another business:
@@ -1170,6 +1214,8 @@ These systems have **different purposes**, so the same product can be exempt fro
 > - **CLP:** applies — hazard classification and label (pictograms, signal word, hazard and precautionary statements, UFI where required in the EU).
 > - **SDS:** required if the mixture is classified as hazardous (or meets other REACH Article 31 criteria).
 > - **Transport:** depends on its flash point and other hazards (many concentrates are also classified as environmentally hazardous).
+
+<!-- -->
 
 > ⚠️ **Important — CLP is changing**
 >
@@ -1192,84 +1238,118 @@ These systems have **different purposes**, so the same product can be exempt fro
 
 > ❌ **Mistake 1 — Comparing concentrate % directly with a finished-product IFRA limit**
 >
-> "Material X is 3% of my concentrate; the Category 4 limit is 0.6%, so I'm over." — Not necessarily. IFRA limits apply to the **finished product**.
+> "Material X is 3% of my concentrate; the Category 4 limit is 0.6%, so I'm over." — Not necessarily. IFRA limits apply to the **finished product**.  
 > **Avoid it:** always calculate `material % in concentrate × dosage ÷ 100` before comparing (Section 5).
+
+<!-- -->
 
 > ❌ **Mistake 2 — Forgetting to account for perfume dilution the other way round**
 >
-> "My concentrate is compliant, so any dosage is fine." — The concentrate is only compliant **up to** its maximum dosage.
+> "My concentrate is compliant, so any dosage is fine." — The concentrate is only compliant **up to** its maximum dosage.  
 > **Avoid it:** always record the maximum Category 4 dosage and never exceed it in the finished product.
+
+<!-- -->
 
 > ❌ **Mistake 3 — Forgetting raw-material dilutions**
 >
-> Counting 5% of a 10% solution as 5% active (overestimating), or forgetting that a supplier material was already diluted (under- or over-estimating).
+> Counting 5% of a 10% solution as 5% active (overestimating), or forgetting that a supplier material was already diluted (under- or over-estimating).  
 > **Avoid it:** have a **dilution %** column and calculate **active %** for every line (Section 7).
+
+<!-- -->
 
 > ❌ **Mistake 4 — Using outdated IFRA certificates**
 >
-> A 48th- or 49th-Amendment certificate is not evidence of 51st-Amendment compliance.
+> A 48th- or 49th-Amendment certificate is not evidence of 51st-Amendment compliance.  
 > **Avoid it:** record the Amendment on every document; request updates when a new Amendment is notified (the 52nd is expected late 2026).
+
+<!-- -->
 
 > ❌ **Mistake 5 — Relying only on CAS numbers**
 >
-> A search by one CAS number returns nothing, so the material is assumed unrestricted.
+> A search by one CAS number returns nothing, so the material is assumed unrestricted.  
 > **Avoid it:** search by **name, synonyms, and all CAS numbers**; check constituents for mixtures and naturals (Section 4.3).
+
+<!-- -->
 
 > ❌ **Mistake 6 — Assuming "natural" means unrestricted**
 >
 > **Avoid it:** naturals can be restricted themselves and contain restricted and allergenic constituents (Section 8).
 
+<!-- -->
+
 > ❌ **Mistake 7 — Forgetting restricted constituents inside naturals**
 >
-> Methyl eugenol from basil or rose, citral from lemongrass, furocoumarins from bergamot, eugenol from clove…
+> Methyl eugenol from basil or rose, citral from lemongrass, furocoumarins from bergamot, eugenol from clove…  
 > **Avoid it:** use supplier composition data and **sum all sources** of each restricted substance.
+
+<!-- -->
 
 > ❌ **Mistake 8 — Confusing allergens with IFRA restrictions**
 >
-> "Linalool isn't IFRA-limited, so I don't need to label it." Allergen labelling is a separate **legal** requirement.
+> "Linalool isn't IFRA-limited, so I don't need to label it." Allergen labelling is a separate **legal** requirement.  
 > **Avoid it:** calculate allergens separately against 0.001% / 0.01% thresholds (Section 11).
+
+<!-- -->
 
 > ❌ **Mistake 9 — Assuming an SDS proves cosmetic compliance**
 >
 > **Avoid it:** an SDS is a chemical-hazard document. Use it for handling, CLP and transport — not as cosmetic or IFRA evidence.
 
+<!-- -->
+
 > ❌ **Mistake 10 — Assuming an IFRA certificate equals a CPSR**
 >
 > **Avoid it:** the CPSR is a legal requirement for the whole product, signed by a qualified assessor (Section 12).
 
+<!-- -->
+
 > ❌ **Mistake 11 — Using supplier usage recommendations as if they were legal limits**
 >
-> "Up to 5% in concentrate" on a TDS may be an odour/performance suggestion, not an IFRA or legal limit — and it could be higher or lower than the actual restriction.
+> "Up to 5% in concentrate" on a TDS may be an odour/performance suggestion, not an IFRA or legal limit — and it could be higher or lower than the actual restriction.  
 > **Avoid it:** use the **IFRA Standard** and **law** for limits; treat supplier recommendations as advice.
+
+<!-- -->
 
 > ❌ **Mistake 12 — Forgetting that Category 4 limits apply to finished-product exposure**
 >
-> Using the Category 4 limit as a % of the concentrate, or applying it to a lotion or body mist.
+> Using the Category 4 limit as a % of the concentrate, or applying it to a lotion or body mist.  
 > **Avoid it:** Category limits = % in the **finished product**, for **that product type** only.
+
+<!-- -->
 
 > ❌ **Mistake 13 — Treating parts by weight as percentages**
 >
-> A formula written as "Iso-style woody 150 parts, musk 300 parts … total 870 parts" — reading "150" as 15% is wrong: 150 ÷ 870 × 100 = **17.24%**.
+> A formula written as "Iso-style woody 150 parts, musk 300 parts … total 870 parts" — reading "150" as 15% is wrong: 150 ÷ 870 × 100 = **17.24%**.  
 > **Avoid it:** always convert parts to % with `part ÷ total parts × 100` before any IFRA calculation.
+
+<!-- -->
 
 > ❌ **Mistake 14 — Failing to renormalise formulas properly**
 >
-> You add 20 parts of a new material to a 1000-part formula and keep the old percentages. Every percentage has changed: the total is now 1020 parts, so a material at 50 parts drops from 50 ÷ 1000 × 100 = 5.00% to 50 ÷ 1020 × 100 = **4.90%**, and the new material is 20 ÷ 1020 × 100 = **1.96%**.
+> You add 20 parts of a new material to a 1000-part formula and keep the old percentages. Every percentage has changed: the total is now 1020 parts, so a material at 50 parts drops from 50 ÷ 1000 × 100 = 5.00% to 50 ÷ 1020 × 100 = **4.90%**, and the new material is 20 ÷ 1020 × 100 = **1.96%**.  
 > **Avoid it:** let a spreadsheet recalculate % from parts automatically; check the % column sums to 100.00.
+
+<!-- -->
 
 > ❌ **Mistake 15 — Ignoring purity or active concentration**
 >
-> A material sold as "~50% active in a carrier", or a natural isolate of limited purity.
+> A material sold as "~50% active in a carrier", or a natural isolate of limited purity.  
 > **Avoid it:** read the specification; adjust the active % accordingly.
+
+<!-- -->
 
 > ❌ **Mistake 16 — Mixing documentation from different versions of the same raw material**
 >
-> Using supplier A's allergen declaration with supplier B's oil, or last year's spec with this year's re-formulated base.
+> Using supplier A's allergen declaration with supplier B's oil, or last year's spec with this year's re-formulated base.  
 > **Avoid it:** file documents by **supplier + product code + date**; when you change supplier, get a full new set of documents.
+
+<!-- -->
 
 > ❌ **Mistake 17 — Measuring by volume and calculating by weight**
 >
 > **Avoid it:** weigh everything (Section 5.6).
+
+<!-- -->
 
 > ❌ **Mistake 18 — Formulating exactly at the limit**
 >
@@ -1340,9 +1420,9 @@ All other materials: the (fictional) suppliers' IFRA documents state no Standard
 - **R1:** 2.00% (neat) → **2.00%**
 - **R2:** active = **0.50%**
 - **Constituent K:**
-  - from Citrus Oil C: 12.00 × (0.40 ÷ 100) = 12 × 0.004 = **0.048%**
-  - from Floral F: 20.00 × (0.05 ÷ 100) = 20 × 0.0005 = **0.010%**
-  - **Total K** = 0.048 + 0.010 = **0.058%**
+    - from Citrus Oil C: 12.00 × (0.40 ÷ 100) = 12 × 0.004 = **0.048%**
+    - from Floral F: 20.00 × (0.05 ÷ 100) = 20 × 0.0005 = **0.010%**
+    - **Total K** = 0.048 + 0.010 = **0.058%**
 
 ### 19.6 Step 5 — Finished-product exposure at 20% dosage
 
@@ -1377,6 +1457,8 @@ All other materials: the (fictional) suppliers' IFRA documents state no Standard
 
 **Resulting ingredient list (simplified, EU/UK style):**
 *Alcohol Denat., Parfum (Fragrance), Aqua (Water) [if used], Linalool, Limonene* — plus any other allergens that the full declarations reveal above threshold, and any other ingredients (e.g. denaturants, UV filters, antioxidants, colourants).
+
+Note: linalool (1.16%) is above 1%, so it must sit in its correct descending-order position; limonene (0.84%) is below 1% and may follow in any order. This list assumes any water present is above 1.16%.
 
 ### 19.10 Step 9 — Documents to obtain and file
 
@@ -1480,7 +1562,7 @@ Put the **finished-product dosage** (e.g. 20) in a fixed cell, say **`$B$1`**, a
 | N | Pass at planned dosage? | `=IF(ISNUMBER(L4),IF(I4<=L4,"OK","EXCEEDS"),"")` |
 | O | Allergens present | Text (from allergen declaration) |
 | P | Allergen % in material | Number |
-| Q | Allergen % contributed to concentrate | `=F4*P4/100` |
+| Q | Allergen % contributed to concentrate | `=H4*P4/100` (uses **active** %, so diluted materials are counted correctly) |
 | R | SDS available? | Y/N |
 | S | IFRA document available? | Y/N |
 | T | Allergen declaration available? | Y/N |
@@ -1503,19 +1585,19 @@ Missing documents                =COUNTIF(R4:U50,"N")
 
 ### 21.3 Constituents and allergens table (recommended)
 
-Because allergens and restricted constituents come from several materials, use a **matrix**: one row per material, one column per substance, cells = % of that substance in that material (from supplier documents).
+Because allergens and restricted constituents come from several materials, use a **matrix** on a separate tab: one row per material, one column per substance, cells = % of that substance in the **neat** material (from supplier documents). Column B holds each material's **active %** (not formula %), so diluted materials are counted correctly.
 
-| Material | Formula % | Linalool % in material | Limonene % in material | Constituent K % in material | … |
+| Material | Active % | Linalool % in material | Limonene % in material | Constituent K % in material | … |
 |---|---|---|---|---|---|
 | Linalool | 4.00 | 100 | 0 | 0 | |
 | Citrus Oil C | 12.00 | 15 | 35 | 0.40 | |
 | Floral F | 20.00 | 0 | 0 | 0.05 | |
 
-Totals row (for each substance column, e.g. Linalool in column C, formula % in column B, rows 4–50):
+Totals row (for each substance column, e.g. Linalool in column C, active % in column B, rows 4–50; the dosage cell lives on the main tab, here called `Main`):
 
 ```
 % in concentrate      =SUMPRODUCT($B$4:$B$50, C4:C50)/100
-% in finished product =[cell above]*$B$1/100
+% in finished product =[cell above]*Main!$B$1/100
 Label? (leave-on)     =IF([finished cell]>0.001,"LABEL","")
 Label? (rinse-off)    =IF([finished cell]>0.01,"LABEL","")
 Max dosage (restricted substance) =IFERROR([limit]/[% in concentrate]*100,"")
@@ -1624,13 +1706,15 @@ Additional useful terms: **Annex II / III** (lists of prohibited / restricted co
 ### 🔢 Key IFRA formulas (all % by WEIGHT)
 
 ```
-Normalise:      Formula %  = parts ÷ total parts × 100
-Dilutions:      Active %   = formula % × dilution % ÷ 100
-Finished level: Material % in finished = active % in concentrate × dosage % ÷ 100
-Max in conc.:   Max % in concentrate   = IFRA limit % ÷ (dosage % ÷ 100)
-Max dosage:     Max dosage %           = IFRA limit % ÷ active % in concentrate × 100
-Limiting:       The LOWEST max dosage across all restricted substances wins
-Allergens:      % in conc = Σ(material % × allergen % in material ÷ 100); × dosage % ÷ 100
+NORMALISE      formula % = parts ÷ total parts × 100
+ACTIVE         active % = formula % × dilution % ÷ 100
+FINISHED       finished % = active % × dosage % ÷ 100
+MAX IN CONC.   max active % = IFRA limit % ÷ (dosage % ÷ 100)
+MAX DOSAGE     max dosage % = IFRA limit % ÷ active % × 100
+LIMITING       lowest max dosage of all restricted
+               substances = max dosage of the formula
+ALLERGEN       conc. % = Σ(active % × allergen % ÷ 100)
+               finished % = conc. % × dosage % ÷ 100
 ```
 
 ### 🧴 Category 4 basics
