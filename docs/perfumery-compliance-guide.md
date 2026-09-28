@@ -9,6 +9,8 @@
 > ⚠️ **DISCLAIMER**
 >
 > **This guide is for educational purposes only and is not legal, regulatory or toxicological advice. Regulations and IFRA Standards change over time. Always verify requirements against current official guidance, supplier documentation, and where appropriate a qualified cosmetic safety assessor.**
+>
+> This guide covers the UK, EU and US. **Laws differ between countries and regions — you must do your own research into the rules for your country, your local area, and every market you sell or ship to.**
 
 ---
 
@@ -17,6 +19,23 @@
 - **Complete beginners:** read Sections 1–7 in order, then jump to the [Cheat Sheet](#perfumery-compliance-cheat-sheet) at the end.
 - **Making your first product for sale:** read everything, and pay special attention to Sections 12–17 (CPSR, PIF, UK, EU, US, transport).
 - **Already selling:** use Sections 18–22 (mistakes, worked example, workflow, spreadsheet, research method) as an audit checklist.
+- **Outside the UK, EU or US?** Read [Section 1.4](#14-this-guide-covers-the-uk-eu-and-us--check-the-laws-where-you-are) first — you must research your own country's laws.
+
+### Where to find the IFRA calculation examples
+
+This guide teaches IFRA maths through step-by-step worked examples, each showing the full calculation:
+
+| What you want to calculate | Worked examples |
+|---|---|
+| A material's % in the **finished perfume** | [Examples 1 and 2](#53-example-1) (Sections 5.3–5.4) |
+| The **most** of a restricted material you can put in a concentrate at 10%, 15%, 20%, 25% and 30% dosage | [Example 3](#55-example-3--working-backwards-from-a-limit) (Section 5.5) |
+| Correcting for dosing **by volume** instead of weight | [Section 5.6](#56-volume-vs-weight--a-practical-trap) |
+| The **maximum dosage** of a whole concentrate, and finding the **limiting material** | [Examples 6A–6D](#62-worked-examples) (Section 6) |
+| Materials used as **dilutions** (10%, 1%, 50%) | [Section 7.3](#73-worked-examples) |
+| A restricted **constituent inside an essential oil** | [Example 8A](#83-simplified-educational-example) (Section 8.3) |
+| **Allergen** labelling (leave-on vs rinse-off, trace amounts) | [Examples 11A–11C](#114-how-to-calculate-allergen--in-the-finished-product) (Section 11.4) |
+| A **full compliance review** of a 13-material perfume | [Section 19](#19-worked-compliance-example) |
+| Doing it all in **Excel / Google Sheets** | [Section 21](#21-compliance-spreadsheet-structure) |
 
 ### About the numbers in this guide
 
@@ -143,6 +162,20 @@ An IFRA Certificate tells you only that the **fragrance concentrate**, used at o
 > ⚠️ **Important — "perfume oil" sold to consumers**
 >
 > A concentrate sold to consumers **to put on their skin** (e.g. a roll-on perfume oil) is a **cosmetic product**. A concentrate sold to consumers **for DIY blending** is a **chemical mixture** and falls under CLP (and you should not market it for skin application without meeting cosmetics law). The intended use you communicate determines which rules apply.
+
+### 1.4 This guide covers the UK, EU and US — check the laws where you are
+
+The legal sections of this guide (Sections 11–17) cover **Great Britain, the European Union and the United States** only. The IFRA calculation methods apply everywhere, because IFRA Standards are international, but **the laws that decide whether you can sell a perfume are national (and sometimes regional or local)**.
+
+> ⚠️ **Important — do your own research for your country and local laws**
+>
+> If you live, manufacture, or sell anywhere else — or ship to customers in another country — you must research the requirements that apply **there**. For example:
+> - **Canada** has its own Cosmetic Regulations under Health Canada, including a Cosmetic Notification Form and fragrance allergen disclosure requirements phased in from 2026 to 2028.
+> - **Australia, New Zealand, Japan, China, South Korea, the Gulf states, India, Brazil** and many other countries each have their own cosmetic, chemical, labelling, import and customs rules — some very different from the UK/EU model.
+> - **Within a country**, there may be extra **state, provincial or local** rules (for example, US states such as California have their own cosmetic ingredient laws), as well as rules on alcohol, business registration, consumer protection and taxation.
+> - **When you ship abroad**, the importing country's rules usually apply to the product your customer receives, not just the rules where you are based.
+>
+> **How to research:** start with your national **cosmetics regulator** or health/consumer-product-safety authority, read the official legislation and guidance, and — before selling — confirm with a qualified local regulatory consultant, safety assessor, or trade association. Treat blogs, forums and marketplace advice as starting points only.
 
 ---
 
@@ -1184,6 +1217,12 @@ The US system is **structurally different** from the UK/EU. This is a high-level
 >
 > "The US has no rules for cosmetics, so I don't need anything." Since MoCRA, obligations have expanded significantly, and the underlying adulteration/misbranding law has always applied.
 
+<!-- -->
+
+> ⚠️ **Important — other countries**
+>
+> Selling outside the UK, EU and US? This guide does not cover your country's rules. See [Section 1.4](#14-this-guide-covers-the-uk-eu-and-us--check-the-laws-where-you-are) and research your own national, regional and local requirements.
+
 ---
 
 ## 17. SDS, CLP and Transport
@@ -1696,6 +1735,8 @@ Additional useful terms: **Annex II / III** (lists of prohibited / restricted co
 | [FDA — Small Businesses & Homemade Cosmetics fact sheet](https://www.fda.gov/cosmetics/resources-industry-cosmetics/small-businesses-homemade-cosmetics-fact-sheet) | Checking which US obligations apply to small businesses. |
 | [ECHA — CLP](https://echa.europa.eu/regulations/clp/understanding-clp) | Understanding EU chemical hazard classification and labelling for raw materials and concentrates. |
 | [HSE — GB CLP](https://www.hse.gov.uk/chemical-classification/index.htm) | Understanding GB chemical classification and labelling rules. |
+| [Health Canada — Cosmetics](https://www.canada.ca/en/health-canada/services/consumer-product-safety/cosmetics.html) | Checking Canadian cosmetic rules, notification and fragrance allergen requirements. |
+| **Your own country's cosmetics regulator** | Finding the laws that apply where you live, manufacture or sell — essential if you are outside the UK, EU or US (see Section 1.4). |
 
 ---
 
@@ -1743,6 +1784,7 @@ SDS · IFRA document (current Amendment) · Allergen declaration · Specificatio
 - **EU:** EU RP · CPNP · CPSR · PIF · GMP · label (local languages).
 - **US:** FD&C Act + MoCRA (registration/listing, safety substantiation, adverse events, label contact info); IFRA is industry practice, not federal law.
 - **Shipping alcoholic perfume:** dangerous goods (typically **UN 1266, Class 3**) — follow carrier and DG rules.
+- **Anywhere else:** do your own research into **your country's and local laws** (and those of every country you ship to).
 
 ### ⚠️ Top mistakes to avoid
 1. Comparing concentrate % to a finished-product limit.
@@ -1760,6 +1802,6 @@ SDS · IFRA document (current Amendment) · Allergen declaration · Specificatio
 
 ---
 
-*This guide is for educational purposes only and is not legal, regulatory or toxicological advice. Regulations and IFRA Standards change over time. Always verify requirements against current official guidance, supplier documentation, and where appropriate a qualified cosmetic safety assessor.*
+*This guide is for educational purposes only and is not legal, regulatory or toxicological advice. Regulations and IFRA Standards change over time. Always verify requirements against current official guidance, supplier documentation, and where appropriate a qualified cosmetic safety assessor. Laws differ between countries and regions: do your own research into the requirements for your country, your local area, and every market you sell or ship to.*
 
 *Written September 2026. Found an error or an out-of-date reference? Please flag it to the community moderators so the guide can be updated.*

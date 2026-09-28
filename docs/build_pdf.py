@@ -1,4 +1,4 @@
-"""Build docs/perfumery-compliance-guide.pdf from the Markdown source.
+"""Build the PDF editions of the compliance guide from their Markdown sources.
 
 Requires: pip install markdown beautifulsoup4 playwright
 Uses the system Chromium at /opt/pw-browsers/chromium (override with CHROMIUM_PATH).
@@ -12,8 +12,24 @@ from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
 
 HERE = Path(__file__).parent
-SRC = HERE / "perfumery-compliance-guide.md"
-OUT = HERE / "perfumery-compliance-guide.pdf"
+EDITIONS = [
+    {
+        "src": HERE / "perfumery-compliance-simple.md",
+        "out": HERE / "perfumery-compliance-simple.pdf",
+        "kicker": "Easy-read edition",
+        "sub": "A plain-English read-through of IFRA calculations, allergens, supplier documents "
+               "and the basics of selling perfume in the UK, EU and US.",
+        "section_breaks": False,
+    },
+    {
+        "src": HERE / "perfumery-compliance-guide.md",
+        "out": HERE / "perfumery-compliance-guide.pdf",
+        "kicker": "Full reference edition",
+        "sub": "IFRA calculations, supplier documents, allergens, CPSR/PIF and market requirements "
+               "for the UK, EU and US, explained for beginners.",
+        "section_breaks": True,
+    },
+]
 CHROMIUM = os.environ.get("CHROMIUM_PATH", "/opt/pw-browsers/chromium")
 
 
@@ -185,8 +201,8 @@ def style_callouts(soup):
     return soup
 
 
-def build():
-    src = SRC.read_text(encoding="utf-8")
+def build(edition):
+    src = edition["src"].read_text(encoding="utf-8")
     main_md, cheat_md = src.split("\n# Perfumery Compliance Cheat Sheet\n", 1)
 
     # Replace the Markdown title block with a designed cover page.
@@ -206,18 +222,18 @@ def build():
 
     cover = """
 <section class="cover">
-  <div class="kicker">Training handbook</div>
+  <div class="kicker">{kicker}</div>
   <h1>Perfumery Compliance:<br>A Practical Guide for Independent Perfumers</h1>
-  <div class="sub">IFRA calculations, supplier documents, allergens, CPSR/PIF and market requirements
-  for the UK, EU and US, explained for beginners.</div>
+  <div class="sub">{sub}</div>
   <div class="meta">Written September 2026 · IFRA Standards in force: 51st Amendment
   (52nd Amendment expected to be notified late 2026)<br>
   Educational material only. Not legal, regulatory or toxicological advice.</div>
-</section>"""
+</section>""".format(kicker=edition["kicker"], sub=edition["sub"])
+    css = CSS if edition["section_breaks"] else CSS + "\nh2 { break-before: auto; margin-top: 18pt; }\nbody { font-size: 10.6pt; line-height: 1.5; }\ntable { font-size: 9.2pt; }\n.cheatsheet { font-size: 8.6pt; }\n"
 
     html = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <title>Perfumery Compliance: A Practical Guide for Independent Perfumers</title>
-<style>{CSS}</style></head><body>{cover}<main>{main_html}</main>{cheat_html}</body></html>"""
+<style>{css}</style></head><body>{cover}<main>{main_html}</main>{cheat_html}</body></html>"""
 
     soup = style_callouts(BeautifulSoup(html, "html.parser"))
     # The disclaimer and "How to use" section follow the cover; keep them off a forced break.
@@ -238,7 +254,7 @@ def build():
         page = browser.new_page()
         page.set_content(html, wait_until="load")
         page.pdf(
-            path=str(OUT),
+            path=str(edition["out"]),
             format="A4",
             print_background=True,
             display_header_footer=True,
@@ -249,8 +265,9 @@ def build():
         )
         browser.close()
     (HERE / "_build.html").unlink()
-    print(f"Wrote {OUT}")
+    print(f"Wrote {edition['out']}")
 
 
 if __name__ == "__main__":
-    build()
+    for edition in EDITIONS:
+        build(edition)
